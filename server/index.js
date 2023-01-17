@@ -1,10 +1,16 @@
 const express = require("express");
-require("dotenv").config()
-
+const cors = require("cors");
+require("dotenv").config();
 
 const connect = require("./src/config/db");
 
 const app = express();
+app.use(express.json());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.listen(process.env.PORT, () => {
   try {
