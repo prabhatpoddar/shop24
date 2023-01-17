@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const connect = require("./src/config/db");
+const userRoutes=require("./src/routes/user.routes")
 
 const app = express();
 app.use(express.json());
@@ -11,6 +12,11 @@ app.use(
     origin: "*",
   })
 );
+
+app.get("/",(req,res)=>[
+  res.send("Home Page")
+])
+app.use("/users",userRoutes)
 
 app.listen(process.env.PORT, () => {
   try {
