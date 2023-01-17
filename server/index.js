@@ -1,10 +1,12 @@
 const express = require("express");
+require("dotenv").config()
+
 
 const connect = require("./src/config/db");
 
 const app = express();
 
-app.listen(8080, () => {
+app.listen(process.env.PORT, () => {
   try {
     connect.then((res) => {
       console.log("db is connected");
