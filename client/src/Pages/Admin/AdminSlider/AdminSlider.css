@@ -1,0 +1,90 @@
+.sidebar {
+  flex: 1;
+  border-right: 0.5px solid gray;
+  min-height: 100vh;
+}
+.top {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+.center {
+  padding-left: 10px;
+ 
+}
+.center ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+ 
+  
+ 
+
+}
+.center ul span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #888;
+  margin-left: 10px;
+}
+
+.center ul li {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+
+
+}
+.center ul li:hover {
+  background-color: rgb(227, 221, 229);
+}
+
+.title {
+  font-size: 10px;
+  font-weight: bold;
+  color: #999;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+.icon {
+  font-size: 18px;
+  color: black;
+}
+.bottom {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+ 
+}
+.colorOption {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+
+  border-radius: 5px;
+  border: 1px solid #7451f8;
+  cursor: pointer;
+
+ 
+}
+.colorOption:nth-child(1) {
+  background-color: whitesmoke;
+}
+.colorOption:nth-child(2) {
+  background-color: #333;
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+}

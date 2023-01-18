@@ -11,7 +11,7 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
-import "./AdminSlider.scss"
+import "./AdminSlider.css"
 import { MenuButton, MenuItem, MenuList, Menu } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import NotificationCard from '../Dashboard/Card/NotificationCard';

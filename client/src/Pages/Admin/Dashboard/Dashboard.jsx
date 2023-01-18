@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Dashboard.scss"
+import "./Dashboard.css"
 import { CircularProgress, Grid } from '@chakra-ui/react'
 import DashboardCard from './Card/DashboardCard'
 import ProductCard from './Card/ProductCard'

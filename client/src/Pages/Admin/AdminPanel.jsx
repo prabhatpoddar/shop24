@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getProductAdmin } from '../../REDUX/AdminRedux/action'
 import AdminNav from './AdminNav/AdminNav'
-import "./AdminPanel.scss"
+import "./AdminPanel.css"
 import AdminSlider from './AdminSlider/AdminSlider'
 import Dashboard from './Dashboard/Dashboard'
 
