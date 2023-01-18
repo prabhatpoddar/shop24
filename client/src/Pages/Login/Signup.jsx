@@ -1,8 +1,6 @@
 import { Container, Flex, Grid, Heading, InputRightElement, Image, InputGroup, Input, Text, Button, GridItem } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Footer from '../Components/Footer'
-import Navbar from '../Components/Navbar'
 
 
 const initialState = {
@@ -37,7 +35,6 @@ const Signup = () => {
 
     return (
         <>
-            <Navbar />
 
             <Grid bg="#FFF5F5" w="100%" h="100vh" display="grid" justifyContent="center" alignItems="center">
 
@@ -101,7 +98,6 @@ const Signup = () => {
                 </Container>
 
             </Grid>
-            <Footer />
 
         </>
 

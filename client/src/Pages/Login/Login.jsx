@@ -1,8 +1,7 @@
 import { Container, Flex, Grid, Heading, HStack, PinInputField, PinInput, Alert, Image, InputGroup, InputLeftAddon, Input, Text, Button } from '@chakra-ui/react'
 import React, {  useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Footer from '../Components/Footer'
-import Navbar from '../Components/Navbar'
+
 
 const Login = () => {
     const [otpAlert, setOtpAlert] = useState(false)
@@ -31,7 +30,7 @@ const Login = () => {
 
     return (
         <>
-        <Navbar/>
+       
 
         <Grid bg="#FFF5F5" w="100%" h="100vh" display="grid" justifyContent="center" alignItems="center">
             {otpAlert && <Alert status='success'> Otp Sent  </Alert>}
@@ -88,7 +87,7 @@ const Login = () => {
 
             </Container>
         </Grid>
-        <Footer/>
+        
         </>
     )
 }
