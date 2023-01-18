@@ -10,8 +10,6 @@ import { SlUser } from "react-icons/sl";
 import styles from "./AdminNav.module.css";
 import { Link } from "react-router-dom";
 import Logout from "../Dashboard/Card/Logout";
-import { useDispatch } from "react-redux";
-import { getProductAdmin } from "../../../REDUX/AdminRedux/action";
 import NavSlider from "./NavSlider";
 import { Button } from "@chakra-ui/react";
 
@@ -29,7 +27,6 @@ export default function AdminNav({ setTogalDash, setTheme }) {
     const searchData = () => {
         alert('yet to be declared ' + q)
     }
-    const dispatch = useDispatch()
 
     return (
         <div className={styles.stick}>
@@ -46,11 +43,7 @@ export default function AdminNav({ setTogalDash, setTheme }) {
                             borderBottom: "1px solid #444",
                             borderRadius: "0px",
 
-                        }} onClick={() => {
-                            dispatch(getProductAdmin("men")).then(() => {
-                                setTogalDash("product")
-                            })
-                        }}>
+                        }} >
 
                             MEN
                         </Button>
@@ -58,11 +51,7 @@ export default function AdminNav({ setTogalDash, setTheme }) {
                             background: "transparent",
                             borderBottom: "1px solid black",
                             borderRadius: "0px"
-                        }} onClick={() => {
-                            dispatch(getProductAdmin("women")).then(() => {
-                                setTogalDash("product")
-                            })
-                        }}>
+                        }} >
 
                             Women
                         </Button>
@@ -70,11 +59,7 @@ export default function AdminNav({ setTogalDash, setTheme }) {
                             background: "transparent",
                             borderBottom: "1px solid black",
                             borderRadius: "0px"
-                        }} onClick={() => {
-                            dispatch(getProductAdmin("kids")).then(() => {
-                                setTogalDash("product")
-                            })
-                        }}>
+                        }} >
 
                             Kids
                         </Button>
@@ -82,11 +67,7 @@ export default function AdminNav({ setTogalDash, setTheme }) {
                             background: "transparent",
                             borderBottom: "1px solid black",
                             borderRadius: "0px"
-                        }} onClick={() => {
-                            dispatch(getProductAdmin("order")).then(() => {
-                                setTogalDash("product")
-                            })
-                        }}>
+                        }} >
 
                             Orders
                         </Button>
@@ -94,11 +75,7 @@ export default function AdminNav({ setTogalDash, setTheme }) {
                             background: "transparent",
                             borderBottom: "1px solid black",
                             borderRadius: "0px"
-                        }} onClick={() => {
-                            dispatch(getProductAdmin("order")).then(() => {
-                                setTogalDash("product")
-                            })
-                        }}>
+                        }} >
 
                             Delevry
                         </Button>

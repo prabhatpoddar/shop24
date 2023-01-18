@@ -9,26 +9,16 @@ import {
     Button,
     useToast
   } from '@chakra-ui/react'
-import axios from 'axios'
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { getProductAdmin } from '../../../../../REDUX/AdminRedux/action'
 
 function RemoveProduct({id,status}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
     const toast = useToast()
-    const dispatch=useDispatch()
 
 
     const DeleteProduct = (id) => {
-        axios.delete(`https://scary-fly-gilet.cyclic.app/men/${id}`).then(()=>{
-          dispatch(getProductAdmin("men"))
-        }).catch((e)=>{
-          dispatch(getProductAdmin("men"))
-
-
-        })
+       
         
     }
   

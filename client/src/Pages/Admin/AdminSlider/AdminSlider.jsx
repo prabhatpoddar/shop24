@@ -13,10 +13,8 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
 import "./AdminSlider.css"
 import { MenuButton, MenuItem, MenuList, Menu } from '@chakra-ui/react';
-import { useDispatch } from 'react-redux';
 import NotificationCard from '../Dashboard/Card/NotificationCard';
 import ProfileCard from '../Dashboard/Card/ProfileCard';
-import { getProductAdmin } from '../../../REDUX/AdminRedux/action';
 import Logout from '../Dashboard/Card/Logout';
 import AddUser from '../AddNewProduct/AddUser';
 import AddNewProduct from '../AddNewProduct/AddNewProduct';
@@ -24,7 +22,6 @@ import AddNewProduct from '../AddNewProduct/AddNewProduct';
 
 
 const AdminSlider = ({ setTheme, setTogalDash }) => {
-    const dispatch = useDispatch()
 
     return (
         <div className='sidebar'>
@@ -33,48 +30,22 @@ const AdminSlider = ({ setTheme, setTogalDash }) => {
             <div className="center">
                 <ul>
                     <p className="title">MAIN</p>
-                    <li onClick={() => {
-                          dispatch(getProductAdmin("Dashboard")).then(()=>{
-                            setTogalDash("dash")
-                        })
-                    }}><DashboardIcon className='icon' /><span>DashBoard</span></li>
+                    <li ><DashboardIcon className='icon' /><span>DashBoard</span></li>
                     <p className="title">LISTS</p>
 
-                    <li onClick={() => {
-                         setTogalDash("user")
-                        dispatch(getProductAdmin("user"))
-                       
-
-                    }}><PersonIcon className='icon' /><span>Users</span></li>
+                    <li><PersonIcon className='icon' /><span>Users</span></li>
                     <li> <ProductionQuantityLimitsIcon className='icon' /><Menu>
                         <MenuButton  >
                             Products
                         </MenuButton>
                         <MenuList>
-                            <MenuItem onClick={() => {
-                                setTogalDash("product")
-                                dispatch(getProductAdmin("men"))
-                            }}>Mens</MenuItem>
-                            <MenuItem onClick={() => {
-                                setTogalDash("product")
-                                dispatch(getProductAdmin("women"))
-
-                            }}>Womens</MenuItem>
-                            <MenuItem onClick={() => {
-                                setTogalDash("product")
-                                dispatch(getProductAdmin("kids"))
-
-                            }}>Kids</MenuItem>
+                            <MenuItem>Mens</MenuItem>
+                            <MenuItem >Womens</MenuItem>
+                            <MenuItem >Kids</MenuItem>
                         </MenuList>
                     </Menu></li>
-                    <li onClick={() => {
-                        dispatch(getProductAdmin("order"))
-                        setTogalDash("product")
-                    }} ><BookmarkBorderIcon className='icon' /><span>Orders</span></li>
-                    <li onClick={() => {
-                        dispatch(getProductAdmin("delivery"))
-                        setTogalDash("product")
-                    }}><DeliveryDiningIcon className='icon' /><span>Delivery</span></li>
+                    <li ><BookmarkBorderIcon className='icon' /><span>Orders</span></li>
+                    <li ><DeliveryDiningIcon className='icon' /><span>Delivery</span></li>
                     <p className="title">USEFUL</p>
 
                     <li><QueryStatsIcon className='icon' /><span>Stats</span></li>

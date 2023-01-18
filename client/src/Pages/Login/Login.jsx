@@ -1,42 +1,19 @@
 import { Container, Flex, Grid, Heading, HStack, PinInputField, PinInput, Alert, Image, InputGroup, InputLeftAddon, Input, Text, Button } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, {  useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Footer from '../Components/Footer'
 import Navbar from '../Components/Navbar'
-import { getProductAdmin } from '../REDUX/AdminRedux/action'
 
 const Login = () => {
     const [otpAlert, setOtpAlert] = useState(false)
     const [togalOtp, setTogalOtp] = useState(true)
     const [Mobilenumber, setNumber] = useState("")
     const [otp, setOtp] = useState(null)
-    const user=useSelector(store=>store.AdminReducer.products)
     const navigate = useNavigate()
-    const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getProductAdmin("user"))
-
-    }, [dispatch])
 
     const auth = () => {
-        user.forEach((el) => {
-            if (+Mobilenumber === el.number) {
-
-          
-                if (el.status === "user") {
-                    navigate("/")
-                }
-                else {
-                    navigate("/admin")
-                }
-         
-                
-                localStorage.setItem("user", JSON.stringify(el))
-
-            }
-        })
+       
 
 
     }
@@ -44,12 +21,6 @@ const Login = () => {
 
     const submitOTP = () => {
 
-        setOtpAlert(true);
-        setInterval(() => {
-            setOtpAlert(false)
-        }, 3000)
-        setTogalOtp(false)
-        
 
 
     }
