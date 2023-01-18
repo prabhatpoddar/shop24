@@ -11,21 +11,13 @@ import {
     AlertDialogCloseButton,
     useToast,
 } from '@chakra-ui/react'
-import axios from 'axios'
-import { useDispatch } from 'react-redux'
-import { getProductAdmin, updateProductAdmin } from '../../../../../REDUX/AdminRedux/action'
 
 const ModifyProductButton = ({productsDetails,setTogalDash}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
     const toast = useToast()
-    const dispatch=useDispatch()
     const ModifiProduct = (id,payload) => {
-       dispatch(updateProductAdmin("men",id,payload)).then(()=>{
-        dispatch(getProductAdmin("men")).then(()=>{
-            setTogalDash("product")
-        })
-       })
+      
 
       
     }

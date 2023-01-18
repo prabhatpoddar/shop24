@@ -9,8 +9,6 @@ import {
     Text, Button, useDisclosure, Input, Stack, Select, useToast
 } from '@chakra-ui/react'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { addProductAdmin, getProductAdmin } from '../../../REDUX/AdminRedux/action'
 const initialUser = {
     name: "",
     email: "",
@@ -20,12 +18,9 @@ const initialUser = {
 function AddUser() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [user, setUser] = useState(initialUser)
-    const dispatch = useDispatch()
     const toast = useToast()
     const adduser = () => {
-        dispatch(addProductAdmin("user", user)).then(() => {
-            dispatch(getProductAdmin("user"))
-        })
+        
     }
 
 

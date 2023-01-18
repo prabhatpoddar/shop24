@@ -1,14 +1,11 @@
 import React from 'react'
 import { Divider,  Heading, Stack, Image, CardBody, Card, } from '@chakra-ui/react'
-import { useDispatch } from 'react-redux'
-import { getProductAdmin } from '../../../../REDUX/AdminRedux/action'
 
 
 const DashboardCard = ({ el, theme, setTogalDash }) => {
-    const dispatch = useDispatch()
     return (
         <Card boxShadow="lg" color={theme && "white"} p={5} onClick={() => {
-            dispatch(getProductAdmin(el?.parem))
+          
             el.parem === "user" ? setTogalDash("user") : setTogalDash("product")
 
 

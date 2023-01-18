@@ -1,5 +1,4 @@
 import { Container, Flex, Grid, Heading, InputRightElement, Image, InputGroup, Input, Text, Button, GridItem } from '@chakra-ui/react'
-import axios from 'axios'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Footer from '../Components/Footer'
@@ -17,7 +16,6 @@ const initialState = {
 
 const Signup = () => {
     const [user, setUser] = useState(initialState)
-    const navigate = useNavigate()
 
 
     const [show, setShow] = React.useState(false)
@@ -30,15 +28,7 @@ const Signup = () => {
     };
 
     const handelSubmit = (e) => {
-        e.preventDefault();
-        axios.post('https://scary-fly-gilet.cyclic.app/user', user).then((r) => {
-
-
-        }).catch(() => {
-
-            navigate("/login")
-        })
-        setUser(initialState)
+      
 
 
 

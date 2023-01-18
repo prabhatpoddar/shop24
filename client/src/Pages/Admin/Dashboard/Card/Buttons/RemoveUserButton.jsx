@@ -10,18 +10,13 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { deleteProductAdmin, getProductAdmin } from '../../../../../REDUX/AdminRedux/action'
 
 function RemoveUserButton({ id,status }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const cancelRef = React.useRef()
   const toast = useToast()
-  const dispatch = useDispatch()
   const deleteUser = () => {
-    dispatch(deleteProductAdmin("user", id)).then(()=>{
-      dispatch(getProductAdmin("user"))
-    })
+    
 
   }
   return (
