@@ -33,7 +33,7 @@ router.post("/login", async (req, res) => {
     if (user.length > 0) {
       bcrypt.compare(password, user[0].password, (err, result) => {
         if (result) {
-          const token = jwt.sign({ userID: user[0]._id }, process.env.code);
+          const token = jwt.sign({ userID: user[0]._id }, process.env.CODE);
           res.send({ msg: "Login Succesfully", token: token });
         } else {
           res.send("Wrong Credential");
@@ -44,5 +44,6 @@ router.post("/login", async (req, res) => {
     res.send(error);
   }
 });
+
 
 module.exports = router;
