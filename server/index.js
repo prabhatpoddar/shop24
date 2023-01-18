@@ -23,7 +23,7 @@ app.listen(process.env.PORT, () => {
     connect.then((res) => {
       console.log("db is connected");
     });
-    console.log("Server is running at port 8080");
+    console.log(`Server is running at port ${process.env.PORT}`);
   } catch (error) {
     console.log("error:", error);
   }
