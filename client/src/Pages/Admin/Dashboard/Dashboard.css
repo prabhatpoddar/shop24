@@ -19,11 +19,12 @@
     grid-template-columns:1fr;
     justify-content: center;
     align-items: center;
-    .container{
-      width: 100%;
-      border:1px solid red;
-    }
+   
     
+  }
+  .container{
+    width: 100%;
+    border:1px solid red;
   }
 }
 
