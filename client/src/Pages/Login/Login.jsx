@@ -1,6 +1,6 @@
 import { Container, Flex, Grid, Heading, HStack, PinInputField, PinInput, Alert, Image, InputGroup, InputLeftAddon, Input, Text, Button } from '@chakra-ui/react'
 import React, {  useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, } from 'react-router-dom'
 
 
 const Login = () => {
@@ -8,7 +8,6 @@ const Login = () => {
     const [togalOtp, setTogalOtp] = useState(true)
     const [Mobilenumber, setNumber] = useState("")
     const [otp, setOtp] = useState(null)
-    const navigate = useNavigate()
 
 
     const auth = () => {
