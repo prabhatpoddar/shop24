@@ -53,9 +53,6 @@ const updateProductAdmin = (parem,id,payload) => (dispatch) => {
 
 
 
-
-
-
 const deleteProductAdmin = (parem,id) => (dispatch) => {
   dispatch({ type: types.DELETE_USERS_REQUEST});
   return axios
