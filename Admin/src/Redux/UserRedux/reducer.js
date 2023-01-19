@@ -2,10 +2,9 @@
 import * as types from "./actionType";
 
 const initialState = {
-  products: [],
+  users: [],
   isLoading: false,
   isError: false,
-  
 };
 
 const reducer = (state = initialState, action) => {
@@ -35,7 +34,9 @@ const reducer = (state = initialState, action) => {
       return { ...state, isLoading: true };
 
     case types.UPDATE_TASK_SUCCESS:
-      let newTask = state.products.map((el) => el.id === payload.id ? payload : el);
+      let newTask = state.products.map((el) =>
+        el.id === payload.id ? payload : el
+      );
       return { ...state, isLoading: false, products: newTask };
 
     case types.UPDATE_TASK_FAILURE:
@@ -45,8 +46,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, isLoading: true };
 
     case types.DELETE_TASK_SUCCESS:
-      let filterTask = state.tasks.filter((el) =>  el.id !== payload)
-      return { ...state, isLoading: false ,tasks:filterTask};
+      let filterTask = state.tasks.filter((el) => el.id !== payload);
+      return { ...state, isLoading: false, tasks: filterTask };
 
     case types.DELETE_TASK_FAILURE:
       return { ...state, isLoading: false, isError: true };
