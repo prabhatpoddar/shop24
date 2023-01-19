@@ -1,7 +1,9 @@
 .sidebar {
-  flex: 1;
   border-right: 0.5px solid gray;
   min-height: 100vh;
+  position: -webkit-sticky;
+
+
 }
 .top {
   height: 50px;
@@ -59,29 +61,7 @@
   font-size: 18px;
   color: black;
 }
-.bottom {
-  display: flex;
-  align-items: center;
-  margin: 10px;
- 
-}
-.colorOption {
-  width: 20px;
-  height: 20px;
-  margin-left: 5px;
 
-  border-radius: 5px;
-  border: 1px solid #7451f8;
-  cursor: pointer;
-
- 
-}
-.colorOption:nth-child(1) {
-  background-color: whitesmoke;
-}
-.colorOption:nth-child(2) {
-  background-color: #333;
-}
 
 @media (max-width: 1024px) {
   .sidebar {
