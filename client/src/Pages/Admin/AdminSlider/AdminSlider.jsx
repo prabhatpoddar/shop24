@@ -61,10 +61,7 @@ const AdminSlider = ({ setTheme, setTogalDash }) => {
                     <li><LogoutIcon className='icon' /> <Logout />  </li>
                 </ul>
             </div>
-            <div className="bottom">
-                <div onClick={() => setTheme(false)} className="colorOption"></div>
-                <div onClick={() => setTheme(true)} className="colorOption"></div>
-            </div>
+            
         </div>
     )
 }

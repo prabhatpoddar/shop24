@@ -10,13 +10,7 @@
   display: grid;
   grid-template-columns: 15% 85%;
 }
-.homeDark {
-  background-color: #080b15;
 
-  display: grid;
-  user-select: none;
- 
-}
 
 @media (max-width: 1024px) {
   .home {
@@ -28,13 +22,8 @@
     display: grid;
     grid-template-columns: 1fr;
   }
-  .homeDark {
-    background-color: #080b15;
-    display: grid;
-    user-select: none;
-   
-  }
 }
+
 @media (max-width: 680px) {
   .home {
     display: grid;
@@ -47,10 +36,5 @@
     display: grid;
     grid-template-columns: 1fr;
   }
-  .homeDark {
-    background-color: #080b15;
-    display: grid;
-    user-select: none;
-   
-  }
+
 }

@@ -1,22 +1,21 @@
 .dashContainer {
+  
   overflow-x: scroll;
   overflow-y: scroll;
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 10px;
   text-align: center;
+  
 }
 @media (max-width: 1024px) {
   .dashContainer {
-    grid-template-columns: 1fr 1fr 1fr ;
   width: 100%;
 
   }
 }
 @media (max-width: 680px) {
   .dashContainer {
-    grid-template-columns:1fr;
     justify-content: center;
     align-items: center;
    
