@@ -1,24 +1,39 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-const useragent = require("express-useragent");
 
-const authenticate = (req, res, next) => {
-  const token = req.headers.auth;
-  var source = req.headers["user-agent"];
-  var ua = useragent.parse(source);
-
+const verifyToken = (req, res, next) => {
+  const token = req.headers.token;
   if (token) {
-    const decode = jwt.verify(token, process.env.code);
-    if (decode) {
-      const userID = decode.userID;
-      req.body.userID = userID;
-      req.body.device = ua.isMobile ? "Mobile" : "PC";
-      next();
-    } else {
-      res.send("Login First");
-    }
+     jwt.verify(token, process.env.CODE, (err, result) => {
+      if (err) {
+        return res.status(401).json({
+          message: "Invalid token",
+          error: err,
+          success: false,
+        });
+      } else {
+        req.user.userId = result.userID;
+        req.body.isAdmin = result.isAdmin;
+        next();
+      }
+    });
   } else {
-    res.send("Login First");
+    res.status(401).json({ message: "You are not Autherized" });
   }
 };
-module.exports = authenticate;
+
+const verifyUserAndAutherization = (req,res,next) => {
+  verifyToken(req, res, ()=>{
+    if(req.body.userId===req.params.id || req.body.isAdmin){
+      next();
+    }else{
+      res.status(403).json({ message: "You are not Autherized to do that" });
+    }
+  })
+  
+
+}
+
+module.exports = { verifyToken ,verifyUserAndAutherization};
+
+
