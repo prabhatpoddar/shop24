@@ -34,11 +34,10 @@ router.put("/:id", verifyUserAndAutherization, async (req, res) => {
 
 router.delete("/delete/:id", async (req, res) => {
   const id = req.params.id;
-  const post = await UserModel.findOne({ _id: id });
-  const userId_in_Post = post.userID;
+  const user = await UserModel.findOne({ _id: id });
   const userId_Making_req = req.body.userID;
   try {
-    if (userId_in_Post !== userId_Making_req) {
+    if (userId_in_Post !== userId_Making_req ) {
       res.send({ msg: "You are Not Autherised" });
     } else {
       await UserModel.findByIdAndDelete({ _id: id });

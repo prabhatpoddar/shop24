@@ -4,7 +4,7 @@ require("dotenv").config();
 const verifyToken = (req, res, next) => {
   const token = req.headers.token;
   if (token) {
-     jwt.verify(token, process.env.CODE, (err, result) => {
+    jwt.verify(token, process.env.CODE, (err, result) => {
       if (err) {
         return res.status(401).json({
           message: "Invalid token",
@@ -22,18 +22,31 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-const verifyUserAndAutherization = (req,res,next) => {
-  verifyToken(req, res, ()=>{
-    if(req.body.userId===req.params.id || req.body.isAdmin){
+const verifyUserAndAutherization = (req, res, next) => {
+  verifyToken(req, res, () => {
+    if (req.body.userId === req.params.id || req.body.isAdmin === "admin") {
       next();
-    }else{
+    } else {
       res.status(403).json({ message: "You are not Autherized to do that" });
     }
-  })
-  
+  });
+};
 
-}
+const verifyEmployeeAndAutherization = (req, res, next) => {
+  verifyToken(req, res, () => {
+    if (
+      req.body.userId === req.params.id ||
+      req.body.isAdmin == "admin" ||
+      req.body.isAdmin === "employee"
+    ) {
+      next();
+    } else {
+      res.status(403).json({ message: "You are not Autherized to do that" });
+    }
+  });
+};
 
-module.exports = { verifyToken ,verifyUserAndAutherization};
-
-
+module.exports = {
+  verifyUserAndAutherization,
+  verifyEmployeeAndAutherization,
+};
