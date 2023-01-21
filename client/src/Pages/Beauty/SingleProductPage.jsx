@@ -17,6 +17,7 @@ import {
 } from "./detailStyled";
 import Footer from "../../Components/Footer/Footer";
 import { useParams } from "react-router";
+import MainNavbar from "../Navbar/MainNavbar";
 // import Navbar from "../Components/Navbar";
 
 
@@ -38,11 +39,11 @@ function SingleProductPage() {
   return (
     <>
     {/* <Navbar/> */}
-  
+        <MainNavbar/>
             <DetailsMainDiv >
               <ImageContainer>
-                <ImgDiv>
-                  <Img src={data.image} />
+                <ImgDiv style={{"margin":"20px"}}>
+                  <Img src={data.image} width={"50%"} />
                 </ImgDiv>
                
               </ImageContainer>
@@ -55,17 +56,17 @@ function SingleProductPage() {
                         <p
                           style={{
                             fontSize: "24px",
-                            margin: "25px 0px -15px 0px ",
+                            margin: "25px 0px 15px 0px ",
                             color: "darkslategray",
                           }}
                         >
                          
-                         {data.product}
+                         {data.brand}
                         </p>
                       </b>
-                      {/* <p style={{ fontSize: "20px", color: "#8b8d97" }}>
+                      <p style={{ fontSize: "20px", color: "#8b8d97" }}>
                       {data.product}
-                      </p> */}
+                      </p>
                     </div>
                     <RatingDiv >
                       <div
@@ -90,10 +91,11 @@ function SingleProductPage() {
                           color: "#8b8d97",
                           alignItems: "center",
                           alignSelf: "center",
+                          paddingLeft:"8px"
                         }}
                       >
                         {" "}
-                        <p> | {data.ratingCount} Ratings</p>
+                        <p>  |{data.ratingCount} Ratings</p>
                       </div>
                     </RatingDiv>
                   </div>
@@ -165,9 +167,7 @@ function SingleProductPage() {
                       >SIZE CHART</p>
                     </div>
                     <div style={{display:"flex" ,gap: "10px"}}>
-                    <button style={{ borderRadius: "100PX" , padding:"10px 8px 10px 8px" , textAlign:"center"}}>
-                    XS {data.discountedPrice}
-                    </button>
+
                     <button style={{borderRadius: "50PX" , padding:"10px 8px 10px 8px" , textAlign:"center" }}>
                     S {data.discountedPrice}
                     </button>
@@ -177,14 +177,9 @@ function SingleProductPage() {
                     <button style={{ borderRadius: "50PX" , padding:"10px 8px 10px 8px" , textAlign:"center"}}>
                     L {data.discountedPrice}
                     </button>
-                    <button style={{borderRadius: "50PX"  , padding:"10px 8px 10px 8px" , textAlign:"center"}}>
-                    XL {data.discountedPrice}
-                    </button>
+                   
                     </div>
-                    <button style={{ borderRadius: "50PX", marginLeft:"18px"  , padding:"10px 8px 10px 8px" , textAlign:"center"}}>
-                    XXL {data.discountedPrice}
-                    </button>
-              
+                   
   
                   </div>
                   <div
