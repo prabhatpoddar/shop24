@@ -1,0 +1,105 @@
+.main {
+  display: grid;
+  grid-template-columns: repeat(2, 58% 42%);
+}
+
+.left {
+  height: auto;
+  margin-left: 30%;
+}
+
+.right {
+  width: 335px;
+  height: 320px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.right h3 {
+  text-align: left;
+}
+
+.container {
+  width: 480px;
+  height: 580px;
+  border: 1px solid rgb(233, 233, 233);
+  margin-top: 30px;
+}
+
+.container h3 {
+  text-align: left;
+  color: black;
+  font-weight: bold;
+  padding-left: 28px;
+  margin-top: 15px;
+}
+
+.container input {
+  width: 90%;
+  height: 45px;
+  border: 1px solid rgb(233, 233, 233);
+  margin-top: 20px;
+  padding-left: 20px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.city {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin: 25px;
+  /* border: 1px solid red; */
+}
+
+.city button {
+  width: 230px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: rgb(224, 223, 223);
+}
+
+.address-btn {
+  width: 90%;
+  height: 55px;
+  color: white;
+  background-color: #ff3f6c;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.div-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.div-1 h1 {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+}
+
+.div-1 button {
+  border: 1px solid #424553;
+  height: 40px;
+  width: 150px;
+  color: #424553;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.div-1 ~ h3 {
+  text-align: left;
+  font-weight: bold;
+  font-size: 12px;
+  margin-top: 15px;
+}
+
+.div-2 {
+  height: 219px;
+  width: 609px;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 4px rgb(40 44 63 / 20%);
+}

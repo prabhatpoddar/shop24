@@ -4,6 +4,7 @@ import Bag from "./Bag";
 import "./cart.css";
 import logo from "./Shop24.jpeg";
 import secure from "./secure.png";
+import Address from "./Address";
 
 const Cart = () => {
   return (
@@ -33,7 +34,9 @@ const Cart = () => {
           <TabPanel>
             <Bag />
           </TabPanel>
-          <TabPanel>2</TabPanel>
+          <TabPanel>
+            <Address />
+          </TabPanel>
           <TabPanel>3</TabPanel>
         </TabPanels>
       </Tabs>
