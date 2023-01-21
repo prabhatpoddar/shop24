@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const Wishlist = require("./../models/wishlist.model");
 const UserModel = require("../models/user.model");
+const { verifyToken } = require("../middleware/authenticate");
+
 router.get("/", async (req, res) => {
   try {
     const items = await Wishlist.find();
@@ -10,10 +12,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
   const payload = req.body;
-  const userId_Making_req = req.body.userID;
+  const userId_Making_req = req.user.userID;
+  console.log(req.body.userID);
   payload.userId = userId_Making_req;
+  console.log("wishlist", payload);
   try {
     const user = await Wishlist.create(payload);
     res.send(user);
