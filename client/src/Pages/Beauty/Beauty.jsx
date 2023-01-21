@@ -25,6 +25,7 @@ import React, { useEffect, useState } from "react";
 import Footer from "../../Components/Footer/Footer";
 import { Pagination } from "antd";
 import AdminNavbar from "../../Components/Nav/Navbar";
+import { useNavigate } from "react-router";
 // import Navbar from "../../components/Navbar/MainNavbar";
 
 const Beauty = () => {
@@ -37,6 +38,7 @@ const Beauty = () => {
   const [Loading, setLoading] = useState(false);
 
   console.log(data);
+  const navigate=useNavigate()
   async function getData(page, value) {
     // console.log("30", page);
     await fetch(
@@ -58,7 +60,10 @@ const Beauty = () => {
     console.log(page);
     setPage(page);
   };
-
+const handleClick=(id,p)=>{
+  navigate(`personalcare/${id}`)
+  
+}
   return (
     <>
       <AdminNavbar />
@@ -137,9 +142,12 @@ const Beauty = () => {
                           bg="white"
                           onMouseEnter={() => setHover(false)}
                           onMouseLeave={() => setHover(true)}
+                          
                         >
                           <Box bg="white" h={["26rem", "26rem", "26rem"]}>
-                            <Box h="13.5rem" overflow="hidden">
+                            <Box h="13.5rem" overflow="hidden"
+                            onClick={()=>handleClick(e._id,e.product)}
+                            >
                               {/* <CrousalBox data={product} CrouselBox={CrouselBox} /> */}
                               <Image src={e.image} />
                             </Box>
@@ -181,7 +189,7 @@ const Beauty = () => {
                                         </Text>{" "}
                                         <Text color="black">WISHLIST</Text>
                                       </Button>
-                                      <Text>{e.size}</Text>
+                                      <Text>Size:- {e.size}</Text>
                                     </>
                                   )}
                                   <SimpleGrid columns={3} spacing={[0]}>

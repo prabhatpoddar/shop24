@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Beauty from "../Pages/Beauty/Beauty";
+import SingleProductPage from "../Pages/Beauty/SingleProductPage";
 import { Home } from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import LoginByEmail from "../Pages/Login/LoginByEmail";
@@ -16,6 +17,7 @@ const MainRoute = () => {
    
       
       <Route path="/personalcare" element={<Beauty/>}/>
+      <Route path="/personalcare/personalcare/:id" element={<SingleProductPage/>}/>
 
 
 
