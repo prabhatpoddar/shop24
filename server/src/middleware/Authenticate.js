@@ -5,17 +5,10 @@ const verifyToken = (req, res, next) => {
   const token = req.headers.token;
   if (token) {
     jwt.verify(token, process.env.CODE, (err, result) => {
-      if (err) {
-        return res.status(401).json({
-          message: "Invalid token",
-          error: err,
-          success: false,
-        });
-      } else {
-        req.user.userId = result.userID;
-        req.body.isAdmin = result.isAdmin;
-        next();
-      }
+      if (err) res.status(401).json("Token is non Valid");
+
+      req.user = result;
+      next();
     });
   } else {
     res.status(401).json({ message: "You are not Autherized" });
@@ -24,7 +17,9 @@ const verifyToken = (req, res, next) => {
 
 const verifyUserAndAutherization = (req, res, next) => {
   verifyToken(req, res, () => {
-    if (req.body.userId === req.params.id || req.body.isAdmin === "admin") {
+    if (req.user.userID === req.params.id || req.user.isAdmin === "admin") {
+    console.log('req:', req.user.isAdmin==="admin")
+
       next();
     } else {
       res.status(403).json({ message: "You are not Autherized to do that" });
@@ -35,9 +30,9 @@ const verifyUserAndAutherization = (req, res, next) => {
 const verifyEmployeeAndAutherization = (req, res, next) => {
   verifyToken(req, res, () => {
     if (
-      req.body.userId === req.params.id ||
-      req.body.isAdmin == "admin" ||
-      req.body.isAdmin === "employee"
+      req.user.userID === req.params.id ||
+      req.user.isAdmin == "admin" ||
+      req.user.isAdmin === "employee"
     ) {
       next();
     } else {
@@ -47,6 +42,7 @@ const verifyEmployeeAndAutherization = (req, res, next) => {
 };
 
 module.exports = {
+  verifyToken,
   verifyUserAndAutherization,
   verifyEmployeeAndAutherization,
 };
