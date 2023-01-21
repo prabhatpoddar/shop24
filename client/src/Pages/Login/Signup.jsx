@@ -35,7 +35,7 @@ const Signup = () => {
            
                
         // })
-        axios.post("localhost:8080/auth/resister", user).then(res=>{
+        axios.post("localhost:8080/auth/register", user).then(res=>{
             console.log('res:', res.data)
             
         })
