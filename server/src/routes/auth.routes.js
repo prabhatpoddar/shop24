@@ -55,7 +55,7 @@ router.post("/loginbynumber", async (req, res) => {
         { userID: user[0]._id, isAdmin: user[0].isAdmin },
         process.env.CODE
       );
-      res.status(200).json({ msg: "Login Succesfully", token: token });
+      res.status(200).json({ msg: "Login Succesfully", token: token ,isAdmin:user[0].isAdmin});
     } else {
       res.status(401).json({ msg: "User Dosen't Exist" });
     }
