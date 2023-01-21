@@ -9,9 +9,12 @@ const userSechma = mongoose.Schema(
       max: 20,
     },
     mobile: {
-      type: String,
+      type: Number,
       required: true,
-      max: 50,
+      unique: true,
+    },
+    email: {
+      type: String,
       unique: true,
     },
     email: {
@@ -33,6 +36,10 @@ const userSechma = mongoose.Schema(
       type: String,
       max: 50,
       default: "",
+    },
+    isAdmin: {
+      type: String,
+      default: "user",
     },
   },
   { timestamps: true }

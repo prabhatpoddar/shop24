@@ -24,10 +24,9 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   const id = req.params.id;
-
   try {
-    await UserModel.findByIdAndDelete({ _id: id });
-    res.send("Note Deleted");
+    let item = await Wishlist.findByIdAndDelete({ _id: id });
+    res.send(item);
   } catch (error) {
     res.send(error);
   }
