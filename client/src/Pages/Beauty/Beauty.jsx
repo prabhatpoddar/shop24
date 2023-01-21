@@ -40,7 +40,7 @@ const Beauty = () => {
   async function getData(page, value) {
     // console.log("30", page);
     await fetch(
-      `https://ill-ruby-frog-ring.cyclic.app/beauty?page=${page}&limit=50`
+      `https://ill-ruby-frog-ring.cyclic.app/beauty?page=${page}&limit=10`
     )
       .then((res) => res.json())
       .then((res) => {

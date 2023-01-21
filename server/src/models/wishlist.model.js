@@ -5,14 +5,14 @@ const wishlistSechma = mongoose.Schema(
     brand: String,
     title: String,
     size: String,
-    quantity: String,
+    quantity: Number,
     price: String,
     off_price: String,
     discount: String,
     img: String,
     userId: { type: mongoose.Schema.ObjectId, ref: "user" },
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
 const Wishlist = mongoose.model("Wishlist", wishlistSechma);
