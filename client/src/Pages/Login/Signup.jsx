@@ -1,6 +1,10 @@
 import { Container, Flex, Grid, Heading, InputRightElement, Image, InputGroup, Input, Text, Button, GridItem } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+// import { useDispatch, useSelector } from "react-redux"
+// import { LoginRedux } from '../../redux/authReducer/action'
+import axios from 'axios'
+
 
 
 const initialState = {
@@ -14,7 +18,7 @@ const initialState = {
 
 const Signup = () => {
     const [user, setUser] = useState(initialState)
-
+    // const dispatch = useDispatch();
 
     const [show, setShow] = React.useState(false)
     const handleClick = () => setShow(!show)
@@ -26,6 +30,18 @@ const Signup = () => {
     };
 
     const handelSubmit = (e) => {
+        // dispatch(LoginRedux(user)).then(res=>{
+        //    console.log('res:', res.data)
+           
+               
+        // })
+        axios.post("localhost:8080/auth/resister", user).then(res=>{
+            console.log('res:', res.data)
+            
+        })
+
+
+
       
 
 
