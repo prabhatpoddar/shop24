@@ -10,20 +10,20 @@ import {
   Spinner,
   Checkbox,
   MenuList,
-  MenuButton,
   Menu,
   CheckboxGroup,
-  HStack,
   useDisclosure,
+  Container,
 } from "@chakra-ui/react";
+
 import axios from "axios";
-import { AiO, AiOutlineDown} from "react-icons/ai";
+import { AiO, AiOutlineDown } from "react-icons/ai";
 import { BsHeart, BsImage } from "react-icons/bs";
 import { BsCart } from "react-icons/bs";
 import { BsStar } from "react-icons/bs";
 import React, { useEffect, useState } from "react";
 import Footer from "../../Components/Footer/Footer";
-import { Pagination } from 'antd';
+import { Pagination } from "antd";
 import AdminNavbar from "../../Components/Nav/Navbar";
 // import Navbar from "../../components/Navbar/MainNavbar";
 
@@ -53,7 +53,7 @@ const Beauty = () => {
   useEffect(() => {
     getData(page);
   }, [page]);
-      
+
   const onChange = (page) => {
     console.log(page);
     setPage(page);
@@ -61,7 +61,7 @@ const Beauty = () => {
 
   return (
     <>
-     <AdminNavbar />
+      <AdminNavbar />
       <Box width={"95%"} gap="10px" m={"auto"} bg="white">
         <Box p="10px" textAlign={"start"}>
           <Text color="black">Home/ Personal Care</Text>
@@ -220,7 +220,10 @@ const Beauty = () => {
             </Box>
           )}
         </Flex>
-        <Pagination current={page} onChange={onChange} total={5000} />
+        <Container>
+          <Pagination current={page} onChange={onChange} total={5000} />
+        </Container>
+
         {/* <HStack>
             
           <Button onClick={() => setPage(page - 1)}>PREV</Button>
