@@ -73,9 +73,7 @@ const Otp = () => {
                                 <HStack>
                                     <PinInput 
                                         value={otp}
-                                        onChange={({ target }) => {
-                                            setOtp(target.value);
-                                        }}>
+                                       onChange={(e) => setOtp(e)}>
                                         <PinInputField />
                                         <PinInputField />
                                         <PinInputField />
@@ -120,10 +118,7 @@ const Otp = () => {
                             </Flex>
 
 
-                            <Flex >
-                                <Text  >By Continuing, I agree To the Terms of Use & Privacy Policy</Text>
-
-                            </Flex>
+                            
                             <Flex>
                                 <Button bg="#FF3F6C" w="100%" border="none" color="#FFF" h={50} onClick={auth}>
                                     <b>LOGIN</b>
