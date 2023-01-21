@@ -9,6 +9,7 @@ const wishlistSechma = mongoose.Schema(
     price: String,
     off_price: String,
     discount: String,
+    img: String,
     userId: { type: mongoose.Schema.ObjectId, ref: "user" },
   },
   { timestamps: true }
