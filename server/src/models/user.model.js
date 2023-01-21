@@ -34,6 +34,10 @@ const userSechma = mongoose.Schema(
       max: 50,
       default: "",
     },
+    gender: {
+      type: String,
+      default: "",
+    },
     isAdmin: {
       type: String,
       default: "user",
