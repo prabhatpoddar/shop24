@@ -1,24 +1,27 @@
-import { Container, Flex, Grid, Heading, InputRightElement, Image, InputGroup, Input, Text, Button, GridItem } from '@chakra-ui/react'
+import { Container, Flex, Grid, Heading, InputRightElement, Image, InputGroup, Input, Text, Button, GridItem, useToast, Box } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-// import { useDispatch, useSelector } from "react-redux"
-// import { LoginRedux } from '../../redux/authReducer/action'
-import axios from 'axios'
-
+import { Link, useNavigate } from 'react-router-dom'
+import { publicRequest } from '../../requestMethod'
 
 
 const initialState = {
-    name: "",
+    fullName: "",
     email: "",
+    mobile: null,
     password: "",
-    number: "",
-    status: "user",
+    isAdmin: "user",
 
 }
 
 const Signup = () => {
     const [user, setUser] = useState(initialState)
-    // const dispatch = useDispatch();
+    const navigate = useNavigate()
+    const [alert, setAlert] = useState(false)
+    const toast = useToast({
+        position: 'top'
+    })
+
+
 
     const [show, setShow] = React.useState(false)
     const handleClick = () => setShow(!show)
@@ -30,28 +33,33 @@ const Signup = () => {
     };
 
     const handelSubmit = (e) => {
-        // dispatch(LoginRedux(user)).then(res=>{
-        //    console.log('res:', res.data)
-           
-               
-        // })
-        axios.post("localhost:8080/auth/register", user).then(res=>{
-            console.log('res:', res.data)
-            
-        })
+        if (user.fullName === "" || user.email == "" || user.password === "" || user.mobile === null) {
+            setAlert(true)
 
 
+        } else {
 
-      
-
-
-
+            publicRequest.post("/auth/register", user).then((res) => {
+                toast({
+                    title: `Acount Created`,
+                    status: "success",
+                    isClosable: true,
+                })
+                toast({
+                    title: `You Are Redirected To Home Page in 3 sec`,
+                    status: "info",
+                    isClosable: true,
+                })
+                setTimeout(()=>{
+                    navigate("/login")
+                }, 3000)
+            }).catch((err) => {
+                console.log('err:', err)
+            })
+        }
     }
-
-
     return (
         <>
-
             <Grid bg="#FFF5F5" w="100%" h="100vh" display="grid" justifyContent="center" alignItems="center">
 
                 <Container  >
@@ -68,14 +76,14 @@ const Signup = () => {
                             </Grid>
                             <Grid gap={3}>
                                 <GridItem>
-                                    <Input variant='outline' borderRadius="0px" name='name' onChange={handelChange} value={user.name} placeholder='Enter Your Full Name' />
+                                    <Input variant='outline' borderRadius="0px" name='fullName' onChange={handelChange} value={user.fullName} placeholder='Enter Your Full Name' />
                                 </GridItem>
 
                                 <GridItem>
                                     <Input variant='outline' name='email' borderRadius="0px" onChange={handelChange} value={user.email} placeholder='Enter Your Email' />
                                 </GridItem>
                                 <GridItem>
-                                    <Input variant='outline' name='number' borderRadius="0px" onChange={handelChange} value={user.number} placeholder='Enter Your Number' />
+                                    <Input variant='outline' name='mobile' borderRadius="0px" onChange={handelChange} value={user.mobile} placeholder='Enter Your Number' />
                                 </GridItem>
                                 <GridItem>
                                     <InputGroup size='md'>
@@ -94,6 +102,8 @@ const Signup = () => {
                                         </InputRightElement>
                                     </InputGroup>
                                 </GridItem>
+                                {alert && <Text color="red">Fill this Form Properly</Text>}
+
 
                             </Grid>
                             <Flex >

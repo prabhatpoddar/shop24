@@ -1,24 +1,24 @@
-import { Container, Flex, Grid, Heading, InputRightElement, Alert, Image, InputGroup, Input, Text, Button, GridItem } from '@chakra-ui/react'
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Container, Flex, Grid, Heading, InputRightElement, Alert, Image, InputGroup, Input, Text, Button, GridItem, useToast } from '@chakra-ui/react'
+import React, {  useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { publicRequest } from '../../requestMethod'
 const initialState = {
     email: "",
     password: "",
-
 }
 
 const LoginByEmail = () => {
     const [user, setUser] = useState(initialState)
-    const [userData, setUserData] = useState([])
-    const [otpAlert, setOtpAlert] = useState(false)
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
+    const navigate = useNavigate()
+    const toast = useToast({
+        position: 'top'
+    })
 
-    const getData = () => {
-     
-    }
- 
+
+
+
     let handelChange = (e) => {
         const { name, value, type, checked } = e.target;
         const val = type === "checkbox" ? checked : value;
@@ -26,21 +26,52 @@ const LoginByEmail = () => {
         setUser({ ...user, [name]: val });
     };
 
-    const auth = () => {
-
-      
-
-
-    }
     const submitOTP = () => {
-        auth()
+        publicRequest.post("/auth/login", user).then(res => {
+            localStorage.clear()
+            localStorage.setItem("token", JSON.stringify(res.data.token))
+            localStorage.setItem("isAdmin", JSON.stringify(res.data.isAdmin))
+
+         
+                if (res.data.isAdmin === "user") {
+                    toast({
+                        title: `You Are Redirected To Home Page in 3 sec`,
+                        status: "success",
+                        variant: "subtle",
+                        isClosable: true,
+                    })
+
+                    setTimeout(() => {
+                        navigate("/")
+                    }, 3000)
+                }
+                else {
+                    toast({
+                        title: `You Are Redirected To admin Page in 3 sec`,
+                        status: "success",
+                        isClosable: true,
+                    })
+
+                    setTimeout(() => {
+                        window.location = 'https://google.com';
+                    }, 3000)
+                }
+         
+        }).catch(err=>{
+            toast({
+                title: `Wrong Credential`,
+                status: "error",
+                isClosable: true,
+            })
+
+        })
     }
+
     return (
         <>
 
 
             <Grid bg="#FFF5F5" w="100%" h="100vh" display="grid" justifyContent="center" alignItems="center">
-                {otpAlert && <Alert status='success'> Login successfully  </Alert>}
                 <Container  >
                     <Grid w="400px" bg="#FFF" boxShadow="xl">
                         <Grid>
@@ -100,4 +131,4 @@ const LoginByEmail = () => {
     )
 }
 
-export default  LoginByEmail
+export default LoginByEmail

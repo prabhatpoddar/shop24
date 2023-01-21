@@ -13,10 +13,7 @@ const userSechma = mongoose.Schema(
       required: true,
       unique: true,
     },
-    email: {
-      type: String,
-      unique: true,
-    },
+   
     email: {
       type: String,
       required: true,

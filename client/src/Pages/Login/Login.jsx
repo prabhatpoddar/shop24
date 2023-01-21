@@ -1,21 +1,41 @@
-import { Container, Flex, Grid, Heading, HStack, PinInputField, PinInput, Alert, Image, InputGroup, InputLeftAddon, Input, Text, Button, CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
+import { Container, Flex, Grid, Heading, Image, InputGroup, InputLeftAddon, Input, Text, Button, CircularProgress, CircularProgressLabel, useToast } from '@chakra-ui/react'
 import React, { useRef, useState } from 'react'
 import { useEffect } from 'react'
 import { Link, useNavigate, } from 'react-router-dom'
+import { publicRequest } from '../../requestMethod'
 
 
 const Login = () => {
     const navigate = useNavigate()
     const [Mobilenumber, setNumber] = useState("")
-    const [alert,setAlert]=useState(false)
+    const [alert, setAlert] = useState(false)
+    const toast = useToast({
+        position: 'top'
+    })
     const submitOTP = () => {
-        if(Mobilenumber.length==10){
-        navigate("/otp")
+        if (Mobilenumber.length == 10) {
+
+            publicRequest.post("/auth/loginbynumber", {
+                mobile: Mobilenumber
+            }).then((res) => {
+                localStorage.clear()
+                localStorage.setItem("token", JSON.stringify(res.data.token))
+                localStorage.setItem("isAdmin", JSON.stringify(res.data.isAdmin))
+
+                navigate("/otp")
+
+            }).catch(err => {
+                toast({
+                    title: `Wrong Credential`,
+                    status: "error",
+                    isClosable: true,
+                })
+            })
 
 
-        }else{
+        } else {
             setAlert(true)
-            
+
         }
 
     }
@@ -40,9 +60,9 @@ const Login = () => {
                                 <InputGroup >
 
                                     <InputLeftAddon children='+91' />
-                                    <Input type='tel' placeholder='phone number' value={Mobilenumber} _focus={{ outline: 'none' }}onChange={(e) => setNumber(e.target.value)} />
+                                    <Input type='tel' placeholder='phone number' value={Mobilenumber} _focus={{ outline: 'none' }} onChange={(e) => setNumber(e.target.value)} />
                                 </InputGroup>
-                                
+
 
                             </Flex>
                             {alert && <Text color="red">Invalid Mobile Number</Text>}

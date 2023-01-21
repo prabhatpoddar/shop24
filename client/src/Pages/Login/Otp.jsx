@@ -1,20 +1,24 @@
-import { Container, Flex, Grid, Heading, HStack, PinInputField, PinInput, Alert, Image, InputGroup, InputLeftAddon, Input, Text, Button, CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
+import { Container, Flex, Grid, Heading, HStack, PinInputField, PinInput, Alert, Image, InputGroup, InputLeftAddon, Input, Text, Button, CircularProgress, CircularProgressLabel, useToast, Box } from '@chakra-ui/react'
 import React, { useRef, useState } from 'react'
 import { useEffect } from 'react'
-import { Link, } from 'react-router-dom'
+import { Link, useNavigate, } from 'react-router-dom'
 
 
 const Otp = () => {
-    const [otpAlert, setOtpAlert] = useState(false)
 
-    const [Mobilenumber, setNumber] = useState("")
     const [otp, setOtp] = useState(null)
+    const navigate = useNavigate()
+    const toast = useToast({
+        position: 'top'
+    })
     const [minutes, setMinutes] = useState(1);
     const [seconds, setSeconds] = useState(30);
     useEffect(() => {
+
         const interval = setInterval(() => {
             if (seconds > 0) {
                 setSeconds(seconds - 1);
+
             }
 
             if (seconds === 0) {
@@ -33,24 +37,52 @@ const Otp = () => {
     }, [seconds]);
 
 
+
     const auth = () => {
+        if (otp == 5678) {
+            const isAdmin = JSON.parse(localStorage.getItem("isAdmin"))
+            if (isAdmin === "user") {
+                toast({
+                    title: `You Are Redirected To Home Page in 3 sec`,
+                    status: "success",
+                    isClosable: true,
+                })
+
+                setInterval(() => {
+                    navigate("/")
+
+
+                }, 3000)
+
+            }
+            else {
+                toast({
+                    title: `You Are Redirected To admin Page in 3 sec`,
+                    status: "success",
+                    isClosable: true,
+                })
+
+                setInterval(() => {
+                    window.location = 'https://google.com';
+
+
+                }, 3000)
+
+            }
+
+
+        } else {
+            toast({
+                title: 'Otp is Not Correct',
+                status: "error",
+                isClosable: true,
+            })
+
+        }
 
 
 
     }
-
-
-    const submitOTP = () => {
-
-
-
-
-    }
-
-
-
-
-
     return (
         <>
 
@@ -71,42 +103,42 @@ const Otp = () => {
 
 
                                 <HStack>
-                                    <PinInput 
+                                    <PinInput
                                         value={otp}
-                                       onChange={(e) => setOtp(e)}>
+                                        onChange={(e) => setOtp(e)}>
                                         <PinInputField />
                                         <PinInputField />
                                         <PinInputField />
                                         <PinInputField />
                                     </PinInput>
-                                    <br/>
-                                  
+                                    <br />
+
 
 
 
 
                                 </HStack>
                                 <Flex gap={10} mt={5}>
-                                        {seconds > 0 || minutes > 0 ? (
-                                            <p>
-                                                Time Remaining: {minutes < 10 ? `0${minutes}` : minutes}:
-                                                {seconds < 10 ? `0${seconds}` : seconds}
-                                            </p>
-                                        ) : (
-                                            <p>Didn't recieve code?</p>
-                                        )}
+                                    {seconds > 0 || minutes > 0 ? (
+                                        <p>
+                                            Time Remaining: {minutes < 10 ? `0${minutes}` : minutes}:
+                                            {seconds < 10 ? `0${seconds}` : seconds}
+                                        </p>
+                                    ) : (
+                                        <p>Didn't recieve code?</p>
+                                    )}
 
-                                        <button
-                                            disabled={seconds > 0 || minutes > 0}
-                                            style={{
-                                                color: seconds > 0 || minutes > 0 ? "#DFE3E8" : "#FF5630",
-                                            }}
+                                    <button
+                                        disabled={seconds > 0 || minutes > 0}
+                                        style={{
+                                            color: seconds > 0 || minutes > 0 ? "#DFE3E8" : "#FF5630",
+                                        }}
 
-                                        >
-                                            Resend OTP
-                                        </button>
+                                    >
+                                        Resend OTP
+                                    </button>
 
-                                    </Flex>
+                                </Flex>
 
 
 
@@ -118,7 +150,7 @@ const Otp = () => {
                             </Flex>
 
 
-                            
+
                             <Flex>
                                 <Button bg="#FF3F6C" w="100%" border="none" color="#FFF" h={50} onClick={auth}>
                                     <b>LOGIN</b>
