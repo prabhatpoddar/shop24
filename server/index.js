@@ -7,6 +7,8 @@ const authRoutes = require("./src/routes/auth.routes");
 const usersRoutes = require("./src/routes/users.routes");
 const authenticate = require("./src/middleware/authenticate");
 const wishlistRouter = require("./src/routes/wishlist.routes");
+const bagRouter = require("./src/routes/bag.routes");
+
 const app = express();
 app.use(express.json());
 app.use(
@@ -20,6 +22,7 @@ app.use("/auth", authRoutes);
 // app.use(authenticate);
 app.use("/users", usersRoutes);
 app.use("/wishlist", wishlistRouter);
+app.use("/bag", bagRouter);
 
 app.listen(process.env.PORT, () => {
   try {
