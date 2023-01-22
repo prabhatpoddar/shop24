@@ -29,6 +29,8 @@ import { Pagination } from "antd";
 import AdminNavbar from "../../Components/Nav/Navbar";
 import { useNavigate } from "react-router";
 import MainNavbar from "../Navbar/MainNavbar";
+import { publicRequest } from "./../../requestMethod";
+import { useToast } from "@chakra-ui/react";
 // import Navbar from "../../components/Navbar/MainNavbar";
 
 const Beauty = () => {
@@ -41,7 +43,7 @@ const Beauty = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [Loading, setLoading] = useState(false);
   const [val, setVal] = React.useState("");
-
+  const toast = useToast();
   // const allChecked = val.every(Boolean);
   // const isIndeterminate = val.some(Boolean) && !allChecked;
 
@@ -71,10 +73,72 @@ const Beauty = () => {
   const handleClick = (id, p) => {
     navigate(`personalcare/${id}`);
   };
+
+  //add to wishlist fuction
+  const addWishlist = (item) => {
+    console.log("item:", item);
+    const {
+      brand,
+      discountPercentage,
+      discountedPrice,
+      image,
+      product,
+      size,
+      strike,
+    } = item;
+    const newItem = {
+      brand: brand,
+      title: product,
+      size: size,
+      quantity: 1,
+      price: discountedPrice,
+      off_price: strike,
+      discount: discountPercentage,
+      img: image,
+    };
+    console.log("newItem:", newItem);
+    publicRequest
+      .post("/wishlist", newItem, {
+        headers: {
+          token: JSON.parse(localStorage.getItem("token")),
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data === "Item already in your wishlist.") {
+          toast({
+            description: res?.data,
+            status: "success",
+            position: "bottom-right",
+            duration: 5000,
+            isClosable: true,
+          });
+        } else {
+          toast({
+            description: "Your Item added Successfully.",
+            status: "success",
+            position: "bottom-right",
+            duration: 5000,
+            isClosable: true,
+          });
+        }
+      })
+      .catch((err) => {
+        toast({
+          description: "Something went wrong.",
+          status: "error",
+          position: "bottom-right",
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+  };
+  //add to wishlist fuction
+
   return (
     <>
       {/* <AdminNavbar /> */}
-      <MainNavbar/>
+      <MainNavbar />
       <Box width={"97%"} gap="2px" m={"auto"} bg="white">
         <Box p="10px" textAlign={"start"}>
           <Text color="black">Home/ Personal Care</Text>
@@ -84,7 +148,7 @@ const Beauty = () => {
             Personal Care - {data.length} items
           </Text>
         </Box>
-         <br/>
+        <br />
         {/* ------------------------------ */}
         <Flex>
           <Box w="22%" p="1">
@@ -103,49 +167,49 @@ const Beauty = () => {
               CATEGORIES
             </Checkbox> */}
 
-            <br/>
+            <br />
             <Text color={"black"} as="b" p={"5px"} pb={5}>
               CATEGORIES
             </Text>
             <Stack pl={1} mt={1} spacing={1}>
               <Checkbox
-                // isChecked={}
-                // onClick={()=>setVal("Lipstick")}
+              // isChecked={}
+              // onClick={()=>setVal("Lipstick")}
               >
                 Lipstick
               </Checkbox>
               <Checkbox
-                // onclick={setVal("Nail Polish")}
+              // onclick={setVal("Nail Polish")}
               >
                 Nail Polish
               </Checkbox>
               <Checkbox
-                // onclick={setVal("Perfume and Body Mist")}
+              // onclick={setVal("Perfume and Body Mist")}
               >
                 Perfume and Body Mist
               </Checkbox>
               <Checkbox
-                // onclick={setVal("Beauty Accessory")}
+              // onclick={setVal("Beauty Accessory")}
               >
                 Beauty Accessory
               </Checkbox>
               <Checkbox
-                // onclick={setVal("Body Wash and Scrub")}
+              // onclick={setVal("Body Wash and Scrub")}
               >
                 Body Wash and Scrub
               </Checkbox>
               <Checkbox
-                // onclick={setVal("Body Oil")}
+              // onclick={setVal("Body Oil")}
               >
                 Body Oil
               </Checkbox>
               <Checkbox
-                // onclick={setVal("Shampoo and Conditioner")}
+              // onclick={setVal("Shampoo and Conditioner")}
               >
                 Shampoo and Conditioner
               </Checkbox>
               <Checkbox
-                // onclick={setVal("Face Wash and Cleanser")}
+              // onclick={setVal("Face Wash and Cleanser")}
               >
                 Face Wash and Cleanser
               </Checkbox>
@@ -157,7 +221,7 @@ const Beauty = () => {
               <Flex>
                 {/* <FilterBox /> */}
                 {Loading || data.length == 0 ? (
-                  <Box m="auto"justifyContent={"center"}>
+                  <Box m="auto" justifyContent={"center"}>
                     {" "}
                     <Spinner
                       thickness="4px"
@@ -243,7 +307,18 @@ const Beauty = () => {
                                               <Text textAlign={"start"}>
                                                 <BsHeart color="black" />
                                               </Text>{" "}
-                                              <Text color="black">
+                                              <Text
+                                                color="black"
+                                                onClick={() => {
+                                                  let item = e;
+                                                  addWishlist(
+                                                    // e.brand,
+                                                    // e.discountPercentage,
+                                                    // e.discountedPrice
+                                                    item
+                                                  );
+                                                }}
+                                              >
                                                 WISHLIST
                                               </Text>
                                             </Button>

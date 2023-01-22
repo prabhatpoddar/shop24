@@ -21,6 +21,18 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const payload = req.body;
   payload.userId = req.user.userID;
+
+  const checkitem = await Wishlist.find({
+    userID: payload.userId,
+    title: req.body.title,
+  });
+  console.log("checkitem:", checkitem);
+
+  if (checkitem.length > 0) {
+    res.send("Item already in your wishlist.");
+    return;
+  }
+
   try {
     const user = await Wishlist.create(payload);
     res.send(user);

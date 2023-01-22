@@ -6,11 +6,28 @@ import useRazorpay from "react-razorpay";
 import logo from "./Shop24.jpeg";
 // import SuccessAlert from "./SuccessAlert";
 import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { publicRequest } from "../../requestMethod";
+let bagData = JSON.parse(localStorage.getItem("bagData"));
 
 const Payment = () => {
+  const [bagg, setBagg] = useState(bagData || []);
+
+  let Total_Amount = 549 * bagg?.length;
+
   const Razorpay = useRazorpay();
+  const orderPayment = () => {
+    const data = {
+      amount: Total_Amount,
+    };
+
+    publicRequest
+      .post("/order", data, {
+        headers: {
+          token: JSON.parse(localStorage.getItem("token")),
+        },
+      })
+      .then((res) => console.log("asdf", res.data));
+  };
 
   const handlePayment = useCallback(async () => {
     const order = {
@@ -51,6 +68,21 @@ const Payment = () => {
     const rzpay = new Razorpay(options);
     rzpay.open();
   }, [Razorpay]);
+
+  //get order
+  const getoders = () => {
+    publicRequest
+      .get("/order", {
+        headers: {
+          token: JSON.parse(localStorage.getItem("token")),
+        },
+      })
+      .then((res) => console.log("allorder", res.data));
+  };
+
+  useEffect(() => {
+    setBagg(bagData);
+  }, []);
   return (
     <div className="main-div">
       <div className="left">
@@ -103,10 +135,12 @@ const Payment = () => {
         <button
           onClick={() => {
             handlePayment();
+            orderPayment();
           }}
         >
           Proceed to Payment
         </button>
+        <button onClick={getoders}>dxfghjndfgh</button>
       </div>
     </div>
   );

@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { publicRequest } from "../../requestMethod";
 import "./cart.css";
-
+let bagData = JSON.parse(localStorage.getItem("bagData"));
 const Summary = () => {
+  const [bagg, setBagg] = useState(bagData || []);
+  console.log("bagg:", bagg);
+
+  let MRP = 1899 * bagg?.length;
+  let Discount_MRP = 1250 * bagg?.length;
+  let Total_Amount = 549 * bagg?.length;
+
+  useEffect(() => {
+    setBagg(bagData);
+  }, []);
+
   return (
     <div>
       {/* <h3>COUPONS</h3>
@@ -14,11 +27,11 @@ const Summary = () => {
       </h3>
       <div className="list">
         <p>Total MRP</p>
-        <p>₹1899</p>
+        <p>₹{MRP}</p>
       </div>
       <div className="list">
         <p>Discount on MRP</p>
-        <p style={{ color: "#14CDA8" }}>-₹1250</p>
+        <p style={{ color: "#14CDA8" }}>-₹{Discount_MRP}</p>
       </div>
       <div className="list">
         <p>Convenience Fee</p>
@@ -33,7 +46,7 @@ const Summary = () => {
           <b>Total Amount</b>
         </h2>
         <p>
-          <b>₹549</b>
+          <b>₹{Total_Amount}</b>
         </p>
       </div>
     </div>
