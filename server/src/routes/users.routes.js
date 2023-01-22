@@ -2,12 +2,15 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 
-const { verifyUserAndAutherization, verifyEmployeeAndAutherization } = require("../middleware/authenticate");
-const UserModel = require("../models/user.model");
+const {
+  verifyUserAndAutherization,
+  verifyEmployeeAndAutherization,
+} = require("./../middleware/Authenticate");
+const UserModel = require("./../models/user.model");
 
 router.get("/", verifyEmployeeAndAutherization, async (req, res) => {
-  const id=req.query.id;
-  const limit=req.query.limit  
+  const id = req.query.id;
+  const limit = req.query.limit;
 
   try {
     const users = await UserModel.find().limit(limit);
