@@ -177,7 +177,7 @@ const Beauty = () => {
   return (
     <>
       {/* <AdminNavbar /> */}
-      <MainNavbar />
+      {/* <MainNavbar /> */}
 
       <Box width={"97%"} pt={"50px"} gap="2px" m={"auto"} bg="white">
         <Box p="10px" textAlign={"start"}>
@@ -568,7 +568,7 @@ const Beauty = () => {
           <Button onClick={() => setPage(page + 1)}>NEXT</Button>
         </HStack> */}
       </Box>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

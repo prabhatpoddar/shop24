@@ -6,9 +6,9 @@ import MainNavbar from "../Navbar/MainNavbar";
 export const Home = () => {
   return (
     <div className="home">
-      <MainNavbar/>
+      {/* <MainNavbar/> */}
       <HomeMid />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
