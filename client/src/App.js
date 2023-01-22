@@ -1,11 +1,11 @@
-import MainRoute from './Components/MainRouts';
+import MainRoute from "./Components/MainRouts";
+import Cart from "./Components/Checkout/Cart";
 
 function App() {
   return (
     <div className="App">
-      <MainRoute/>
-      
-      
+      <MainRoute />
+      <Cart />
     </div>
   );
 }

@@ -1,9 +1,17 @@
 const router = require("express").Router();
 const Wishlist = require("./../models/wishlist.model");
 const UserModel = require("../models/user.model");
+const { verifyToken } = require("../middleware/authenticate");
+
+router.use(verifyToken);
+
 router.get("/", async (req, res) => {
+  let userId = req.user.userID;
   try {
-    const items = await Wishlist.find();
+    const items = await Wishlist.find({ userId }).populate({
+      path: "userId",
+      select: "fullName mobile",
+    });
     res.send(items);
   } catch (error) {
     res.send(error);
@@ -12,8 +20,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const payload = req.body;
-  const userId_Making_req = req.body.userID;
-  payload.userId = userId_Making_req;
+  payload.userId = req.user.userID;
   try {
     const user = await Wishlist.create(payload);
     res.send(user);
@@ -23,9 +30,10 @@ router.post("/", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
+  let userId = req.user.userID;
   const id = req.params.id;
   try {
-    let item = await Wishlist.findByIdAndDelete({ _id: id });
+    let item = await Wishlist.findByIdAndDelete({ _id: id, userId });
     res.send(item);
   } catch (error) {
     res.send(error);
