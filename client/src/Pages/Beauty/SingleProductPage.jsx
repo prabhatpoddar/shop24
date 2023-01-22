@@ -40,7 +40,7 @@ function SingleProductPage() {
     <>
     {/* <Navbar/> */}
         <MainNavbar/>
-            <DetailsMainDiv >
+            <DetailsMainDiv style={{"paddingTop":"50px"}}>
               <ImageContainer>
                 <ImgDiv style={{"margin":"20px"}}>
                   <Img src={data.image} width={"50%"} />
