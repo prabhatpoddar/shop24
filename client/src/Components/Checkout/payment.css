@@ -1,0 +1,46 @@
+.main-div {
+  display: grid;
+  grid-template-columns: repeat(2, 58% 42%);
+}
+
+.left {
+  height: auto;
+  margin-left: 30%;
+}
+
+.right {
+  width: 335px;
+  height: 320px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.accordion {
+  border: 1px solid #eaeaec;
+  margin: 10px 10px 0px 0px;
+  padding-left: 20px;
+  text-align: left;
+  border-radius: 4px;
+}
+
+#more {
+  display: none;
+}
+
+.accordion > h2 {
+  color: #282c3f;
+  font-weight: 700;
+  font-size: 14px;
+  margin: 10px 0px 12px 30px;
+}
+
+.offers {
+  font-size: 14px;
+}
+
+#myBtn {
+  color: #e93d67;
+  margin: 10px 0px;
+  font-size: 14px;
+  font-weight: bold;
+}

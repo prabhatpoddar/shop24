@@ -4,12 +4,14 @@ import "./cart.css";
 const Summary = () => {
   return (
     <div>
-      <h3>COUPONS</h3>
+      {/* <h3>COUPONS</h3>
       <div className="coupon-div">
         <h3>Apply Coupons</h3>
         <button>APPLY</button>
-      </div>
-      <h3>PRICE DETAILS(1 item)</h3>
+      </div> */}
+      <h3 style={{ marginTop: "10px", fontWeight: "bold" }}>
+        PRICE DETAILS (1 item)
+      </h3>
       <div className="list">
         <p>Total MRP</p>
         <p>₹1899</p>
@@ -27,8 +29,12 @@ const Summary = () => {
       </div>
       <hr style={{ marginTop: "15px" }} />
       <div className="list">
-        <h2>Total Amount</h2>
-        <p>₹549</p>
+        <h2>
+          <b>Total Amount</b>
+        </h2>
+        <p>
+          <b>₹549</b>
+        </p>
       </div>
     </div>
   );

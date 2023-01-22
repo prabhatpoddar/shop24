@@ -5,6 +5,7 @@ import "./cart.css";
 import logo from "./Shop24.jpeg";
 import secure from "./secure.png";
 import Address from "./Address";
+import Payment from "./Payment";
 
 const Cart = () => {
   return (
@@ -37,7 +38,9 @@ const Cart = () => {
           <TabPanel>
             <Address />
           </TabPanel>
-          <TabPanel>3</TabPanel>
+          <TabPanel>
+            <Payment />
+          </TabPanel>
         </TabPanels>
       </Tabs>
     </div>

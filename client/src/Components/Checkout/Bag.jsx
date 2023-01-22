@@ -53,7 +53,7 @@ const Bag = () => {
                   <button
                     style={{
                       width: "90%",
-                      height: "40px",
+                      height: "50px",
                       backgroundColor: "#e93d67",
                       borderRadius: "5px",
                       marginTop: "15px",
