@@ -1,59 +1,42 @@
 const router = require("express").Router();
+const bcrypt = require("bcrypt");
+require("dotenv").config();
+
+const { verifyUserAndAutherization, verifyEmployeeAndAutherization } = require("../middleware/authenticate");
 const UserModel = require("../models/user.model");
 
-router.get("/", async (req, res) => {
+router.get("/", verifyEmployeeAndAutherization, async (req, res) => {
+  const limit=req.query.limit  
+
   try {
-    const users = await PostModel.find();
+    const users = await UserModel.find().limit(limit);
     res.send(users);
   } catch (error) {
     res.send(error);
   }
 });
 
-router.post("/", async (req, res) => {
-  const payload = req.body;
+router.put("/:id", verifyUserAndAutherization, async (req, res) => {
+  if (req.body.password) {
+    req.body.password = await bcrypt.hash(req.body.password, 5);
+  }
   try {
-    const user = new UserModel(payload);
-    await user.save();
-    res.send(user);
+    const updatedUser = await UserModel.findByIdAndUpdate(req.params.id, {
+      $set: req.body,
+    });
+    res.status(200).json(updatedUser);
   } catch (error) {
-    res.send(error);
+    res.status(500).json(error);
   }
 });
 
-router.patch("/update/:id", async (req, res) => {
-  const payload = req.body;
-  const id = req.params.id;
-  const user = await UserModel.findOne({ _id: id });
-  const userId_in_user = user.userID;
-  const userId_Making_req = req.body.userID;
+router.delete("/delete/:id", verifyUserAndAutherization, async (req, res) => {
   try {
-    if (userId_in_user !== userId_Making_req) {
-      res.send({ msg: "You are Not Autherised" });
-    } else {
-      await UserModel.findByIdAndUpdate({ _id: id }, payload);
-      res.send("Note Updated");
-    }
+    const deleteUser = await UserModel.findByIdAndDelete(req.params.id);
+    res.status(200).json(deleteUser);
   } catch (error) {
-    res.send(error);
+    res.status(500).json(error);
   }
-});
-
-router.delete("/delete/:id", async (req, res) => {
-    const id = req.params.id;
-    const post = await UserModel.findOne({ _id: id });
-    const userId_in_Post = post.userID;
-    const userId_Making_req = req.body.userID;
-    try {
-      if (userId_in_Post !== userId_Making_req) {
-        res.send({ msg: "You are Not Autherised" });
-      } else {
-        await UserModel.findByIdAndDelete({ _id: id });
-        res.send("Note Deleted");
-      }
-    } catch (error) {
-      res.send(error);
-    }
 });
 
 module.exports = router;

@@ -4,6 +4,7 @@ import Summary from "./Summary";
 
 const Address = () => {
   const [showAdd, setShowAdd] = useState(false);
+  console.log(showAdd);
   return (
     <div className="main">
       {/* <div className="left">
