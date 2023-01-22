@@ -1,3 +1,3 @@
-# myntra-clone
+## server
 
-https://ill-ruby-frog-ring.cyclic.app/beauty
+https://block22-project-server.onrender.com/
