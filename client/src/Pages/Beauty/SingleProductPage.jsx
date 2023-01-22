@@ -165,8 +165,6 @@ function SingleProductPage() {
 
   return (
     <>
-      {/* <Navbar/> */}
-      <MainNavbar />
       <DetailsMainDiv>
         <ImageContainer>
           <ImgDiv style={{ margin: "20px" }}>
@@ -180,6 +178,7 @@ function SingleProductPage() {
                 <b>
                   {" "}
                   <p
+
                     style={{
                       fontSize: "24px",
                       margin: "25px 0px 15px 0px ",
