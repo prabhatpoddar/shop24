@@ -472,7 +472,7 @@ function SingleProductPage() {
           </div>
         </SubDetailsDiv>
       </DetailsMainDiv>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
