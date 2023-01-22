@@ -1,9 +1,19 @@
 import React, { useState } from 'react'
-import "./Users.css"
-import { DataGrid } from '@material-ui/data-grid';
-import { userRows } from '../../dummu';
-import { Link } from "react-router-dom";
-import { DeleteOutline } from "@material-ui/icons";
+import { useEffect } from 'react';
+import { userRequest } from '../../requestMethod';
+import { Link } from "react-router-dom"
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+  Avatar,
+  Button,
+} from '@chakra-ui/react'
+import Confirm from './Confirm';
 
 
 
@@ -11,65 +21,60 @@ import { DeleteOutline } from "@material-ui/icons";
 
 
 const Users = () => {
-  const [data,setData]=useState(userRows)
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
-  const columns = [
-    { field: "id", headerName: "ID", width: 90 },
-    {
-      field: "user",
-      headerName: "User",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <img className="userListImg" src={params.row.avatar} alt="" />
-            {params.row.username}
-          </div>
-        );
-      },
-    },
-    { field: "email", headerName: "Email", width: 200 },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 120,
-    },
-    {
-      field: "transaction",
-      headerName: "Transaction Volume",
-      width: 160,
-    },
-    {
-      field: "action",
-      headerName: "Action",
-      width: 150,
-      renderCell: (params) => {
-        return (
-          <>
-            <Link to={"/user/" + params.row.id}>
-              <button className="userListEdit">Edit</button>
-            </Link>
-            <DeleteOutline
-              className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
-          </>
-        );
-      },
-    },
-  ];
-  
+  const [data, setData] = useState([])
+  useEffect(() => { 
+
+
+    userRequest.get("/users?limit=8").then(res => {
+      setData(res.data)
+
+    }).catch(err => {
+      console.log('err:', err)
+
+
+    })
+
+
+  }, [])
+
+ 
+
+
+
   return (
-    <div className="userList">
-      <DataGrid
-        rows={data}
-        disableSelectionOnClick
-        columns={columns}
-        pageSize={8}
-        checkboxSelection
-      />
+    <div style={{ flex: 4 }}>
+      <TableContainer>
+        <Table variant='simple'>
+          <Thead>
+            <Tr>
+              <Th>Avtar</Th>
+              <Th>Name</Th>
+              <Th >email</Th>
+              <Th >Gender</Th>
+              <Th >Status</Th>
+              <Th >Action</Th>
+              <Th >Action</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {data.length > 0 && data.map((el) => {
+              return (
+                <Tr key={el._id}>
+                  <Td> <Avatar name='Dan Abrahmov' src={el.profilePic} /></Td>
+                  <Td >{el.fullName}</Td>
+                  <Td >{el.email}</Td>
+                  <Td >{el.gender}</Td>
+                  <Td >{el.isAdmin}</Td>
+                  <Td ><Link to={`/user/:${el._id}`}><Button colorScheme="facebook">Update</Button></Link></Td>
+                  <Td ><Confirm id={el._id}/></Td>
+                </Tr>
+              )
+            })}
+
+          </Tbody>
+
+        </Table>
+      </TableContainer>
     </div>
   )
 }

@@ -6,6 +6,7 @@ const { verifyUserAndAutherization, verifyEmployeeAndAutherization } = require("
 const UserModel = require("../models/user.model");
 
 router.get("/", verifyEmployeeAndAutherization, async (req, res) => {
+  const id=req.query.id;
   const limit=req.query.limit  
 
   try {
