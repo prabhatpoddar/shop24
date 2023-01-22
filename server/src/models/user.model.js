@@ -13,10 +13,7 @@ const userSechma = mongoose.Schema(
       required: true,
       unique: true,
     },
-    email: {
-      type: String,
-      unique: true,
-    },
+   
     email: {
       type: String,
       required: true,
@@ -35,6 +32,10 @@ const userSechma = mongoose.Schema(
     address: {
       type: String,
       max: 50,
+      default: "",
+    },
+    gender: {
+      type: String,
       default: "",
     },
     isAdmin: {

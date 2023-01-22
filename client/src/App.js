@@ -1,11 +1,9 @@
-import MainRoute from './Components/MainRouts';
+import MainRoute from "./Components/MainRouts";
 
 function App() {
   return (
     <div className="App">
-      <MainRoute/>
-      
-      
+      <MainRoute />
     </div>
   );
 }
