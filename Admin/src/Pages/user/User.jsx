@@ -6,10 +6,23 @@ import {
   PhoneAndroid,
   Publish,
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { userRequest } from "../../requestMethod";
 import "./user.css";
 
 export default function User() {
+  const parems=useParams()
+  console.log('parems:', parems.id)
+  const [user,setUser]=useState({})
+  console.log('user:', user)
+
+  // useEffect(()=>{
+  //   userRequest.get(`/users/${parems._id}`).then((res)=>{
+  //     setUser(res)
+
+  //   })
+  // },[])
   return (
     <div className="user">
       <div className="userTitleContainer">

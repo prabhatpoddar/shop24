@@ -26,13 +26,13 @@ export default function Small() {
             return (
               <li className="widgetSmListItem" key={el._id}>
               <img
-                src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"
                 alt=""
                 className="widgetSmImg"
               />
               <div className="widgetSmUser">
-                <span className="widgetSmUsername">Anna Keller</span>
-                <span className="widgetSmUserTitle">Software Engineer</span>
+                <span className="widgetSmUsername">{el.fullName}</span>
+                <span className="widgetSmUserTitle">{el.email}</span>
               </div>
               <button className="widgetSmButton">
                 <AcUnitIcon className="widgetSmIcon" />
