@@ -43,33 +43,72 @@ const Beauty = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [Loading, setLoading] = useState(false);
   const [val, setVal] = React.useState("");
+
+  const [val2, setVal2] = React.useState("");
+  const [val3, setVal3] = React.useState("");
+
   const toast = useToast();
+
   // const allChecked = val.every(Boolean);
   // const isIndeterminate = val.some(Boolean) && !allChecked;
-
+  // const handler1 = (val) => {
+  //   setVal(val);
+  //   console.log(val);
+  // };
+  console.log(val);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    getData(page);
-  }, [page]);
-
-  async function getData(page, value) {
+  async function getData(page, val, val2, val3) {
     // console.log("30", page);
-    await fetch(
-      `https://ill-ruby-frog-ring.cyclic.app/beauty?page=${page}&limit=10`
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        setLoading(false);
-        setData(res);
-        console.log(res);
-      });
+    if (val) {
+      await fetch(
+        `https://zany-red-hen-kilt.cyclic.app/beauty?_page=${page}&_limit=50&category=${val}`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          setLoading(false);
+          setData(res);
+          console.log(res);
+        });
+    } else if (val2) {
+      await fetch(
+        `https://zany-red-hen-kilt.cyclic.app/beauty?_page=${page}&_limit=50&subcategory=${val2}`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          setLoading(false);
+          setData(res);
+          console.log(res);
+        });
+    } else if (val3) {
+      await fetch(
+        `https://zany-red-hen-kilt.cyclic.app/beauty?_page=${page}&_limit=50&color=${val3}`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          setLoading(false);
+          setData(res);
+          console.log(res);
+        });
+    } else {
+      await fetch(
+        `https://zany-red-hen-kilt.cyclic.app/beauty?_page=${page}&_limit=50`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          setLoading(false);
+          setData(res);
+          console.log(res);
+        });
+    }
   }
-
+  useEffect(() => {
+    getData(page, val, val2, val3);
+  }, [page, val, val2, val3]);
   const onChange = (page) => {
     console.log(page);
     setPage(page);
   };
+
   const handleClick = (id, p) => {
     navigate(`personalcare/${id}`);
   };
@@ -139,7 +178,8 @@ const Beauty = () => {
     <>
       {/* <AdminNavbar /> */}
       <MainNavbar />
-      <Box width={"97%"} gap="2px" m={"auto"} bg="white">
+
+      <Box width={"97%"} pt={"50px"} gap="2px" m={"auto"} bg="white">
         <Box p="10px" textAlign={"start"}>
           <Text color="black">Home/ Personal Care</Text>
         </Box>
@@ -148,72 +188,224 @@ const Beauty = () => {
             Personal Care - {data.length} items
           </Text>
         </Box>
-        <br />
+
+        <hr style={{ paddingBottom: "40px" }} />
         {/* ------------------------------ */}
         <Flex>
           <Box w="22%" p="1">
-            <Flex p="5px">
-              <Text color={"black"} as="b">
-                FILTER
-              </Text>
-            </Flex>
-            {/* <Checkbox
-              isChecked={allChecked}
-              isIndeterminate={isIndeterminate}
-              onChange={(e) =>
-                setVal([e.target.checked, e.target.checked])
-              }
-            >
-              CATEGORIES
-            </Checkbox> */}
+            <Text color={"black"} as="b">
+              FILTERS
+            </Text>
+            <Stack p="5px" pt={5} pb={5}>
+              <hr />
+              <HStack>
+                <input
+                  type="radio"
+                  value="Men"
+                  checked={val === "Men"}
+                  onChange={(e) => setVal(e.target.value)}
+                />
+                <Text>Men</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="radio"
+                  value="Women"
+                  checked={val === "Women"}
+                  onChange={(e) => setVal(e.target.value)}
+                />
+                <Text>Women</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="radio"
+                  value="Boys"
+                  checked={val === "Boys"}
+                  onChange={(e) => setVal(e.target.value)}
+                />
+                <Text>Boys</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="radio"
+                  value="Girls"
+                  checked={val === "Girls"}
+                  onChange={(e) => setVal(e.target.value)}
+                />
+                <Text>Girls</Text>
+              </HStack>
+            </Stack>
+            {/* =========================== */}
+            <hr style={{ paddingTop: "5px", paddingBottom: "5px" }} />
 
             <br />
+            {/* ------------------------------ */}
+
             <Text color={"black"} as="b" p={"5px"} pb={5}>
               CATEGORIES
             </Text>
+
             <Stack pl={1} mt={1} spacing={1}>
-              <Checkbox
-              // isChecked={}
-              // onClick={()=>setVal("Lipstick")}
-              >
-                Lipstick
-              </Checkbox>
-              <Checkbox
-              // onclick={setVal("Nail Polish")}
-              >
-                Nail Polish
-              </Checkbox>
-              <Checkbox
-              // onclick={setVal("Perfume and Body Mist")}
-              >
-                Perfume and Body Mist
-              </Checkbox>
-              <Checkbox
-              // onclick={setVal("Beauty Accessory")}
-              >
-                Beauty Accessory
-              </Checkbox>
-              <Checkbox
-              // onclick={setVal("Body Wash and Scrub")}
-              >
-                Body Wash and Scrub
-              </Checkbox>
-              <Checkbox
-              // onclick={setVal("Body Oil")}
-              >
-                Body Oil
-              </Checkbox>
-              <Checkbox
-              // onclick={setVal("Shampoo and Conditioner")}
-              >
-                Shampoo and Conditioner
-              </Checkbox>
-              <Checkbox
-              // onclick={setVal("Face Wash and Cleanser")}
-              >
-                Face Wash and Cleanser
-              </Checkbox>
+              <HStack>
+                <input
+                  type="checkbox"
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Lipstick"
+                  checked={val2 === "Lipstick"}
+                />
+
+                <Text> Lipstick</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Nail Polish"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Nail Polish"
+                />
+
+                <Text> Nail Polish</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Perfume and Body Mist"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Perfume and Body Mist"
+                />
+
+                <Text> Perfume and Body Mist</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Beauty Accessory"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Beauty Accessory"
+                />
+
+                <Text>Beauty Accessory</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Body Wash and Scrub"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Body Wash and Scrub"
+                />
+
+                <Text> Body Wash and Scrub</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Body Oil"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Body Oil"
+                />
+
+                <Text> Body Oil</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Shampoo and Conditioner"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Shampoo and Conditioner"
+                />
+
+                <Text> Shampoo and Conditioner</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Face Wash and Cleanser"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Face Wash and Cleanser"
+                />
+
+                <Text>Face Wash and Cleanser</Text>
+              </HStack>
             </Stack>
+            {/* =========================== */}
+            <hr style={{ paddingTop: "5px", paddingBottom: "5px" }} />
+            <Text color={"black"} as="b" p={"5px"} pb={5}>
+              COLOR
+            </Text>
+
+            <Stack pl={1} mt={1} spacing={1}>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val3 === "White"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="White"
+                />
+
+                <Text> White</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val3 === "Black"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="Black"
+                />
+
+                <Text> Black</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val3 === "Pink"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="Pink"
+                />
+
+                <Text> Pink</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val3 === "Multi"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="Multi"
+                />
+
+                <Text>Multi</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val3 === "Brown"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="Brown"
+                />
+
+                <Text> Brown</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val3 === "Green"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="Green"
+                />
+
+                <Text> Green</Text>
+              </HStack>
+              <HStack>
+                <input
+                  type="checkbox"
+                  checked={val3 === "Red"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="Red"
+                />
+
+                <Text> Red</Text>
+              </HStack>
+            </Stack>
+            {/* ------------- */}
           </Box>
           {/* --------------- */}
           <Box>
