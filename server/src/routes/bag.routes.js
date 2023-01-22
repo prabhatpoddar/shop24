@@ -23,6 +23,17 @@ router.post("/", async (req, res) => {
   if (!payload.userId) {
     payload.userId = req.user.userID;
   }
+
+  const checkitem = await Bag.find({
+    userID: payload.userId,
+    title: req.body.title,
+  });
+  console.log("checkitem:", checkitem);
+
+  if (checkitem.length > 0) {
+    res.send("Item already in your bag.");
+    return;
+  }
   try {
     const user = await Bag.create(payload);
     res.send(user);

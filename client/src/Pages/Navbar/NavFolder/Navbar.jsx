@@ -6,7 +6,7 @@ import Logo1 from "./myn.png";
 // import { RiGift2Line } from 'react-icons/ri';
 // import { BsHandbag } from 'react-icons/bs';
 import NavbarPopUpComponents from "../NavComponent/NavbarPopUpComponents";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link as NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const Navbar = () => {
@@ -109,6 +109,13 @@ const Navbar = () => {
                 {!login ? "Sign in" : "Signout"}
               </button>
             </div>
+            <div>
+              <NavLink to="/wishlist"> wishlist</NavLink>
+            </div>
+            <div>
+              {" "}
+              <NavLink to="/bag"> bag</NavLink>
+            </div>
             <div className={style.card3}>{/* <MuiDrawer /> */}</div>
           </div>
         </div>
@@ -127,7 +134,6 @@ const Subnav = styled.div`
   display: flex;
   justify-content: center;
   margin: auto;
-  // border:1px solid #e6dede;
   align-items: center;
   height: 6.3vh;
   background-color: #ffffff;
@@ -136,7 +142,6 @@ const Subnav = styled.div`
   color: #000000;
   font-size: 15px;
   font-family: sans-serif;
-  // margin-top:63px;
   p:hover {
     border-bottom: 3px solid #fc3581;
     cursor: pointer;

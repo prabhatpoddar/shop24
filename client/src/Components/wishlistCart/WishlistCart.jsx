@@ -1,28 +1,62 @@
-import { Box, Heading, Image } from "@chakra-ui/react";
+import { Box, Heading, Image, useToast } from "@chakra-ui/react";
 import React from "react";
+import { publicRequest } from "../../requestMethod";
 import styles from "./wishlistCart.module.css";
 
-const WishlistCart = () => {
-  const property = {
-    imageUrl:
-      "https://assets.myntassets.com/f_webp,w_200,c_limit,fl_progressive,dpr_2.0/assets/images/19959630/2022/9/15/742336fc-2b14-4941-941b-1654651826961663237431569InddusWomenMagentaStripedCold-ShoulderSleevesGrandeurMajesti6.jpg",
-    imageAlt: "Rear view of modern home with pool",
-    beds: 3,
-    baths: 2,
-    title: "Modern home in city center in the heart of historic Los Angeles",
-    formattedPrice: "$1,900.00",
-    reviewCount: 34,
-    rating: 4,
-  };
+const WishlistCart = ({ property, deleteWishlist, bagHandler }) => {
+  const toast = useToast();
+
+  // //wish;ist to bag
+  // const deleteWish = (id) => {
+  //   return publicRequest.delete(`/wishlist/${id}`, {
+  //     headers: {
+  //       token: JSON.parse(localStorage.getItem("token")),
+  //     },
+  //   });
+  // };
+
+  // const bagHandler = (property) => {
+  //   //this data move from the wishlist to bag card .
+
+  //   let id = property._id;
+  //   deleteWish(id).then((res) => {
+  //     console.log(res.data);
+  //     publicRequest
+  //       .post("/bag", res.data, {
+  //         headers: {
+  //           token: JSON.parse(localStorage.getItem("token")),
+  //         },
+  //       })
+  //       .then((res) => console.log(res.data));
+  //   });
+  // };
+
+  // const deleteWishlist = (property) => {
+  //   let id = property._id;
+  //   deleteWish(id).then((res) => {
+  //     toast({
+  //       description: "Your wislist's Item Deleted!",
+  //       status: "success",
+  //       position: "bottom-right",
+  //       duration: 5000,
+  //       isClosable: true,
+  //     });
+  //   });
+  // };
 
   return (
     <div className={styles.container}>
-      <button className={styles.close_button}>X</button>
+      <button
+        className={styles.close_button}
+        onClick={() => deleteWishlist(property)}
+      >
+        X
+      </button>
 
       <Box w="100%">
         <Image
-          src={property.imageUrl}
-          alt={property.imageAlt}
+          src={property.img}
+          alt={property.img}
           objectFit="cover"
           w="100%"
           height="400px"
@@ -82,6 +116,7 @@ const WishlistCart = () => {
           padding="1.5rem 0"
           color="#ff3e6c"
           cursor="pointer"
+          onClick={() => bagHandler(property)}
         >
           MOVE TO BAG
         </Box>
