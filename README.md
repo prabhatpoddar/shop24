@@ -42,15 +42,9 @@ https://zany-red-hen-kilt.cyclic.app/beauty/
 
 ![Screenshot (104)](https://user-images.githubusercontent.com/107742899/213986482-3a5c86f1-bde2-4a9c-9673-e103c3b4ff3b.png)
 
-![Screenshot (99)](https://user-images.githubusercontent.com/107742899/212706474-24b6bcbb-e09e-42fb-bedb-a0acc736ce3b.png)
-
 ![Screenshot (100)](https://user-images.githubusercontent.com/107742899/212706511-26e82fd8-5ae4-4545-95e9-cc7f3abbeb0b.png)
 
-![Screenshot (101)](https://user-images.githubusercontent.com/107742899/212706550-d2e167d4-9188-4b12-8c63-4a466508338a.png)
 
-![Screenshot (102)](https://user-images.githubusercontent.com/107742899/212706765-6a0bbcf5-2467-4854-9de2-43c8ef48b9eb.png)
-
-![Screenshot (103)](https://user-images.githubusercontent.com/107742899/212706665-2c8555d1-a354-4244-b6a1-c86d13f7a07f.png)
 
 
 
