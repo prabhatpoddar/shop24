@@ -1,11 +1,9 @@
 
 
-### tangible-spiders-6376  (Myntra Clone)
+### shop24  (Myntra Clone)
 
 
-# Shop  24
-
-CW-RCT201-B21
+# Shop 24
 
 Project Code - tangible-spiders-6376
 Project -https://www.myntra.com
