@@ -1,11 +1,11 @@
-import {
-  CalendarToday,
-  LocationSearching,
-  MailOutline,
-  PermIdentity,
-  PhoneAndroid,
-  Publish,
-} from "@material-ui/icons";
+// import {
+//   CalendarToday,
+//   LocationSearching,
+//   MailOutline,
+//   PermIdentity,
+//   PhoneAndroid,
+//   Publish,
+// } from "@material-ui/icons";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { userRequest } from "../../requestMethod";
@@ -47,24 +47,24 @@ export default function User() {
           <div className="userShowBottom">
             <span className="userShowTitle">Account Details</span>
             <div className="userShowInfo">
-              <PermIdentity className="userShowIcon" />
+              {/* <PermIdentity className="userShowIcon" /> */}
               <span className="userShowInfoTitle">annabeck99</span>
             </div>
             <div className="userShowInfo">
-              <CalendarToday className="userShowIcon" />
+              {/* <CalendarToday className="userShowIcon" /> */}
               <span className="userShowInfoTitle">10.12.1999</span>
             </div>
             <span className="userShowTitle">Contact Details</span>
             <div className="userShowInfo">
-              <PhoneAndroid className="userShowIcon" />
+              {/* <PhoneAndroid className="userShowIcon" /> */}
               <span className="userShowInfoTitle">+1 123 456 67</span>
             </div>
             <div className="userShowInfo">
-              <MailOutline className="userShowIcon" />
+              {/* <MailOutline className="userShowIcon" /> */}
               <span className="userShowInfoTitle">annabeck99@gmail.com</span>
             </div>
             <div className="userShowInfo">
-              <LocationSearching className="userShowIcon" />
+              {/* <LocationSearching className="userShowIcon" /> */}
               <span className="userShowInfoTitle">New York | USA</span>
             </div>
           </div>
@@ -122,7 +122,7 @@ export default function User() {
                   alt=""
                 />
                 <label htmlFor="file">
-                  <Publish className="userUpdateIcon" />
+                  {/* <Publish className="userUpdateIcon" /> */}
                 </label>
                 <input type="file" id="file" style={{ display: "none" }} />
               </div>

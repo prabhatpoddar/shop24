@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./Products.css";
 import Chart from "../../Components/chart/Chart"; 
 import { productData } from "../../dummu";
-import { Publish } from "@material-ui/icons";
+// import { Publish } from "@material-ui/icons";
 
 export default function Product() {
   return (
@@ -62,7 +62,7 @@ export default function Product() {
                   <div className="productUpload">
                       <img src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="productUploadImg" />
                       <label for="file">
-                          <Publish/>
+                          {/* <Publish/> */}
                       </label>
                       <input type="file" id="file" style={{display:"none"}} />
                   </div>

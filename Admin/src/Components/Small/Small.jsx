@@ -1,5 +1,5 @@
 import "./small.css";
-import AcUnitIcon from '@mui/icons-material/AcUnit';
+// import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { useEffect } from "react";
 import { userRequest } from "../../requestMethod";
 import { useState } from "react";
@@ -35,7 +35,7 @@ export default function Small() {
                 <span className="widgetSmUserTitle">{el.email}</span>
               </div>
               <button className="widgetSmButton">
-                <AcUnitIcon className="widgetSmIcon" />
+                {/* <AcUnitIcon className="widgetSmIcon" /> */}
                 Display
               </button>
             </li>
