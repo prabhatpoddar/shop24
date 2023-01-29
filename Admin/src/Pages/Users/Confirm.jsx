@@ -13,7 +13,6 @@ import {
 import { userRequest } from '../../requestMethod'
 
 const Confirm = ({id}) => {
-    console.log('id:', id)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
     const toast = useToast({

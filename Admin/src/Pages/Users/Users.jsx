@@ -14,14 +14,10 @@ import {
   Button,
 } from '@chakra-ui/react'
 import Confirm from './Confirm';
-
-
-
-
-
-
+import UpdateUser from '../user/UpdateUser';
 const Users = () => {
   const [data, setData] = useState([])
+  console.log('data:', data)
   useEffect(() => { 
 
 
@@ -30,10 +26,7 @@ const Users = () => {
 
     }).catch(err => {
       console.log('err:', err)
-
-
     })
-
 
   }, [])
 
@@ -65,7 +58,7 @@ const Users = () => {
                   <Td >{el.email}</Td>
                   <Td >{el.gender}</Td>
                   <Td >{el.isAdmin}</Td>
-                  <Td ><Link to={`/user/:${el._id}`}><Button colorScheme="facebook">Update</Button></Link></Td>
+                  <Td ><UpdateUser el={el}/></Td>
                   <Td ><Confirm id={el._id}/></Td>
                 </Tr>
               )

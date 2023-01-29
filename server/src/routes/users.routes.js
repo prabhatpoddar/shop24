@@ -9,14 +9,14 @@ const {
 const UserModel = require("./../models/user.model");
 
 router.get("/", verifyEmployeeAndAutherization, async (req, res) => {
-  const id = req.query.id;
   const limit = req.query.limit;
 
   try {
     const users = await UserModel.find().limit(limit);
-    res.send(users);
+    res.status(200).json(users);
   } catch (error) {
-    res.send(error);
+    res.status(500).json(error);
+
   }
 });
 
