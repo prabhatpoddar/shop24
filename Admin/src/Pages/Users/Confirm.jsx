@@ -12,16 +12,19 @@ import {
   } from '@chakra-ui/react'
 import { userRequest } from '../../requestMethod'
 
-const Confirm = ({id}) => {
+const Confirm = ({id,parem,getData}) => {
+    console.log('parem:', parem)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
     const toast = useToast({
         position: 'top'
     })
     const handelDelete=(id)=>{
-        userRequest.delete(`/users/delete/${id}`).then(res=>{
+        userRequest.delete(`/${parem}/delete/${id}`).then(res=>{
+          getData()
+        }).then(res=>{
             toast({
-                title: `Your is Deleted`,
+                title: `Deleted`,
                 status: "info",
                 isClosable: true,
             })
@@ -50,7 +53,7 @@ const Confirm = ({id}) => {
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize='lg' fontWeight='bold'>
-              Delete Customer
+              Delete
             </AlertDialogHeader>
 
             <AlertDialogBody>

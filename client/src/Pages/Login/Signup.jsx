@@ -33,7 +33,7 @@ const Signup = () => {
     };
 
     const handelSubmit = (e) => {
-        if (user.fullName === "" || user.email == "" || user.password === "" || user.mobile === null) {
+        if (user.fullName === "" || user.email === "" || user.password === "" || user.mobile === null) {
             setAlert(true)
 
 

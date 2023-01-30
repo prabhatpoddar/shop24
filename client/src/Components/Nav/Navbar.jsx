@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import {
   Box,
@@ -11,51 +11,24 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  useToast,
-  Button,
-  useColorMode,
-  Menu,
-  MenuButton,
-  Avatar,
-  MenuList,
+
   Center,
-  MenuDivider,
-  MenuItem,
+
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
   CloseIcon,
   Search2Icon,
-  MoonIcon,
-  SunIcon,
+
 } from "@chakra-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-// import { GetUserData } from "../Authentication/LoginPage";
 import { Blocks } from "react-loader-spinner";
 import NavbarPopUpComponents from "./NavComponent/NavbarPopUpComponents";
-// // import { useNavigate } from "react-router-dom";
-//  import styled from "styled-components";
- import style from "./NavComponent/Navbar.module.css";
+import style from "./NavComponent/Navbar.module.css";
 
-// import TableComponent from "./Component/Table";
 const navLI = ["Men", "Women", "kids", "Home Living", "Studio"];
 
-const PostRequest = async () => {
-  try {
-    let response = await axios.patch(
-      `https://mock-server-trz7.onrender.com/Admin`,
-      {
-        id: "Admin Page",
-        isAuth: false,
-      }
-    );
 
-    return await response.data;
-  } catch (err) {
-    return err;
-  }
-};
 
 const NavLink = ({ children }) => (
   <Box
@@ -77,66 +50,17 @@ const NavLink = ({ children }) => (
 );
 
 function AdminNavbar() {
-  const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [Page, setPage] = useState("Home");
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
   const [howerState, setHowerState] = useState("");
 
   const navigate = useNavigate();
-  const toast = useToast();
   const hoverHandler = (type) => {
     setHowerState(type);
   };
-  const handleNoHover = () => {
-    setHowerState("");
-  };
-  const HandleSignout = () => {
-    PostRequest()
-      .then((res) => {
-        toast({
-          title: "Logout Successfully",
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-          position: "top",
-        });
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
-      })
-      .catch((err) => {
-        toast({
-          title: "Something Went Wrong",
-          description: `${err.message}`,
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom-right",
-        });
-      });
-  };
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   // GetUserData()
-  //     .then((res) => {
-  //       setData(res);
-  //       setLoading(false);
-  //     })
-  //     .catch((err) => {
-  //       toast({
-  //         title: "Something Went Wrong",
-  //         description: `${err.message}`,
-  //         status: "error",
-  //         duration: 5000,
-  //         isClosable: true,
-  //         position: "bottom-right",
-  //       });
-  //     });
-  // }, [toast]);
+
 
   return (
     <>
@@ -157,7 +81,7 @@ function AdminNavbar() {
             <Box marginLeft={"50px"}>
               <Link to={"/"}>
                 <Image
-                  src="https://mumbaimirror.indiatimes.com/photo/80601325.cms"
+                  src="https://user-images.githubusercontent.com/98205449/213233396-1caf5409-150c-4862-bb2b-03fbd8e3bbf5.jpg"
                   width={20}
                   p="1.5"
                 />
@@ -168,12 +92,7 @@ function AdminNavbar() {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              {/* {navLI.map((link) => (
-                <Box onClick={() => setPage(link)}>
-                  <NavLink key={link}>{link}</NavLink>
-                </Box>
-              ))} */}
-              {/* <Subnav> */}
+
               <p
                 onClick={() => navigate("/men")}
                 onMouseOver={() => hoverHandler("MEN")}
@@ -228,55 +147,7 @@ function AdminNavbar() {
               </InputGroup>
             </Box>
 
-            {/* <Flex alignItems={"center"} paddingX="20px">
-              <Stack direction={"row"} spacing={7}>
-                <Button onClick={toggleColorMode}>
-                  {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-                </Button>
 
-                <Menu>
-                  <MenuButton
-                    as={Button}
-                    rounded={"full"}
-                    variant={"link"}
-                    cursor={"pointer"}
-                    minW={0}
-                  >
-                    <Avatar
-                      size={"md"}
-                      src={
-                        "https://media.licdn.com/dms/image/D4D03AQGpp6MY_-YX6Q/profile-displayphoto-shrink_400_400/0/1670064318301?e=1676505600&v=beta&t=kbFRH7WHw6SE-vJwmWNqcA2VlLAeV8KAjuVMM_pG5X8"
-                      }
-                    />
-                  </MenuButton>
-                  <MenuList alignItems={"center"}>
-                    <br />
-                    <Center>
-                      <Avatar
-                        size={"2xl"}
-                        src={
-                          "https://media.licdn.com/dms/image/D4D03AQGpp6MY_-YX6Q/profile-displayphoto-shrink_400_400/0/1670064318301?e=1676505600&v=beta&t=kbFRH7WHw6SE-vJwmWNqcA2VlLAeV8KAjuVMM_pG5X8"
-                        }
-                      />
-                    </Center>
-                    <br />
-                    <Center>
-                      <p>Saurav Kumar</p>
-                    </Center>
-                    <br />
-                    <MenuDivider />
-                    <a
-                      href="https://mock-server-trz7.onrender.com/"
-                      target={"_blank"}
-                      rel="noopener"
-                    >
-                      <MenuItem>Your Servers</MenuItem>
-                    </a>
-                    <MenuItem onClick={HandleSignout}>Logout</MenuItem>
-                  </MenuList>
-                </Menu>
-              </Stack>
-            </Flex> */}
             <div
               className={style.content}
               onMouseLeave={() => setHowerState("")}
@@ -313,7 +184,6 @@ function AdminNavbar() {
           />
         </Center>
       )}
-      {/* {Page === navLI[3] ? navigate("/AdminPage/AddHotel") : TableComponent(data)} */}
     </>
   );
 }

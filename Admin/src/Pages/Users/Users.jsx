@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { userRequest } from '../../requestMethod';
-import { Link } from "react-router-dom"
 import {
   Table,
   Thead,
@@ -17,16 +16,17 @@ import Confirm from './Confirm';
 import UpdateUser from '../user/UpdateUser';
 const Users = () => {
   const [data, setData] = useState([])
-  console.log('data:', data)
-  useEffect(() => { 
-
-
+  const getData=()=>{
+    
     userRequest.get("/users?limit=8").then(res => {
       setData(res.data)
 
     }).catch(err => {
       console.log('err:', err)
     })
+  }
+  useEffect(() => {
+    getData()
 
   }, [])
 
@@ -59,7 +59,7 @@ const Users = () => {
                   <Td >{el.gender}</Td>
                   <Td >{el.isAdmin}</Td>
                   <Td ><UpdateUser el={el}/></Td>
-                  <Td ><Confirm id={el._id}/></Td>
+                  <Td ><Confirm id={el._id} parem="users" getData={getData}/></Td>
                 </Tr>
               )
             })}
