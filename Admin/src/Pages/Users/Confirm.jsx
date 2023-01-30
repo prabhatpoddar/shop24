@@ -11,9 +11,10 @@ import {
     useToast,
   } from '@chakra-ui/react'
 import { userRequest } from '../../requestMethod'
+import { MdDelete } from 'react-icons/md';
+
 
 const Confirm = ({id,parem,getData}) => {
-    console.log('parem:', parem)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
     const toast = useToast({
@@ -42,7 +43,7 @@ const Confirm = ({id,parem,getData}) => {
   return (
     <div>
       <Button colorScheme='red' onClick={onOpen}>
-        Delete
+        <MdDelete/>
       </Button>
 
       <AlertDialog

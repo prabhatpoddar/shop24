@@ -14,6 +14,8 @@ import {
   Textarea,
   Select
 } from '@chakra-ui/react'
+import { MdTipsAndUpdates } from 'react-icons/md';
+
 
 
 const UpdateUser = ({ el }) => {
@@ -33,7 +35,7 @@ const UpdateUser = ({ el }) => {
   }
   return (
     <div>
-      <Button onClick={onOpen} colorScheme="facebook">Update</Button>
+      <Button onClick={onOpen} colorScheme="facebook"><MdTipsAndUpdates/></Button>
       <Modal
         isCentered
         onClose={onClose}

@@ -1,54 +1,64 @@
-import "./newUser.css";
+import { Avatar, Button, Flex, Grid, GridItem, Heading, Input, Select, Text, Textarea } from "@chakra-ui/react";
 
 export default function NewUser() {
   return (
-    <div className="newUser">
-      <h1 className="newUserTitle">New User</h1>
-      <form className="newUserForm">
-        <div className="newUserItem">
-          <label>Username</label>
-          <input type="text" placeholder="john" />
-        </div>
-        <div className="newUserItem">
-          <label>Full Name</label>
-          <input type="text" placeholder="John Smith" />
-        </div>
-        <div className="newUserItem">
-          <label>Email</label>
-          <input type="email" placeholder="john@gmail.com" />
-        </div>
-        <div className="newUserItem">
-          <label>Password</label>
-          <input type="password" placeholder="password" />
-        </div>
-        <div className="newUserItem">
-          <label>Phone</label>
-          <input type="text" placeholder="+1 123 456 78" />
-        </div>
-        <div className="newUserItem">
-          <label>Address</label>
-          <input type="text" placeholder="New York | USA" />
-        </div>
-        <div className="newUserItem">
-          <label>Gender</label>
-          <div className="newUserGender">
-            <input type="radio" name="gender" id="male" value="male" />
-            <label for="male">Male</label>
-            <input type="radio" name="gender" id="female" value="female" />
-            <label for="female">Female</label>
-            <input type="radio" name="gender" id="other" value="other" />
-            <label for="other">Other</label>
-          </div>
-        </div>
-        <div className="newUserItem">
-          <label>Active</label>
-          <select className="newUserSelect" name="active" id="active">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-        </div>
-        <button className="newUserButton">Create</button>
-      </form>
+    <div style={{ flex: 4 }}>
+      <Heading textAlign="center" size='md' mt={10}>New User</Heading>
+      
+      
+      <Flex w="95%" m="auto" mt={100}>
+      <Flex  display="grid" gap={10}> 
+      <Avatar  size='2xl' name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
+      <input type="file" />
+      </Flex>
+      <Grid display="grid" gridTemplateColumns="1fr 1fr" w="80%" gap={10}>
+        <Grid  >
+          <GridItem>
+            <Text>Fullname</Text>
+            <Input w="100%" />
+
+          </GridItem>
+          <GridItem>
+            <Text>Email</Text>
+            <Input />
+
+          </GridItem>
+          <GridItem>
+            <Text>Mobile</Text>
+            <Input />
+
+          </GridItem>
+          </Grid>
+          <Grid>
+       
+        
+          <GridItem>
+            <Text>Password</Text>
+            <Input type="password" />
+
+          </GridItem>
+          <GridItem>
+            <Text>Address</Text>
+            <Textarea />
+
+          </GridItem>
+          <GridItem>
+          <Select placeholder='Gender' name='gender'  >
+              <option value='Male'>Male</option>
+              <option value='Female'>Female</option>
+              <option value='Others'>Others</option>
+            </Select>
+          </GridItem>
+
+        </Grid>
+        </Grid>
+      </Flex>
+
+      <Flex justifyContent="center" alignItems="center" mt={20}>
+        <Button w={80} colorScheme="whatsapp">Create</Button>
+      </Flex>
+
+
     </div>
   );
 }

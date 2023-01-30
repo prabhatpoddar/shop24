@@ -63,8 +63,8 @@ const Users = () => {
               <Th >email</Th>
               <Th >Gender</Th>
               <Th >Status</Th>
-              <Th >Action</Th>
-              <Th >Action</Th>
+              <Th >Update</Th>
+              <Th >Delete</Th>
             </Tr>
           </Thead>
           <Tbody>
