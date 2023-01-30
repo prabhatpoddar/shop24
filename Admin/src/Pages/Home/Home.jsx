@@ -8,14 +8,14 @@ import Large from '../../Components/Large/Large'
 
 
 const Home = () => {
+
   return (
     <div className="home">
     <Info />
     <Chart data={userData} title="User Analytics" grid dataKey="Active User"/>
     <div className="homeWidgets">
       <Small/>
-      <Large/>
-      
+      <Large/>      
     </div>
   </div>
   )

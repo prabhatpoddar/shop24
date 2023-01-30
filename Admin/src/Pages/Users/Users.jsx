@@ -11,14 +11,20 @@ import {
   TableContainer,
   Avatar,
   Button,
+  Grid,
+  Spinner,
 } from '@chakra-ui/react'
 import Confirm from './Confirm';
 import UpdateUser from '../user/UpdateUser';
 const Users = () => {
   const [data, setData] = useState([])
+  const [loading,setLoadng]=useState(false)
+
   const getData=()=>{
+    setLoadng(true)
     
     userRequest.get("/users?limit=8").then(res => {
+      setLoadng(false)
       setData(res.data)
 
     }).catch(err => {
@@ -31,7 +37,19 @@ const Users = () => {
   }, [])
 
  
-
+  if(loading){
+    return(
+      <Grid flex="4" justifyContent="center" alignItems="center">
+        <Spinner
+      thickness='4px'
+      speed='0.65s'
+      emptyColor='gray.200'
+      color='blue.500'
+      size='xl'
+    />
+      </Grid>
+    )
+  }
 
 
   return (
