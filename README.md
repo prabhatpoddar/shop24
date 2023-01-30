@@ -11,14 +11,12 @@ Vercel link : https://client-chi-gray.vercel.app
 
 IA - Rovin Singh 
 
-Team Leader -  fw20_0596-Sunil Singh Rathor
-
-
 Team Members :-
-1. fw20_0480-Alok Singh
+1. <a href="#"> Prabhat Poddar</a>
 2. fw20_0059-Sahil Khan
 3. fp04_289-Bhupendra Kumar Chandrakar
-4. fw20_0612-PRABHAT PODDAR
+4. fw20_0480-Alok Singh
+5. fw20_0596-Sunil Singh Rathor
 ## Here is the detail of our project "Shop 24".
 
 Database-:
