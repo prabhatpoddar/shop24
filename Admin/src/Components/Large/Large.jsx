@@ -11,7 +11,17 @@ export default function Large() {
     return <button className={"widgetLgButton " + type}>{type}</button>;
   };
   const getData = () => {
-   
+    userRequest.get("https://plum-jay-wear.cyclic.app/order", {
+      headers: {
+        "token": localStorage.getItem("token")
+      }
+    }).then(res => {
+      setData(res.data)
+
+    }).catch(err => {
+      console.log('err:', err)
+
+    })
   }
   return (
     <div className="widgetLg" onClick={getData}>
