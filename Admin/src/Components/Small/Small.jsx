@@ -18,7 +18,7 @@ export default function Small() {
     })
   }, [])
   return (
-    <div className="widgetSm">
+    <div className="widgetSm" >
       <span className="widgetSmTitle">New Join Members</span>
       <ul className="widgetSmList">
         {

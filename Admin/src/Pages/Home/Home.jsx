@@ -15,7 +15,7 @@ const Home = () => {
     <Chart data={userData} title="User Analytics" grid dataKey="Active User"/>
     <div className="homeWidgets">
       <Small/>
-      <Large/>      
+     
     </div>
   </div>
   )

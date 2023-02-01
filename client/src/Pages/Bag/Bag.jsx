@@ -82,9 +82,8 @@ const Bag = () => {
                 cartEmp()
             } else {
                 setCartItems(res.data)
-                console.log('data:')
 
-                getAmount()
+              
 
             }
         }).catch((err) => console.log(err));
@@ -96,21 +95,14 @@ const Bag = () => {
     }, []);
 
 
+    useEffect(()=>{
+        getAmount()
+    },[])
 
 
-    // if (cartItems.length > 0) {
-    //     let newPrice;
-    //     for (let i = 0; i < cartItems.length; i++) {
-    //        let  price=cartItems[i].price
-    //         newPrice=price.trim().split(" ")      
 
-    //     }
-    //   setTotal(prev=>prev + Number(newPrice[1]))
-    // }
-    if (localStorage.getItem("token") === null) {
-        alert("Login first");
-        return <Navigate to="/" />
-    }
+
+  
     return <div>
 
         {/* ===================Bag Navbar Start=================== */}
@@ -119,14 +111,14 @@ const Bag = () => {
 
         <div id="cartNavbar">
 
-            <div style={{ display: "flex", gap: "10px", alignItems: "center", margin: "auto", width: "35%", height: "80px" }}>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center", justifyContent:"center",  height: "80px" }}>
                 <div style={{ fontSize: "18px", fontWeight: "500", color: bag ? "teal" : "black", textDecoration: bag ? "underline" : "none" }}>B A G</div>
                 <div>∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙</div>
                 <div style={{ fontSize: "18px", fontWeight: "500", color: address ? "teal" : "black", textDecoration: address ? "underline" : "none" }}>A D D R E S S</div>
                 <div>∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙</div>
                 <div style={{ fontSize: "18px", fontWeight: "500", color: payment ? "teal" : "black", textDecoration: payment ? "underline" : "none" }}>P A Y M E N T</div>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "20px", marginLeft: "20px", marginTop: "-60px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "20px", marginLeft: "220px", marginTop: "-60px" }}>
                 <img width="35px" src="https://thumbs.dreamstime.com/z/shield-check-mark-icon-d-vector-illustration-security-guaranteed-secure-protection-symbol-free-to-edit-233403684.jpg" alt="secure" />
                 <p style={{ fontSize: "14px", fontWeight: "700" }}> 100 % S E C U R E</p>
             </div>
@@ -250,7 +242,7 @@ const Bag = () => {
 
 
                 <div style={{ border: "1px solid #eaeaec", width: "0px", backgroundColor: "#eaeaec", marginTop: "-20px" }}></div>
-                <div style={{ width: '360px' }}>
+                <div style={{ width: '360px' }} onClick={getAmount}>
                     <p style={{ fontSize: "14px", fontWeight: "500" }}>COUPONS</p>
                     <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
                         <GoTag size="25px" />
@@ -434,8 +426,7 @@ const Bag = () => {
             <img style={{ border: "1px solid #eaeaec", width: "60px" }} src="https://constant.myntassets.com/checkout/assets/img/footer-bank-paypal.png" alt="paypal" />
             <img style={{ border: "1px solid #eaeaec", width: "60px" }} src="https://constant.myntassets.com/checkout/assets/img/footer-bank-bhim.png" alt="bhim" />
         </div>
-        {/* <Footer/> */}
-
+      
     </div>
 };
 

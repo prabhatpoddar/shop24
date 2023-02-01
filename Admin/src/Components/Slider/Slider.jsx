@@ -18,9 +18,11 @@ export default function Slider() {
             <li className="sidebarListItem" >
               Analytics
             </li>
+            <Link to="/sale" className="link">
             <li className="sidebarListItem"  >
               Sales
             </li>
+            </Link>
           </ul>
         </div>
         <div className="sidebarMenu">

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
-import { userRequest } from '../../requestMethod';
 import {
   Table,
   Thead,
@@ -14,21 +13,28 @@ import {
   Grid,
   Spinner,
 } from '@chakra-ui/react'
-import Confirm from './Confirm';
+import { userRequest } from '../../requestMethod';
 import UpdateUser from '../user/UpdateUser';
-const Users = () => {
+import Confirm from '../Users/Confirm';
+const Sale = () => {
   const [data, setData] = useState([])
+  console.log('data:', data)
   const [loading,setLoadng]=useState(false)
 
   const getData=()=>{
     setLoadng(true)
     
-    userRequest.get("/users?limit=8").then(res => {
-      setLoadng(false)
+    userRequest.get("https://plum-jay-wear.cyclic.app/order", {
+      headers: {
+        "token": localStorage.getItem("token")
+      }
+    }).then(res => {
       setData(res.data)
+      setLoadng(false)
 
     }).catch(err => {
       console.log('err:', err)
+
     })
   }
   useEffect(() => {
@@ -58,10 +64,9 @@ const Users = () => {
         <Table variant='simple'>
           <Thead >
             <Tr>
-              <Th>Avtar</Th>
-              <Th>Name</Th>
-              <Th >email</Th>
-              <Th >Gender</Th>
+              <Th>Id</Th>
+              <Th >Amount</Th>
+              <Th >Date</Th>
               <Th >Status</Th>
               <Th >Update</Th>
               <Th >Delete</Th>
@@ -71,11 +76,10 @@ const Users = () => {
             {data.length > 0 && data.map((el) => {
               return (
                 <Tr key={el._id}>
-                  <Td> <Avatar name='Dan Abrahmov' src={el.profilePic} /></Td>
-                  <Td >{el.fullName}</Td>
-                  <Td >{el.email}</Td>
-                  <Td >{el.gender}</Td>
-                  <Td >{el.isAdmin}</Td>
+                  <Td >{el.userId}</Td>
+                  <Td >{el.amount}</Td>
+                  <Td >{el.date}</Td>
+                  <Td >{el.status}</Td>
                   <Td ><UpdateUser el={el}/></Td>
                   <Td ><Confirm id={el._id} parem="users" getData={getData}/></Td>
                 </Tr>
@@ -90,4 +94,4 @@ const Users = () => {
   )
 }
 
-export default Users
+export default Sale

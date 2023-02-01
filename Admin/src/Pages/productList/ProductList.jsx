@@ -76,7 +76,7 @@ if(loading){
               return (
                 <Tr key={el._id} h="200px">
                   <Td> <Image name='Dan Abrahmov' src={el.images.image1} h="200px" /></Td>
-                  <Td w={50}> {el.brand}</Td>
+                  <Td > {el.brand}</Td>
                   <Td >{el.price}₹</Td>
                   <Td >{el.color}</Td>
                   <Td color={el.rating>=4?"green":"red"}>{el.rating}</Td>

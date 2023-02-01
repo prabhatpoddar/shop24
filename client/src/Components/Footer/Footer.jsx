@@ -10,9 +10,9 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <Fragment>
+    <>
       {window.screen.width > 1024 ? (
-        <Fragment>
+        <>
           <div className={styles.footerDiv}>
             <div className={styles.footerDiv1}>
               <div className={styles.footerDiv1section}>
@@ -116,9 +116,9 @@ const Footer = () => {
               <span className='absolute right-0'> © 2022 www.myntra.com. All rights reserved.</span>
             </div>
           </div>
-        </Fragment>
+        </>
       ) : (
-        <Fragment>
+        <>
           <div className="w-10/12 mx-auto font1 mt-4">
             <div className="w-full">
               <h1 className=" text-base font-semibold ">SHOP&nbsp;&nbsp;FOR</h1>
@@ -184,9 +184,9 @@ const Footer = () => {
               </div>
             </div>
           </div>
-        </Fragment>
+        </>
       )}
-    </Fragment>
+    </>
   );
 };
 
