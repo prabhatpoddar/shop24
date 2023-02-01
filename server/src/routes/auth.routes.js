@@ -33,7 +33,7 @@ router.post("/login", async (req, res) => {
     if (user.length > 0) {
       bcrypt.compare(password, user[0].password, (err, result) => {
         if (result) {
-          const token = jwt.sign({ userID: user[0]._id ,isAdmin: user[0].isAdmin}, process.env.CODE);
+          const token = jwt.sign({ userID: user[0]._id ,isAdmin: user[0].isAdmin}, "myntra");
 
           res.status(200).json({ msg: "Login Succesfully", token: token ,isAdmin: user[0].isAdmin });
         } else {
@@ -53,7 +53,7 @@ router.post("/loginbynumber", async (req, res) => {
     if (user.length > 0) {
       const token = jwt.sign(
         { userID: user[0]._id, isAdmin: user[0].isAdmin },
-        process.env.CODE
+        "myntra"
       );
       res.status(200).json({ msg: "Login Succesfully", token: token ,isAdmin:user[0].isAdmin});
     } else {

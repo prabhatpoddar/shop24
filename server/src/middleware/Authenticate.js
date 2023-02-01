@@ -4,7 +4,7 @@ require("dotenv").config();
 const verifyToken = (req, res, next) => {
   const token = req.headers.token;
   if (token) {
-    jwt.verify(token, process.env.CODE, (err, result) => {
+    jwt.verify(token, "myntra", (err, result) => {
       if (err) res.status(401).json("Token is non Valid");
       req.user = result;
       next();
