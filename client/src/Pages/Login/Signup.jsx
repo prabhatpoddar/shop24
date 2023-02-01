@@ -1,6 +1,7 @@
-import { Container, Flex, Grid, Heading, InputRightElement, Image, InputGroup, Input, Text, Button, GridItem, useToast, Box } from '@chakra-ui/react'
+import { Container, Flex, Grid, Heading, InputRightElement, Image, InputGroup, Input, Text, Button, GridItem, useToast,  } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { Navbar } from '../../Components/Navbar/Navbar'
 import { publicRequest } from '../../requestMethod'
 
 
@@ -60,6 +61,7 @@ const Signup = () => {
     }
     return (
         <>
+        <Navbar/>
             <Grid bg="#FFF5F5" w="100%" h="100vh" display="grid" justifyContent="center" alignItems="center">
 
                 <Container  >

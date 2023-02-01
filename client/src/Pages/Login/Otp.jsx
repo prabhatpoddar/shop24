@@ -1,7 +1,8 @@
-import { Container, Flex, Grid, Heading, HStack, PinInputField, PinInput, Alert, Image, InputGroup, InputLeftAddon, Input, Text, Button, CircularProgress, CircularProgressLabel, useToast, Box } from '@chakra-ui/react'
-import React, { useRef, useState } from 'react'
+import { Container, Flex, Grid, Heading, HStack, PinInputField, PinInput,  Image,    Text, Button,   useToast,  } from '@chakra-ui/react'
+import React, {  useState } from 'react'
 import { useEffect } from 'react'
 import { Link, useNavigate, } from 'react-router-dom'
+import { Navbar } from '../../Components/Navbar/Navbar'
 
 
 const Otp = () => {
@@ -34,7 +35,7 @@ const Otp = () => {
         return () => {
             clearInterval(interval);
         };
-    }, [seconds]);
+    }, [seconds,minutes]);
 
 
 
@@ -63,7 +64,7 @@ const Otp = () => {
                 })
 
                 setInterval(() => {
-                    window.location = 'https://google.com';
+                    window.location = 'https://admin-seven-fawn.vercel.app/';
 
 
                 }, 3000)
@@ -85,6 +86,7 @@ const Otp = () => {
     }
     return (
         <>
+        <Navbar/>
 
 
             <Grid bg="#FFF5F5" w="100%" h="100vh" display="grid" justifyContent="center" alignItems="center">

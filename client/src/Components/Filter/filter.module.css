@@ -1,0 +1,42 @@
+.products_navbar {
+  border: 1px solid red;
+  background-color: rgb(127, 100, 62);
+  height: 17vh;
+  width: 100%;
+}
+.main_section {
+  display: flex;
+}
+
+.filter_section {
+  width: 20%;
+
+  height: calc(100vh - 50px);
+  background-color: rgb(251, 251, 255);
+  position: sticky;
+  top: 105px;
+}
+
+.brand_filter {
+  display: flex;
+  flex-direction: column;
+  padding: 7%;
+  gap: 10px;
+}
+.filter_section > div > span {
+  font-size: 13px;
+  color: rgb(187, 186, 186);
+  text-align: left;
+}
+
+.price_filter {
+  display: flex;
+  flex-direction: column;
+  padding: 7%;
+}
+@media (max-width: 1024px) {
+  .filter_section{
+    display: none;
+  }
+
+}

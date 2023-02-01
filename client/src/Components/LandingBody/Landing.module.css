@@ -1,0 +1,77 @@
+@import "react-slideshow-image/dist/styles.css";
+.landingDivBox1{
+    
+}
+.landingDivBox1Button{
+    height: 100px;
+    width: 205px;
+    margin-top: 25px;
+    background-color: rgb(12, 4, 83);
+    font-weight: 900;
+    color:#fff;
+}
+.landingDivBox1img{
+    height: 400px;
+    width: 100%;
+    cursor: pointer;
+}
+.landingDivBox1Button>p{
+    font-size: 18px;
+}
+.landingDivBox1Button>h1{
+    font-size: 28px;
+}
+.landingDivBox1Button>h6{
+    font-size: 14px;
+}
+.landingDivBox2>button>img{
+    align-items: center;
+    text-align: center;
+}
+.landingDivBox2>p{
+    font-size: 20px;
+    color: blue;
+    font-weight: 500;
+}
+.landingDivBox2>button{
+    width: 150px;
+    height: 30px;
+    background-color: rgb(248, 211, 88);
+    /* border: 1px solid red; */
+    border-radius: 10px;
+}
+.dealOfDay{
+    font-size: 52px;
+    font-weight: 900;
+}
+.dealOfDayGI1div1{
+    height: 75%;
+}
+.dealOfDayGI1div1>img{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.dealOfDayGI1div2{
+    height: 25%;
+    width: 100%;
+}
+.dealOfDayGI1div2>h4{
+    font-size: 12px;
+}
+.dealOfDayGI1div2>h2{
+    font-size: 16px;
+    font-weight: 500;
+}
+.dealOfDayGI1div2>h1{
+    font-size: 28px;
+    font-style:italic;
+    font-weight: 500;
+}
+.exclusiveDiv>h1{
+    font-size: 62px;
+    font-weight: 900;
+}
+.exclusiveDiv>div{
+    gap: 5px;
+}

@@ -1,7 +1,7 @@
-import { Container, Flex, Grid, Heading, Image, InputGroup, InputLeftAddon, Input, Text, Button, CircularProgress, CircularProgressLabel, useToast } from '@chakra-ui/react'
-import React, { useRef, useState } from 'react'
-import { useEffect } from 'react'
+import { Container, Flex, Grid, Heading, Image, InputGroup, InputLeftAddon, Input, Text, Button,  useToast } from '@chakra-ui/react'
+import React, {  useState } from 'react'
 import { Link, useNavigate, } from 'react-router-dom'
+import { Navbar } from '../../Components/Navbar/Navbar'
 import { publicRequest } from '../../requestMethod'
 
 
@@ -13,7 +13,7 @@ const Login = () => {
         position: 'top'
     })
     const submitOTP = () => {
-        if (Mobilenumber.length == 10) {
+        if (Mobilenumber.length === 10) {
 
             publicRequest.post("/auth/loginbynumber", {
                 mobile: Mobilenumber
@@ -21,6 +21,9 @@ const Login = () => {
                 localStorage.clear()
                 localStorage.setItem("token", JSON.stringify(res.data.token))
                 localStorage.setItem("isAdmin", JSON.stringify(res.data.isAdmin))
+                console.log(res.data)
+                // localStorage.setItem("isAdmin", JSON.stringify(res.data.isAdmin))
+                // localStorage.setItem("isAdmin", JSON.stringify(res.data.isAdmin))
 
                 navigate("/otp")
 
@@ -42,6 +45,7 @@ const Login = () => {
 
     return (
         <>
+        <Navbar/>
             <Grid bg="#FFF5F5" w="100%" h="100vh" display="grid" justifyContent="center" alignItems="center">
                 <Container  >
                     <Grid w="400px" bg="#FFF" boxShadow="xl">

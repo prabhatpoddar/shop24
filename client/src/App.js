@@ -1,14 +1,13 @@
-import MainRoute from "./Components/MainRouts";
-import Cart from "./Components/Checkout/Cart";
-import Footer from "./Components/Footer/Footer";
-import MainNavbar from "./Pages/Navbar/MainNavbar";
+import './App.css';
+import { Footer } from './Components/Footer/Footer';
+import MainRoute from './pages/MainRoute';
+
 
 function App() {
   return (
     <div className="App">
-      <MainNavbar/>
-      <MainRoute />
-      <Footer/>
+    <MainRoute />
+    <Footer/>
     </div>
   );
 }

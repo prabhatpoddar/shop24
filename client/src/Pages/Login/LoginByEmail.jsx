@@ -1,6 +1,7 @@
-import { Container, Flex, Grid, Heading, InputRightElement, Alert, Image, InputGroup, Input, Text, Button, GridItem, useToast } from '@chakra-ui/react'
+import { Container, Flex, Grid, Heading, InputRightElement,  Image, InputGroup, Input, Text, Button, GridItem, useToast } from '@chakra-ui/react'
 import React, {  useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { Navbar } from '../../Components/Navbar/Navbar'
 import { publicRequest } from '../../requestMethod'
 const initialState = {
     email: "",
@@ -15,10 +16,6 @@ const LoginByEmail = () => {
     const toast = useToast({
         position: 'top'
     })
-
-
-
-
     let handelChange = (e) => {
         const { name, value, type, checked } = e.target;
         const val = type === "checkbox" ? checked : value;
@@ -53,7 +50,7 @@ const LoginByEmail = () => {
                     })
 
                     setTimeout(() => {
-                        window.location = 'https://google.com';
+                        window.location = 'https://admin-seven-fawn.vercel.app/';
                     }, 3000)
                 }
          
@@ -69,6 +66,7 @@ const LoginByEmail = () => {
 
     return (
         <>
+        <Navbar/>
 
 
             <Grid bg="#FFF5F5" w="100%" h="100vh" display="grid" justifyContent="center" alignItems="center">

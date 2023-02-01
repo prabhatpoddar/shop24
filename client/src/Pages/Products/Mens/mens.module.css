@@ -1,0 +1,29 @@
+.main_section {
+  display: flex;
+}
+
+.product_section {
+  display: grid;
+  width: 75%;
+  margin: auto;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1280px) {
+  .product_section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 1024px) {
+  .product_section {
+    width: 95%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 680px) {
+    .product_section {
+      width: 95%;
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }

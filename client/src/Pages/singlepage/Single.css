@@ -1,0 +1,31 @@
+.mainContainer {
+  width: 70%;
+  height: auto;
+  display: flex;
+
+  margin: auto;
+  margin-bottom: 15px;
+}
+.ImageContainer {
+  width: 55%;
+
+  margin-right: 5%;
+  padding: 30px;
+  gap: 30px;
+}
+.ImgDiv{
+    width: 100%;
+}
+
+@media (max-width: 680px) {
+    .mainContainer{
+        display: grid;
+        width: 90%;
+    }
+    .ImageContainer{
+        width: 100%;
+        margin: auto auto;
+        padding: 0;
+    }
+    
+  }
