@@ -1,6 +1,5 @@
-import { Flex, Grid, Input, Text } from '@chakra-ui/react'
+import { Flex, Grid, Input, Link, Text } from '@chakra-ui/react'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import "./Navbar.css"
 import { CgProfile } from 'react-icons/cg';
 import { AiOutlineMail } from 'react-icons/ai';

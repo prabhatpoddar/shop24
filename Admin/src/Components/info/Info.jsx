@@ -3,10 +3,7 @@ import { useEffect } from "react";
 import { userRequest } from "../../requestMethod";
 import "./info.css";
 import { AiOutlineLineChart } from 'react-icons/ai';
-
-
 import { BiLineChartDown } from 'react-icons/bi';
-// import AcUnitIcon from '@mui/icons-material/AcUnit';
 
 export default function Info() {
   const [amount, setAmount] = useState(0)
@@ -34,14 +31,7 @@ export default function Info() {
 
   }, [])
 
-  // const getAmount = () => {
-  //   data.length > 0 && data.map((el) => {
-  //     return (
-  //       setAmount(prev => prev + el.amount)
 
-  //     )
-  //   })
-  // }
 
 
   return (
@@ -72,7 +62,7 @@ export default function Info() {
       <div className="featuredItem">
         <span className="featuredTitle">Cost</span>
         <div className="featuredMoneyContainer">
-          <span className="featuredMoney">{((amount / 100) * 60)}₹</span>
+          <span className="featuredMoney">{Math.floor(((amount / 100) * 60))}₹</span>
           <span className="featuredMoneyRate">
             +2.4
             <BiLineChartDown className="featuredIcon negative" />

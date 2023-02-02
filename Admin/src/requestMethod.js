@@ -9,6 +9,6 @@ export const userRequest = axios.create({
   baseURL: BASE_URL,
   headers: {
     "Content-type": "application/json",
-    "token": localStorage.getItem("token")
+    "token": JSON.parse(localStorage.getItem("token"))
 }
 });
