@@ -147,20 +147,20 @@ const Navbar = () => {
           >
             <div className={styles.dropdownFlex}>
               <div>
-                <p className={styles.dropHeadings}>Topwear</p>
+                <p className={styles.dropHeadings}>Indian & Fusion Wear</p>
                 {/* 
                 if want to link it to any page use this code
                 <Link to="/products/clothing">Clothing</Link>
                  */}
-                <Link to="/womens">T-Shirts</Link>
-                <Link to="/womens">Casual Shirts</Link>
-                <Link to="/womens">Formal Shirts</Link>
-                <Link to="/womens">Sweatshirts</Link>
-                <Link to="/womens">Sweaters</Link>
+                <Link to="/womens">Kurtas & Suits</Link>
+                <Link to="/womens">Kurtis, Tunics & Tops</Link>
+                <Link to="/womens">Sarees</Link>
+                <Link to="/womens">Ethnic Wear</Link>
+                <Link to="/womens">Leggings, Salwars & Churidars</Link>
                 <Link to="/womens">Jackets</Link>
-                <Link to="/womens">Blazers & Coats</Link>
-                <Link to="/womens">Suits</Link>
-                <Link to="/womens">Rain Jackets</Link><br />
+                <Link to="/womens">Dress Materials</Link>
+                <Link to="/womens">Lehenga Cholis</Link>
+                <Link to="/womens">Dupattas & Shawls</Link><br />
                 <p className={styles.dropHeadings}>Indian & Festive Wear</p>
                 <Link to="/womens">Kurtas & Kurta Sets</Link>
                 <Link to="/womens">Nehru Jackets</Link>
@@ -168,16 +168,16 @@ const Navbar = () => {
                 <Link to="/womens">Dhotis</Link>
               </div>
               <div>
-                <p className={styles.dropHeadings}>Bottom Wear</p>
-                <a href="/">Jeans</a>
-                <a href="/">Casual Trousers</a>
-                <a href="/">Formal Trousers</a>
-                <a href="/">Track Pants & Joggers</a><br />
-                <p className={styles.dropHeadings}>Innerwear & Sleepwear</p>
-                <a href="/">Track Pants & Joggers</a>
-                <a href="/">Boxers</a>
-                <a href="/">Vests</a>
-                <a href="/">Sleepwear & Loungewear</a>
+                <p className={styles.dropHeadings}>Western Wear</p>
+                <a href="/">Dresses</a>
+                <a href="/">Tops</a>
+                <a href="/">Tshirts</a>
+                <a href="/">Jeans</a><br />
+                <p className={styles.dropHeadings}>Trousers & Capris</p>
+                <a href="/">Shorts & Skirts</a>
+                <a href="/"> Co-ords</a>
+                <a href="/">Playsuits</a>
+                <a href="/">Jumpsuits</a>
                 <a href="/">Thermals</a><br />
                 <p className={styles.dropHeadings}>Plus Size</p>
                 <a href="/">S, M, L, XL, XXl, XXl</a>
@@ -247,33 +247,33 @@ const Navbar = () => {
                 if want to link it to any page use this code
                 <Link to="/products/clothing">Clothing</Link>
                  */}
+                <Link to="/kids">Boys Clothing</Link>
                 <Link to="/kids">T-Shirts</Link>
-                <Link to="/kids">Casual Shirts</Link>
-                <Link to="/kids">Formal Shirts</Link>
-                <Link to="/kids">Sweatshirts</Link>
-                <Link to="/kids">Sweaters</Link>
+                <Link to="/kids">Shirts</Link>
+                <Link to="/kids">Shorts</Link>
+                <Link to="/kids">Jeans</Link>
                 <Link to="/kids">Jackets</Link>
-                <Link to="/kids">Blazers & Coats</Link>
-                <Link to="/kids">Suits</Link>
-                <Link to="/kids">Rain Jackets</Link><br />
-                <p className={styles.dropHeadings}>Indian & Festive Wear</p>
-                <Link to="/kids">Kurtas & Kurta Sets</Link>
-                <Link to="/kids">Nehru Jackets</Link>
-                <Link to="/kids">Sherwanis</Link>
-                <Link to="/kids">Dhotis</Link>
+                <Link to="/kids">Trousers</Link>
+                <Link to="/kids"> Ethnic Wear</Link>
+                <Link to="/kids">Track Pants & Pyjamas</Link><br />
+                <p className={styles.dropHeadings}>Jacket, Sweater & Sweatshirts</p>
+                <Link to="/kids">Party Wear</Link>
+                <Link to="/kids">Innerwear & Thermals</Link>
+                <Link to="/kids">Nightwear & Loungewear</Link>
+                <Link to="/kids">Value Packs</Link>
               </div>
               <div>
-                <p className={styles.dropHeadings}>Bottom Wear</p>
-                <a href="/">Jeans</a>
-                <a href="/">Casual Trousers</a>
-                <a href="/">Formal Trousers</a>
-                <a href="/">Track Pants & Joggers</a><br />
-                <p className={styles.dropHeadings}>Innerwear & Sleepwear</p>
-                <a href="/">Track Pants & Joggers</a>
-                <a href="/">Boxers</a>
-                <a href="/">Vests</a>
+                <p className={styles.dropHeadings}>Girls Clothing</p>
+                <a href="/">Dresses</a>
+                <a href="/">Tops</a>
+                <a href="/">Lehenga choli</a>
+                <a href="/">Kurta Sets </a><br />
+                <p className={styles.dropHeadings}>Party wear</p>
+                <a href="/">Dungarees & Jumpsuits</a>
+                <a href="/">Skirts & shorts</a>
+                <a href="/">Tights & Leggings</a>
                 <a href="/">Sleepwear & Loungewear</a>
-                <a href="/">Thermals</a><br />
+                <a href="/">Jeans, Trousers & Capris</a><br />
                 <p className={styles.dropHeadings}>Plus Size</p>
                 <a href="/">S, M, L, XL, XXl, XXl</a>
               </div>
@@ -544,7 +544,7 @@ const Navbar = () => {
         </Fragment>
       </div>
       <div className={styles.navSubDiv4}>
-       
+
         <div className={styles.dropdown}>
 
           <p className={`${styles.dropbtn} ${hover1 && styles.tabStyles}`}>
@@ -559,7 +559,7 @@ const Navbar = () => {
             <div className={styles.dropdownFlex}>
               <div style={{ width: "500px" }}>
                 <p className={styles.dropHeadings}>Welcome</p>
-           
+
 
                 {token === null && <Link to="/login"> <button className={styles.loginSignButtom}>Login / SignUp</button> </Link>}
                 {token != null && <button className={styles.loginSignButtom} onClick={handleLogout}>Logout</button>}
@@ -595,7 +595,7 @@ const Navbar = () => {
         }}><FaShoppingBag style={{ marginLeft: "5px" }} />Bag</div></Link>
       </div>
       <div className={styles.navSubDiv5}>
-        <SliderNav/>
+        <SliderNav />
       </div>
     </div>
   );
