@@ -59,17 +59,7 @@ const Bag = () => {
         return navi("/");
     }
 
-    const getAmount = () => {
-        cartItems && cartItems.map((el) => {
-            return (
 
-                // console.log('el.price.trim().split(" ")[1]:', el.price.trim().split(" ")[1])
-                setTotal(prev => prev + Number(el.price.trim().split(" ")[1]))
-
-            )
-        })
-
-    }
 
 
     useEffect(() => {
@@ -81,6 +71,14 @@ const Bag = () => {
             if (res.data.length === 0) {
                 cartEmp()
             } else {
+                res.data && res.data.map((el) => {
+                    return (
+        
+                        // console.log('el.price.trim().split(" ")[1]:', el.price.trim().split(" ")[1])
+                        setTotal(prev => prev + Number(el.price.trim().split(" ")[1]))
+        
+                    )
+                })
                 setCartItems(res.data)
 
               
@@ -95,9 +93,7 @@ const Bag = () => {
     }, []);
 
 
-    useEffect(()=>{
-        getAmount()
-    },[])
+  
 
 
 
@@ -242,7 +238,7 @@ const Bag = () => {
 
 
                 <div style={{ border: "1px solid #eaeaec", width: "0px", backgroundColor: "#eaeaec", marginTop: "-20px" }}></div>
-                <div style={{ width: '360px' }} onClick={getAmount}>
+                <div style={{ width: '360px' }} >
                     <p style={{ fontSize: "14px", fontWeight: "500" }}>COUPONS</p>
                     <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
                         <GoTag size="25px" />
