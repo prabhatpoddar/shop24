@@ -63,7 +63,7 @@ const Login = () => {
         )
             .then((res) => {
                 setTogalOtp(false)
-                
+
                 console.log(res);
                 setAuthinicated(res);
                 toast({
@@ -233,7 +233,7 @@ const Login = () => {
                                     </Button>
                                 }
                             </Flex>
-                            <Flex color="#FF3F6C"> <Link to="/loginuser" >Want's To Login With Email ?</Link></Flex>
+                            <Flex color="#FF3F6C"> <Link to="/loginbyemail" >Want's To Login With Email ?</Link></Flex>
 
                         </Grid>
                     </Grid>
