@@ -1,26 +1,26 @@
 import React, { useState } from "react";
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, CloseButton, Text } from "@chakra-ui/react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box,  CloseButton, Text } from "@chakra-ui/react";
+import { Link,  useNavigate } from "react-router-dom";
 import { AiOutlineRight } from "react-icons/ai";
 import { GoTag } from "react-icons/go";
 import { useEffect } from "react";
 import axios from "axios";
 import Size from "./Size";
+import StripeCheckout from 'react-stripe-checkout';
 
 const Bag = () => {
-    const [update, setUpdate] = React.useState(0);
-    const [bag, setBag] = React.useState(true);
-    const [address, setAddress] = React.useState(false);
-    const [payment, setPayment] = React.useState(false);
-    const [off, setOff] = React.useState(false);
-    const [cartItems, setCartItems] = React.useState([]);
-    const [red, setRed] = React.useState(true);
-    const [pay, setPay] = React.useState(true);
-    const [WishlistItems, setWishlistItems] = React.useState([]);
-    const [userAddress, setUserAdress] = React.useState({});
+    const [update, setUpdate] = useState(0);
+    const [bag, setBag] = useState(true);
+    const [address, setAddress] = useState(false);
+    const [payment, setPayment] = useState(false);
+    const [off, setOff] = useState(false);
+    const [cartItems, setCartItems] = useState([]);
+    const [red, setRed] = useState(true);
+    const [pay, setPay] = useState(true);
+    const [WishlistItems, setWishlistItems] = useState([]);
+    const [userAddress, setUserAdress] = useState({});
     const [x, setTotal] = useState(0)
     const handleOrder = () => {
-        const token = localStorage.getItem("token");
         axios.post("https://fine-ruby-rattlesnake-suit.cyclic.app/order/create", { items: cartItems, address: userAddress }, {
             headers: { "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtYXJAZ21haWwuY29tIiwiVXNlcklkIjoiNjNjZDUwYzdlZGNkMDM5ZjA2YmYwYTE0IiwiaWF0IjoxNjc0NDA3MTQ5fQ.qj6hJr1rBM7SkvAdWfaiwuNhqawJTP3SejcdvqN6qOo" }
         }).then(res => console.log(res)).catch(err => console.log(err));
@@ -31,6 +31,10 @@ const Bag = () => {
     }
 
     const navi = useNavigate();
+    const ontoken = (paymenttoken) => {
+        console.log('token:', paymenttoken)
+
+    }
 
     const handleAddToCart = (el) => {
         // addItemToCart(el);
@@ -47,11 +51,17 @@ const Bag = () => {
 
     const handlePlaceOrder = () => {
         setBag(false);
-        setAddress(true);
+        setPayment(true);
     };
     const handleAddAddress = () => {
         setAddress(false);
         setPayment(true);
+
+    }
+    const COD = () => {
+        setAddress(true);
+        setPayment(false);
+
     }
     // const cartItems=[];
     const cartEmp = () => {
@@ -73,15 +83,15 @@ const Bag = () => {
             } else {
                 res.data && res.data.map((el) => {
                     return (
-        
+
                         // console.log('el.price.trim().split(" ")[1]:', el.price.trim().split(" ")[1])
                         setTotal(prev => prev + Number(el.price.trim().split(" ")[1]))
-        
+
                     )
                 })
                 setCartItems(res.data)
 
-              
+
 
             }
         }).catch((err) => console.log(err));
@@ -93,12 +103,12 @@ const Bag = () => {
     }, []);
 
 
-  
 
 
 
 
-  
+
+
     return <div>
 
         {/* ===================Bag Navbar Start=================== */}
@@ -107,12 +117,24 @@ const Bag = () => {
 
         <div id="cartNavbar">
 
-            <div style={{ display: "flex", gap: "10px", alignItems: "center", justifyContent:"center",  height: "80px" }}>
-                <div style={{ fontSize: "18px", fontWeight: "500", color: bag ? "teal" : "black", textDecoration: bag ? "underline" : "none" }}>B A G</div>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center", justifyContent: "center", height: "80px" }}>
+            <div style={{ fontSize: "18px", fontWeight: "500", color: bag ? "teal" : "black", textDecoration: bag ? "underline" : "none" }} onClick={()=>{
+                setAddress(false)
+                setPayment(false)
+                setBag(true)
+            }}>B A G</div>
                 <div>∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙</div>
-                <div style={{ fontSize: "18px", fontWeight: "500", color: address ? "teal" : "black", textDecoration: address ? "underline" : "none" }}>A D D R E S S</div>
+                <div style={{ fontSize: "18px", fontWeight: "500", color: address ? "teal" : "black", textDecoration: address ? "underline" : "none" }} onClick={()=>{
+                     setAddress(true)
+                     setPayment(false)
+                     setBag(false)
+                }}>A D D R E S S</div>
                 <div>∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙</div>
-                <div style={{ fontSize: "18px", fontWeight: "500", color: payment ? "teal" : "black", textDecoration: payment ? "underline" : "none" }}>P A Y M E N T</div>
+                <div style={{ fontSize: "18px", fontWeight: "500", color: payment ? "teal" : "black", textDecoration: payment ? "underline" : "none" }} onClick={()=>{
+                    setAddress(false)
+                    setPayment(true)
+                    setBag(false)
+                }}>P A Y M E N T</div>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "20px", marginLeft: "220px", marginTop: "-60px" }}>
                 <img width="35px" src="https://thumbs.dreamstime.com/z/shield-check-mark-icon-d-vector-illustration-security-guaranteed-secure-protection-symbol-free-to-edit-233403684.jpg" alt="secure" />
@@ -177,7 +199,7 @@ const Bag = () => {
                             <p style={{ fontSize: "14px" }}>The price of one or more item in your bag has dropped. But them now!</p>
                         </div>
                     </div>
-                    <div style={{ display: "flex", gap: "20px", height: "55px", alignItems: "center", marginLeft: "75px", marginLeft: "60%" }}>
+                    <div style={{ display: "flex", gap: "20px", height: "55px", alignItems: "center", marginLeft: "75px"}}>
                         <button style={{ fontSize: "14px", fontWeight: "500" }}>REMOVE</button> | <Link to="/wishlist"><button style={{ fontSize: "14px", fontWeight: "500" }}>MOVE TO WISHLIST</button></Link>
                     </div>
 
@@ -188,7 +210,7 @@ const Bag = () => {
                         {cartItems.map((el) => {
                             return <div style={{ border: "1px solid #eaeaec", marginLeft: "60px", marginBottom: "10px" }}>
                                 <div style={{ display: "flex", padding: "10px", gap: "20px" }}>
-                                <CloseButton size='sm' position="relative" left={500} />
+                                    <CloseButton size='sm' position="relative" left={500} />
                                     <img style={{ width: "110px", height: "150px" }} src={el.Image} alt={el.productName} />
                                     <div>
                                         {/* <p style={{fontSize:"14px",fontWeight:"500"}}>{el.brand}</p> */}
@@ -276,11 +298,11 @@ const Bag = () => {
                     {/* =======Hard Code data End ================== */}
                     <p style={{ fontSize: "14px", fontWeight: "500" }}>PRICE DETAILS ({cartItems?.length} item)</p>
                     <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Total MRP</p><p>{x}</p></div>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Discount on MRP</p><p style={{ color: "teal" }}>- ₹499</p></div>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Coupon Discount</p><p style={{ color: "teal" }}>- ₹99</p></div>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Discount on MRP</p><p style={{ color: "teal" }}>- ₹0</p></div>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Coupon Discount</p><p style={{ color: "teal" }}>- ₹0</p></div>
                     <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Convenience Fee <p>Know More</p></p><p style={{ color: "teal", display: "flex", gap: "10px" }}><p style={{ textDecoration: "line-through", color: "black" }}>₹99</p> FREE</p></div>
                     <hr style={{ backgroundColor: "#eaeaec", marginTop: "20px", marginBottom: "20px" }} />
-                    <div style={{ display: "flex", justifyContent: "space-between" }}><p style={{ fontWeight: "500", fontSize: "14px" }}>Total Amount</p><p>₹{x - 499 - 99}</p></div>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}><p style={{ fontWeight: "500", fontSize: "14px" }}>Total Amount</p><p>₹{x}</p></div>
 
                 </div>
             </div>
@@ -322,6 +344,7 @@ const Bag = () => {
         {/* Adress is here */}
 
 
+        
 
 
 
@@ -329,42 +352,41 @@ const Bag = () => {
 
 
 
-
-        <div style={{ width: "100%", display: address ? "block" : "none" }}>
-            <div style={{ display: "flex", gap: "25px", width: "70%", margin: "auto" }}>
-                <div>
-                    <form onSubmit={(e) => handleSubmit(e)} style={{ display: "flex", flexDirection: "column", gap: "20px", border: "1px solid #eaeaec", padding: "20px" }}>
-                        <p style={{ fontSize: "12px", fontWeight: "700" }}>CONTACT DETAILS</p>
-                        <input style={{ border: "2px solid #eaeaec", borderRadius: "7px", height: "45px", paddingLeft: "5px", outline: "none" }} placeholder="Name*" />
-                        <input style={{ border: "2px solid #eaeaec", borderRadius: "7px", height: "45px", paddingLeft: "5px", outline: "none" }} placeholder="Mobile No*" />
-                        <p style={{ fontSize: "12px", fontWeight: "700" }}>ADDRESS</p>
-                        <input style={{ border: "2px solid #eaeaec", borderRadius: "7px", height: "45px", paddingLeft: "5px", outline: "none" }} placeholder="Pin Code*" />
-                        <input style={{ border: "2px solid #eaeaec", borderRadius: "7px", height: "45px", paddingLeft: "5px", outline: "none" }} placeholder="Address (House No, Bulding, Street, Area)*" />
-                        <input style={{ border: "2px solid #eaeaec", borderRadius: "7px", height: "45px", paddingLeft: "5px", outline: "none" }} placeholder="Locality / Town*" />
-                        <div>
-                            <input style={{ border: "2px solid #eaeaec", backgroundColor: "#eaeaec", borderRadius: "7px", paddingLeft: "5px", height: "45px", width: "190px", outline: "none" }} placeholder="City / District*" />
-                            <input style={{ border: "2px solid #eaeaec", backgroundColor: "#eaeaec", borderRadius: "7px", paddingLeft: "5px", height: "45px", width: "190px", marginLeft: "20px", outline: "none" }} placeholder="State*" />
-                        </div>
-                        <p style={{ fontSize: "12px", fontWeight: "700" }}>SAVE ADDRESS AS</p>
-                        <div>
-                            <button style={{ fontSize: "12px", border: red ? "1px solid red" : "1px solid black", borderRadius: "10px", color: red ? "red" : "black", height: "30px", width: "50px", outline: "none" }} onClick={() => setRed(prev => !prev)}>Home</button>
-                            <button style={{ fontSize: "12px", border: red ? "1px solid black" : "1px solid red", borderRadius: "10px", color: red ? "black" : "red", height: "30px", width: "50px", marginLeft: "20px", outline: "none" }} onClick={() => setRed(prev => !prev)}>Work</button>
-                        </div>
-                        <div style={{ display: "flex", gap: "20px" }}><input type="checkbox" /> <p>Make this my default address.</p></div>
-                        <button type="submit" style={{ backgroundColor: "#ff3e6c", height: "40px", paddingLeft: "20px", paddingRight: "20px", color: "white", marginTop: "20px" }} onClick={handleAddAddress}>ADD ADDRESS</button>
-                    </form>
-                </div>
-                <div style={{ width: "350px" }}>
-                    <p style={{ fontSize: "14px", fontWeight: "500" }}>PRICE DETAILS ({cartItems?.length} item)</p>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Total MRP</p><p>{x}</p></div>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Discount on MRP</p><p style={{ color: "teal" }}>- ₹499</p></div>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Coupon Discount</p><p style={{ color: "teal" }}>- ₹199</p></div>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Convenience Fee <p>Know More</p></p><p style={{ color: "teal", display: "flex", gap: "10px" }}><p style={{ textDecoration: "line-through", color: "black" }}>₹99</p> FREE</p></div>
-                    <hr backgroundColor="#eaeaec" style={{ marginTop: "20px", marginBottom: "20px" }} />
-                    <div style={{ display: "flex", justifyContent: "space-between" }}><p style={{ fontWeight: "500", fontSize: "14px" }}>Total Amount</p><p>₹{x - 499 - 199}</p></div>
-                </div>
-            </div>
-        </div>
+       <div style={{ width: "100%", display: address ? "block" : "none" }}>
+           <div style={{ display: "flex", gap: "25px", width: "70%", margin: "auto" }}>
+               <div>
+                   <form onSubmit={(e) => handleSubmit(e)} style={{ display: "flex", flexDirection: "column", gap: "20px", border: "1px solid #eaeaec", padding: "20px" }}>
+                       <p style={{ fontSize: "12px", fontWeight: "700" }}>CONTACT DETAILS</p>
+                       <input style={{ border: "2px solid #eaeaec", borderRadius: "7px", height: "45px", paddingLeft: "5px", outline: "none" }} placeholder="Name*" />
+                       <input style={{ border: "2px solid #eaeaec", borderRadius: "7px", height: "45px", paddingLeft: "5px", outline: "none" }} placeholder="Mobile No*" />
+                       <p style={{ fontSize: "12px", fontWeight: "700" }}>ADDRESS</p>
+                       <input style={{ border: "2px solid #eaeaec", borderRadius: "7px", height: "45px", paddingLeft: "5px", outline: "none" }} placeholder="Pin Code*" />
+                       <input style={{ border: "2px solid #eaeaec", borderRadius: "7px", height: "45px", paddingLeft: "5px", outline: "none" }} placeholder="Address (House No, Bulding, Street, Area)*" />
+                       <input style={{ border: "2px solid #eaeaec", borderRadius: "7px", height: "45px", paddingLeft: "5px", outline: "none" }} placeholder="Locality / Town*" />
+                       <div>
+                           <input style={{ border: "2px solid #eaeaec", backgroundColor: "#eaeaec", borderRadius: "7px", paddingLeft: "5px", height: "45px", width: "190px", outline: "none" }} placeholder="City / District*" />
+                           <input style={{ border: "2px solid #eaeaec", backgroundColor: "#eaeaec", borderRadius: "7px", paddingLeft: "5px", height: "45px", width: "190px", marginLeft: "20px", outline: "none" }} placeholder="State*" />
+                       </div>
+                       <p style={{ fontSize: "12px", fontWeight: "700" }}>SAVE ADDRESS AS</p>
+                       <div>
+                           <button style={{ fontSize: "12px", border: red ? "1px solid red" : "1px solid black", borderRadius: "10px", color: red ? "red" : "black", height: "30px", width: "50px", outline: "none" }} onClick={() => setRed(prev => !prev)}>Home</button>
+                           <button style={{ fontSize: "12px", border: red ? "1px solid black" : "1px solid red", borderRadius: "10px", color: red ? "black" : "red", height: "30px", width: "50px", marginLeft: "20px", outline: "none" }} onClick={() => setRed(prev => !prev)}>Work</button>
+                       </div>
+                       <div style={{ display: "flex", gap: "20px" }}><input type="checkbox" /> <p>Make this my default address.</p></div>
+                       <button type="submit" style={{ backgroundColor: "#ff3e6c", height: "40px", paddingLeft: "20px", paddingRight: "20px", color: "white", marginTop: "20px" }} onClick={handleAddAddress}>ADD ADDRESS</button>
+                   </form>
+               </div>
+               <div style={{ width: "350px" }}>
+                   <p style={{ fontSize: "14px", fontWeight: "500" }}>PRICE DETAILS ({cartItems?.length} item)</p>
+                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Total MRP</p><p>{x}</p></div>
+                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Discount on MRP</p><p style={{ color: "teal" }}>- ₹0</p></div>
+                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Coupon Discount</p><p style={{ color: "teal" }}>- ₹0</p></div>
+                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Convenience Fee <p>Know More</p></p><p style={{ color: "teal", display: "flex", gap: "10px" }}><p style={{ textDecoration: "line-through", color: "black" }}>₹99</p> FREE</p></div>
+                   <hr backgroundColor="#eaeaec" style={{ marginTop: "20px", marginBottom: "20px" }} />
+                   <div style={{ display: "flex", justifyContent: "space-between" }}><p style={{ fontWeight: "500", fontSize: "14px" }}>Total Amount</p><p>₹{x}</p></div>
+               </div>
+           </div>
+       </div>
 
 
 
@@ -379,17 +401,32 @@ const Bag = () => {
                     <div style={{ display: "flex", gap: "20px", border: "1px solid #eaeaec", height: "45px", justifyContent: "center", alignItems: "center" }}><img style={{ width: "20px", height: "20px" }} src="https://cdn-icons-png.flaticon.com/128/372/372754.png" alt="offer" /> <p style={{ fontSize: "14px", fontWeight: "500" }}>Bank Offer</p></div>
                     <p style={{ fontSize: "14px", fontWeight: "500", marginTop: "5px" }}>Choose Payment Mode</p>
                     <div style={{ display: "flex", gap: "20px" }}>
-                        <div style={{ border: "1px solid #eaeaec", marginTop: "20px", height: "40px", width: "200px", justifyContent: "center", alignItems: "center", display: "flex" }} onClick={() => setPay(false)}>Cash On Delivery</div>
-                        <div style={{ border: "1px solid #eaeaec", marginTop: "20px", height: "40px", width: "200px", justifyContent: "center", alignItems: "center", display: "flex" }} onClick={() => setPay(true)}>Credit/Debit Card</div>
+                        <div style={{ border: "1px solid #eaeaec", marginTop: "20px", height: "40px", width: "200px", justifyContent: "center", alignItems: "center", display: "flex" }} onClick={() =>{
+                             setPay(false)
+                             COD()
+                        }}>Cash On Delivery</div>
+                        <div style={{ border: "1px solid #eaeaec", marginTop: "20px", height: "40px", width: "200px", justifyContent: "center", alignItems: "center", display: "flex" }} onClick={() => setPay(true)}>
+                            <StripeCheckout
+                                name="Shop 24"
+                                image="https://user-images.githubusercontent.com/98205449/213233396-1caf5409-150c-4862-bb2b-03fbd8e3bbf5.jpg"
+                                billingAddress
+                                shippingAddress
+                                description={`You have to pay ${x}`}
+                                amount={x * 100}
+                                token={ontoken}
+                                currency="INR"
+                                stripeKey="pk_test_51MX7IZSIaUdW5gBoRyRUKxT6CcWcgKSCFzuRFgEDzq0E79KexRw0qotgAFizczmFr681wYyr1qQfVWncQGhXL4yC00MFl9AdHh"
+                            ><button>Credit/Debit Card</button></StripeCheckout>
+                        </div>
                     </div>
                     <div style={{ display: pay ? "block" : "none" }}>
                         <div style={{ display: "flex", flexDirection: "column", marginTop: "5px" }}>
-                            <p style={{ fontSize: "14px", fontWeight: "500" }}>CREDIT / DEBIT CARD</p>
+                            {/* <p style={{ fontSize: "14px", fontWeight: "500" }}>CREDIT / DEBIT CARD</p>
                             <p style={{ fontSize: "14px", fontWeight: "500" }}>Please ensure your card can be used fro online transactions.</p>
-                            <p style={{ fontSize: "14px", fontWeight: "500" }}>Know More</p>
-                            <input style={{ border: "1px solid #eaeaec", borderRadius: "10px", height: "50px", marginBottom: "20px", marginTop: "20px", paddingLeft: "5px", outline: "none" }} type="number" placeholder="Enter Your Card Number" />
+                            <p style={{ fontSize: "14px", fontWeight: "500" }}>Know More</p> */}
+                            {/* <input style={{ border: "1px solid #eaeaec", borderRadius: "10px", height: "50px", marginBottom: "20px", marginTop: "20px", paddingLeft: "5px", outline: "none" }} type="number" placeholder="Enter Your Card Number" />
                             <input style={{ border: "1px solid #eaeaec", borderRadius: "10px", height: "50px", marginBottom: "20px", paddingLeft: "5px", outline: "none" }} type="number" placeholder="Name On Card" />
-                            <div><input style={{ border: "1px solid #eaeaec", borderRadius: "10px", height: "50px", marginRight: "20px", paddingLeft: "5px", outline: "none" }} type="date" placeholder="Vaild Thru" /><input style={{ border: "1px solid #eaeaec", borderRadius: "10px", height: "50px", paddingLeft: "5px", outline: "none" }} type="number" placeholder="CVV" /></div>
+                            <div><input style={{ border: "1px solid #eaeaec", borderRadius: "10px", height: "50px", marginRight: "20px", paddingLeft: "5px", outline: "none" }} type="date" placeholder="Vaild Thru" /><input style={{ border: "1px solid #eaeaec", borderRadius: "10px", height: "50px", paddingLeft: "5px", outline: "none" }} type="number" placeholder="CVV" /></div> */}
                         </div>
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}><div style={{ display: "flex", gap: "20px" }}><img style={{ width: "20px", height: "20px" }} src="https://cdn.iconscout.com/icon/free/png-128/gift-3239302-2699141.png" alt="gift" />Have a gift card?</div> <div>APPLY GIFT CARD</div></div>
@@ -398,14 +435,15 @@ const Bag = () => {
                 <div style={{ width: "350px" }}>
                     <p style={{ fontSize: "14px", fontWeight: "500" }}>PRICE DETAILS ({cartItems?.length} item)</p>
                     <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Total MRP</p><p>{x}</p></div>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Discount on MRP</p><p style={{ color: "teal" }}>- ₹499</p></div>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Coupon Discount</p><p style={{ color: "teal" }}>- ₹199</p></div>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Discount on MRP</p><p style={{ color: "teal" }}>- ₹0</p></div>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Coupon Discount</p><p style={{ color: "teal" }}>- ₹0</p></div>
                     <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}><p>Convenience Fee <p>Know More</p></p><p style={{ color: "teal", display: "flex", gap: "10px" }}><p style={{ textDecoration: "line-through", color: "black" }}>₹99</p> FREE</p></div>
                     <hr backgroundColor="#eaeaec" style={{ marginTop: "20px", marginBottom: "20px" }} />
-                    <div style={{ display: "flex", justifyContent: "space-between" }}><p style={{ fontWeight: "500", fontSize: "14px" }}>Total Amount</p><p>₹{x - 499 - 199}</p></div>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}><p style={{ fontWeight: "500", fontSize: "14px" }}>Total Amount</p><p>₹{x}</p></div>
                 </div>
             </div>
-            <button style={{ border: "4px solid #ff3e6c", color: "#ff3e6c", padding: "20px", marginLeft: "47%", marginTop: "20px" }} onClick={handleOrder}><Link to="/"> PLACE ORDER</Link></button>
+            <button style={{ border: "4px solid #ff3e6c", color: "#ff3e6c", padding: "20px", marginLeft: "47%", marginTop: "20px" }} onClick={handleOrder}>
+                <Link to="/"> PLACE ORDER</Link></button>
         </div>
 
 
@@ -422,7 +460,7 @@ const Bag = () => {
             <img style={{ border: "1px solid #eaeaec", width: "60px" }} src="https://constant.myntassets.com/checkout/assets/img/footer-bank-paypal.png" alt="paypal" />
             <img style={{ border: "1px solid #eaeaec", width: "60px" }} src="https://constant.myntassets.com/checkout/assets/img/footer-bank-bhim.png" alt="bhim" />
         </div>
-      
+
     </div>
 };
 

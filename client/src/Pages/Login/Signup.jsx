@@ -1,4 +1,4 @@
-import { Container, Flex, Grid, Heading, InputRightElement, Image, InputGroup, Input, Text, Button, GridItem, useToast,  } from '@chakra-ui/react'
+import { Container, Flex, Grid, Heading, InputRightElement, Image, InputGroup, Input, Text, Button, GridItem, useToast, } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Navbar } from '../../Components/Navbar/Navbar'
@@ -8,7 +8,7 @@ import { publicRequest } from '../../requestMethod'
 const initialState = {
     fullName: "",
     email: "",
-    mobile: null,
+    mobile: JSON.parse(localStorage.getItem("Number")),
     password: "",
     isAdmin: "user",
 
@@ -51,7 +51,7 @@ const Signup = () => {
                     status: "info",
                     isClosable: true,
                 })
-                setTimeout(()=>{
+                setTimeout(() => {
                     navigate("/login")
                 }, 3000)
             }).catch((err) => {
@@ -61,7 +61,7 @@ const Signup = () => {
     }
     return (
         <>
-        <Navbar/>
+            <Navbar />
             <Grid bg="#FFF5F5" w="100%" h="100vh" display="grid" justifyContent="center" alignItems="center">
 
                 <Container  >
@@ -84,9 +84,7 @@ const Signup = () => {
                                 <GridItem>
                                     <Input variant='outline' name='email' borderRadius="0px" onChange={handelChange} value={user.email} placeholder='Enter Your Email' />
                                 </GridItem>
-                                <GridItem>
-                                    <Input variant='outline' name='mobile' borderRadius="0px" onChange={handelChange} value={user.mobile} placeholder='Enter Your Number' />
-                                </GridItem>
+
                                 <GridItem>
                                     <InputGroup size='md'>
                                         <Input

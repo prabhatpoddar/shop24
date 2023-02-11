@@ -7,16 +7,28 @@ import SinglePage from "./singlepage/Singlepage";
 import Bag from "./Bag/Bag";
 import Login from "./Login/Login";
 import LoginByEmail from "./Login/LoginByEmail";
-import Otp from "./Login/Otp";
 import Signup from "./Login/Signup";
 import WishlistCart from "./WishList/WishlistCart";
+
 const MainRoute = () => {
+
   const Token = (child) => {
     let token = JSON.parse(localStorage.getItem("token"));
-    console.log('token:', token)
     if (token != null) {
       return child;
     } else {
+
+
+      return <Navigate to="/login" />
+    }
+  };
+
+  const TokenNumber = (child) => {
+    let token = JSON.parse(localStorage.getItem("Number"));
+    if (token != null) {
+      return child;
+    } else {
+
 
       return <Navigate to="/login" />
     }
@@ -29,8 +41,7 @@ const MainRoute = () => {
       <Route path="/kids" element={<Kids />} />
       <Route path="/login" element={<Login />} />
       <Route path="/loginbyemail" element={<LoginByEmail />} />
-      <Route path="/otp" element={<Otp />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route path="/signup" element={TokenNumber(<Signup />)} />
 
       <Route path="/singlepage/:direction" element={Token(<SinglePage />)} />
       <Route path="/bag" element={Token(<Bag />)} />
