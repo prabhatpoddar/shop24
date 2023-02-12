@@ -8,6 +8,7 @@
 Project Code - tangible-spiders-6376
 Project -https://www.myntra.com
 Vercel link : https://shop24-rho.vercel.app/
+Admin Panel : https://adminshop24-prabhatpoddar.vercel.app/
 
 IA - Rovin Singh 
 
