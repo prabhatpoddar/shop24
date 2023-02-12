@@ -7,7 +7,7 @@
 
 Project Code - tangible-spiders-6376
 Project -https://www.myntra.com
-Vercel link : https://client-chi-gray.vercel.app
+Vercel link : https://shop24-rho.vercel.app/
 
 IA - Rovin Singh 
 
@@ -19,8 +19,7 @@ Team Members :-
 ## Here is the detail of our project "Shop 24".
 
 Database-:
-https://block22-project-server.onrender.com/
-https://zany-red-hen-kilt.cyclic.app/beauty/
+https://plum-jay-wear.cyclic.app/
 
 
 
