@@ -18,7 +18,7 @@ Team Members :-
 4. <a href="https://github.com/Sunilrath101"> Sunil Singh Rathor</a>
 ## Here is the detail of our project "Shop 24".
 
-Database-:
+Server-:
 https://plum-jay-wear.cyclic.app/
 
 
@@ -59,6 +59,3 @@ https://plum-jay-wear.cyclic.app/
 ![Screenshot (89)](https://user-images.githubusercontent.com/98205449/218312467-2b8a8b58-16a0-4ee6-b1d4-7bd00f62ca27.png)
 
 
-## server
-
-https://block22-project-server.onrender.com/
