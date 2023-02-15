@@ -76,8 +76,8 @@ const Users = () => {
                   <Td >{el.email}</Td>
                   <Td >{el.gender}</Td>
                   <Td >{el.isAdmin}</Td>
-                  <Td ><UpdateUser el={el}/></Td>
-                  <Td ><Confirm id={el._id} parem="users" getData={getData}/></Td>
+                  <Td ><UpdateUser el={el} getData={getData}/></Td>
+                  <Td ><Confirm id={el._id} parem="users" isAdmin={el.isAdmin} getData={getData}/></Td>
                 </Tr>
               )
             })}

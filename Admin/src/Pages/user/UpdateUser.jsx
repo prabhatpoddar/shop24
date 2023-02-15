@@ -15,11 +15,13 @@ import {
   Select
 } from '@chakra-ui/react'
 import { MdTipsAndUpdates } from 'react-icons/md';
+import { userRequest } from '../../requestMethod';
 
 
 
-const UpdateUser = ({ el }) => {
+const UpdateUser = ({ el, getData }) => {
   const [user, setUser] = useState(el)
+  console.log('user:', user)
   const [alert, setAlert] = useState(false)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -30,12 +32,23 @@ const UpdateUser = ({ el }) => {
     setUser({ ...user, [name]: val });
   };
 
-  const handelSubmit = (e) => {
+  const handelSubmit = (id) => {
+    console.log('id:', id)
 
+    userRequest.put(`/users/${id}`, user).then((res) => {
+      console.log('res:', res)
+      getData()
+
+    }).catch((err) => {
+      console.log('err:', err)
+
+
+
+    })
   }
   return (
     <div>
-      <Button onClick={onOpen} colorScheme="facebook"><MdTipsAndUpdates/></Button>
+      <Button onClick={onOpen} colorScheme="facebook"><MdTipsAndUpdates /></Button>
       <Modal
         isCentered
         onClose={onClose}
@@ -71,7 +84,8 @@ const UpdateUser = ({ el }) => {
             <Button colorScheme='blue' mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant='ghost' onClick={handelSubmit}>Update</Button>
+            {user.isAdmin === "admin" ? <Button variant='ghost' isDisabled >Update</Button> : <Button variant='ghost' onClick={() => handelSubmit(el._id)}>Update</Button>}
+
           </ModalFooter>
         </ModalContent>
       </Modal>
