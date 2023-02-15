@@ -17,8 +17,6 @@ const MainRoute = () => {
     if (token != null) {
       return child;
     } else {
-
-
       return <Navigate to="/login" />
     }
   };
@@ -28,8 +26,6 @@ const MainRoute = () => {
     if (token != null) {
       return child;
     } else {
-
-
       return <Navigate to="/login" />
     }
   };
@@ -42,7 +38,6 @@ const MainRoute = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/loginbyemail" element={<LoginByEmail />} />
       <Route path="/signup" element={TokenNumber(<Signup />)} />
-
       <Route path="/singlepage/:direction" element={Token(<SinglePage />)} />
       <Route path="/bag" element={Token(<Bag />)} />
       <Route path="/wishlist" element={Token(<WishlistCart />)} />

@@ -22,19 +22,8 @@ const Login = () => {
     const [loading1, setLoading] = useState(false);
     const toast = useToast();
 
-
-
-
-
-
     const submitOTP = () => {
-
         sendOtp()
-      
-       
-
-
-
     }
     const sendOtp = () => {
         // signIn("credentials", { phone: Number, callbackUrl: "/" });
@@ -116,13 +105,13 @@ const Login = () => {
                             status: "success",
                             isClosable: true,
                         })
-        
+
                         setInterval(() => {
                             navigate("/")
-        
-        
+
+
                         }, 3000)
-        
+
                     }
                     else {
                         toast({
@@ -130,18 +119,30 @@ const Login = () => {
                             status: "success",
                             isClosable: true,
                         })
-        
+
                         setInterval(() => {
                             window.location = 'https://adminshop24-prabhatpoddar.vercel.app/';
-        
-        
-                        }, 3000)
-        
-                    }
-        
-                   
 
-                  
+
+                        }, 3000)
+
+                    }
+                    if (isAdmin === "") {
+                        toast({
+                            title: `You have To register First`,
+                            status: "warning",
+                            isClosable: true,
+                        })
+
+                        localStorage.setItem("Number", JSON.stringify(Number))
+                        navigate("/signup")
+
+
+                    }
+
+
+
+
                 }).catch(err => {
 
                     toast({
@@ -149,6 +150,8 @@ const Login = () => {
                         status: "warning",
                         isClosable: true,
                     })
+                    localStorage.setItem("Number", JSON.stringify(Number))
+
 
                     navigate("/signup")
                 })
@@ -157,7 +160,6 @@ const Login = () => {
             .catch((error) => {
                 // onClose();
 
-                localStorage.setItem("Number",JSON.stringify(Number))
                 toast({
                     title: `Worng OTP`,
                     position: "top",
@@ -180,7 +182,7 @@ const Login = () => {
             <Navbar />
 
             <Grid bg="#FFF5F5" w="100%" h="100vh" display="grid" justifyContent="center" alignItems="center">
-               
+
                 <Container  >
                     <Grid w="400px" bg="#FFF" boxShadow="xl">
                         <Grid>
