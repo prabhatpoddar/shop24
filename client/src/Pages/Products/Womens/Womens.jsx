@@ -1,38 +1,19 @@
 import css from "./womens.module.css";
-import ProductCard from "../../../Components/ProductCard/ProductCard";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
-import {
-  getProductsWomens,
-} from "../../../Redux/Products/action";
+
 import Filter from "../../../Components/Filter/Filter";
 
 import { Navbar } from "../../../Components/Navbar/Navbar";
-import { Footer } from "../../../Components/Footer/Footer";
+import { useEffect, useState } from "react";
+import { publicRequest } from "../../../requestMethod";
+import ProductCard from "../../../Components/ProductCard/ProductCard";
 const Womens = () => {
-
-  const prod = useSelector((store) => store.products);
-
-  const dispatch = useDispatch();
-
-  const location = useLocation();
-  const [searchParams] = useSearchParams();
+  const [prod, setProduct] = useState([])
 
   useEffect(() => {
-    if (location || prod.length === 0) {
-      const dataparams = {
-        params: {
-          _sort: "product-discountedPrice",
-          _order: searchParams.get("sort"),
-          "product-brand": searchParams.getAll("category"),
-        },
-      };
-      // console.log(dataparams);
-      dispatch(getProductsWomens(dataparams));
-    }
-  }, [searchParams, dispatch, location]);
-
+    publicRequest("/product?category=sarees&&page=1&&limit=30").then((res) => {
+      setProduct(res.data.data)
+    })
+  }, []);
   return (
     <>
     <Navbar />
@@ -55,15 +36,14 @@ const Womens = () => {
               return (
                 <ProductCard
                   key={list.id}
-                  direction="beauty"
-                  image={list["img-responsive src"]}
-                  rating={list["product-ratingsContainer"]}
-                  count={list["product-ratingsCount"]}
-                  name={list["product-product"]}
-                  brand={list["product-brand"]}
-                  price={list["product-discountedPrice"]}
-                  off_price={list["product-strike"]}
-                  address={list["product-base href"]}
+                  direction={list._id}
+                  image={list.image}
+                  rating={list.rating}
+                  count={list.ratingsCount}
+                  name={list.productname}
+                  brand={list.brand}
+                  price={list.price}
+                  off_price={list.discountPercentage}
                 />
               );
             })}

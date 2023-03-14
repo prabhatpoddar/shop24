@@ -9,6 +9,8 @@ import Login from "./Login/Login";
 import LoginByEmail from "./Login/LoginByEmail";
 import Signup from "./Login/Signup";
 import WishlistCart from "./WishList/WishlistCart";
+import HomeAndLeaving from "./Products/Home&Living/HomeAndLeaving";
+import Beauty from "./Products/Beauty/Beauty";
 
 const MainRoute = () => {
 
@@ -35,6 +37,8 @@ const MainRoute = () => {
       <Route path="/mens" element={<Mens />} />
       <Route path="/womens" element={<Womens />} />
       <Route path="/kids" element={<Kids />} />
+      <Route path="/home&leaving" element={<HomeAndLeaving />} />
+      <Route path="/beauty" element={<Beauty />} />
       <Route path="/login" element={<Login />} />
       <Route path="/loginbyemail" element={<LoginByEmail />} />
       <Route path="/signup" element={TokenNumber(<Signup />)} />

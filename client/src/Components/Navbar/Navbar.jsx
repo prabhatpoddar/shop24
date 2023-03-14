@@ -4,12 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaRegHeart, FaUserAlt, FaShoppingBag } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi'
 import SliderNav from './SliderNav';
+import { useSelector } from 'react-redux';
 
-//uncomment this after adding the action product location
-// import {Allproduct} from '../action/productAction'
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
+  // const cart = useSelector(store => store.cart)
 
   const [hover1, setHover1] = useState(false);
   const [hover2, setHover2] = useState(false);
@@ -53,10 +53,7 @@ const Navbar = () => {
             <div className={styles.dropdownFlex}>
               <div>
                 <p className={styles.dropHeadings}>Topwear</p>
-                {/* 
-                if want to link it to any page use this code
-                <Link to="/products/clothing">Clothing</Link>
-                 */}
+            
                 <Link to="/mens">T-Shirts</Link>
                 <Link to="/mens">Casual Shirts</Link>
                 <Link to="/mens">Formal Shirts</Link>
@@ -148,10 +145,7 @@ const Navbar = () => {
             <div className={styles.dropdownFlex}>
               <div>
                 <p className={styles.dropHeadings}>Indian & Fusion Wear</p>
-                {/* 
-                if want to link it to any page use this code
-                <Link to="/products/clothing">Clothing</Link>
-                 */}
+              
                 <Link to="/womens">Kurtas & Suits</Link>
                 <Link to="/womens">Kurtis, Tunics & Tops</Link>
                 <Link to="/womens">Sarees</Link>
@@ -243,10 +237,7 @@ const Navbar = () => {
             <div className={styles.dropdownFlex}>
               <div>
                 <p className={styles.dropHeadings}>Topwear</p>
-                {/* 
-                if want to link it to any page use this code
-                <Link to="/products/clothing">Clothing</Link>
-                 */}
+              
                 <Link to="/kids">Boys Clothing</Link>
                 <Link to="/kids">T-Shirts</Link>
                 <Link to="/kids">Shirts</Link>
@@ -342,45 +333,45 @@ const Navbar = () => {
                 if want to link it to any page use this code
                 <Link to="/products/clothing">Clothing</Link>
                  */}
-                <a href="/">T-Shirts</a>
-                <a href="/">Casual Shirts</a>
-                <a href="/">Formal Shirts</a>
-                <a href="/">Sweatshirts</a>
-                <a href="/">Sweaters</a>
-                <a href="/">Jackets</a>
-                <a href="/">Blazers & Coats</a>
-                <a href="/">Suits</a>
-                <a href="/">Rain Jackets</a><br />
+                <a href="/home&leaving">T-Shirts</a>
+                <a href="/home&leaving">Casual Shirts</a>
+                <a href="/home&leaving">Formal Shirts</a>
+                <a href="/home&leaving">Sweatshirts</a>
+                <a href="/home&leaving">Sweaters</a>
+                <a href="/home&leaving">Jackets</a>
+                <a href="/home&leaving">Blazers & Coats</a>
+                <a href="/home&leaving">Suits</a>
+                <a href="/home&leaving">Rain Jackets</a><br />
                 <p className={styles.dropHeadings}>Indian & Festive Wear</p>
-                <a href="/">Kurtas & Kurta Sets</a>
-                <a href="/">Nehru Jackets</a>
-                <a href="/">Sherwanis</a>
-                <a href="/">Dhotis</a>
+                <a href="/home&leaving">Kurtas & Kurta Sets</a>
+                <a href="/home&leaving">Nehru Jackets</a>
+                <a href="/home&leaving">Sherwanis</a>
+                <a href="/home&leaving">Dhotis</a>
               </div>
               <div>
                 <p className={styles.dropHeadings}>Bottom Wear</p>
-                <a href="/">Jeans</a>
-                <a href="/">Casual Trousers</a>
-                <a href="/">Formal Trousers</a>
-                <a href="/">Track Pants & Joggers</a><br />
+                <a href="/home&leaving">Jeans</a>
+                <a href="/home&leaving">Casual Trousers</a>
+                <a href="/home&leaving">Formal Trousers</a>
+                <a href="/home&leaving">Track Pants & Joggers</a><br />
                 <p className={styles.dropHeadings}>Innerwear & Sleepwear</p>
-                <a href="/">Track Pants & Joggers</a>
-                <a href="/">Boxers</a>
-                <a href="/">Vests</a>
-                <a href="/">Sleepwear & Loungewear</a>
-                <a href="/">Thermals</a><br />
+                <a href="/home&leaving">Track Pants & Joggers</a>
+                <a href="/home&leaving">Boxers</a>
+                <a href="/home&leaving">Vests</a>
+                <a href="/home&leaving">Sleepwear & Loungewear</a>
+                <a href="/home&leaving">Thermals</a><br />
                 <p className={styles.dropHeadings}>Plus Size</p>
                 <a href="/">S, M, L, XL, XXl, XXl</a>
               </div>
               <div>
                 <p className={styles.dropHeadings}>Footwear</p>
-                <a href="/">Casual Shoes</a>
-                <a href="/">Sports Shoes</a>
-                <a href="/">Formal Shoes</a>
-                <a href="/">Sneakers</a>
-                <a href="/">Sandals & Floaters</a>
-                <a href="/">Flip Flops</a>
-                <a href="/">Socks</a><br />
+                <a href="/home&leaving">Casual Shoes</a>
+                <a href="/home&leaving">Sports Shoes</a>
+                <a href="/home&leaving">Formal Shoes</a>
+                <a href="/home&leaving">Sneakers</a>
+                <a href="/home&leaving">Sandals & Floaters</a>
+                <a href="/home&leaving">Flip Flops</a>
+                <a href="/home&leaving">Socks</a><br />
                 <p className={styles.dropHeadings}>Personal Care & Grooming</p><br />
                 <p className={styles.dropHeadings}>Sunglasses & Frames</p><br />
                 <p className={styles.dropHeadings}>Watches</p>
@@ -437,45 +428,45 @@ const Navbar = () => {
                 if want to link it to any page use this code
                 <Link to="/products/clothing">Clothing</Link>
                  */}
-                <Link to="/womens">T-Shirts</Link>
-                <Link to="/womens">Casual Shirts</Link>
-                <Link to="/womens">Formal Shirts</Link>
-                <Link to="/womens">Sweatshirts</Link>
-                <Link to="/womens">Sweaters</Link>
-                <Link to="/womens">Jackets</Link>
-                <Link to="/womens">Blazers & Coats</Link>
-                <Link to="/womens">Suits</Link>
-                <Link to="/womens">Rain Jackets</Link><br />
+                <Link to="/beauty">T-Shirts</Link>
+                <Link to="/beauty">Casual Shirts</Link>
+                <Link to="/beauty">Formal Shirts</Link>
+                <Link to="/beauty">Sweatshirts</Link>
+                <Link to="/beauty">Sweaters</Link>
+                <Link to="/beauty">Jackets</Link>
+                <Link to="/beauty">Blazers & Coats</Link>
+                <Link to="/beauty">Suits</Link>
+                <Link to="/beauty">Rain Jackets</Link><br />
                 <p className={styles.dropHeadings}>Indian & Festive Wear</p>
-                <Link to="/womens">Kurtas & Kurta Sets</Link>
-                <Link to="/womens">Nehru Jackets</Link>
-                <Link to="/womens">Sherwanis</Link>
-                <Link to="/womens">Dhotis</Link>
+                <Link to="/beauty">Kurtas & Kurta Sets</Link>
+                <Link to="/beauty">Nehru Jackets</Link>
+                <Link to="/beauty">Sherwanis</Link>
+                <Link to="/beauty">Dhotis</Link>
               </div>
               <div>
                 <p className={styles.dropHeadings}>Bottom Wear</p>
-                <a href="/">Jeans</a>
-                <a href="/">Casual Trousers</a>
-                <a href="/">Formal Trousers</a>
-                <a href="/">Track Pants & Joggers</a><br />
+                <a href="/beauty">Jeans</a>
+                <a href="/beauty">Casual Trousers</a>
+                <a href="/beauty">Formal Trousers</a>
+                <a href="/beauty">Track Pants & Joggers</a><br />
                 <p className={styles.dropHeadings}>Innerwear & Sleepwear</p>
-                <a href="/">Track Pants & Joggers</a>
-                <a href="/">Boxers</a>
-                <a href="/">Vests</a>
-                <a href="/">Sleepwear & Loungewear</a>
-                <a href="/">Thermals</a><br />
+                <a href="/beauty">Track Pants & Joggers</a>
+                <a href="/beauty">Boxers</a>
+                <a href="/beauty">Vests</a>
+                <a href="/beauty">Sleepwear & Loungewear</a>
+                <a href="/beauty">Thermals</a><br />
                 <p className={styles.dropHeadings}>Plus Size</p>
-                <a href="/">S, M, L, XL, XXl, XXl</a>
+                <a href="/beauty">S, M, L, XL, XXl, XXl</a>
               </div>
               <div>
                 <p className={styles.dropHeadings}>Footwear</p>
-                <a href="/">Casual Shoes</a>
-                <a href="/">Sports Shoes</a>
-                <a href="/">Formal Shoes</a>
-                <a href="/">Sneakers</a>
-                <a href="/">Sandals & Floaters</a>
-                <a href="/">Flip Flops</a>
-                <a href="/">Socks</a><br />
+                <a href="/beauty">Casual Shoes</a>
+                <a href="/beauty">Sports Shoes</a>
+                <a href="/beauty">Formal Shoes</a>
+                <a href="/beauty">Sneakers</a>
+                <a href="/beauty">Sandals & Floaters</a>
+                <a href="/beauty">Flip Flops</a>
+                <a href="/beauty">Socks</a><br />
                 <p className={styles.dropHeadings}>Personal Care & Grooming</p><br />
                 <p className={styles.dropHeadings}>Sunglasses & Frames</p><br />
                 <p className={styles.dropHeadings}>Watches</p>

@@ -1,12 +1,12 @@
 import './App.css';
 import { Footer } from './Components/Footer/Footer';
-import MainRoute from './pages/MainRoute';
+import MainRoute from './Pages/MainRoute';
 
 
 function App() {
   return (
     <div className="App">
-    <MainRoute />
+    <MainRoute/>
     <Footer/>
     </div>
   );

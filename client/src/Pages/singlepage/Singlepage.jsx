@@ -5,11 +5,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
 import "./Single.css"
 import {
-  DetailsMainDiv,
-  ImageContainer,
   Img,
-  ImgDiv,
-  SubDetailsDiv,
   WishDiv,
   SizesDIv,
   BagDiv,
@@ -17,81 +13,32 @@ import {
 } from "./detailed";
 import StarIcon from "@mui/icons-material/Star";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import axios from "axios";
 import { Navbar } from "../../Components/Navbar/Navbar";
-import { Footer } from "../../Components/Footer/Footer";
+import { publicRequest, userRequest } from "../../requestMethod";
 
-// import Navbar from "../../Components/Navbar";
-// import Footer from "../../Components/Footer";
 
 function SinglePage() {
   const [data, setData] = useState([]);
-  const [token, setToken] = useState(localStorage.getItem("token"));
-  //   const { addToData } = useContext(FilterContext);
 
-  let temp = JSON.parse(localStorage.getItem("unique_prod"))
 
   // console.log(temp)
-  const dispatch = useDispatch();
   const { direction } = useParams();
   // console.log(direction);
 
 
-  const getData = () => {
-    const dataparams = {
-      params: {
 
-        "product-base href": temp
-
-      }
-    }
-
-
-    axios.get(`https://brainy-goat-shoulder-pads.cyclic.app/${direction}`, dataparams)
-      .then((r) => {
-        // console.log(r.data[0])
-        setData(r.data)
-
-
-      })
-      .catch((e) => {
-        console.log(e)
-      });
-  };
 
 
   useEffect(() => {
-    getData();
-    setToken(localStorage.getItem("token"));
+   publicRequest(`/product/${direction}`).then((res)=>{
+    setData(res.data)
+   })
   }, []);
 
 
 
-  const addToBag = (data) => {
-    console.log(data);
-    if (token != null) {
-      let obj = {
-        productName: data["product-product"],
-        Image: data["img-responsive src"],
-        price: data["product-discountedPrice"],
-        size: data["product-sizeInventoryPresent"],
-        color: "black",
-        quantity: 1,
-        brand: data["product-brand"],
-        off_price: data["product-strike"],
-        discount: data["product-discountPercentage"]
-      }
-      // alert("Product is added");
-      console.log(obj);
-      axios.post("https://fine-ruby-rattlesnake-suit.cyclic.app/cart/create", obj, {
-        headers: { "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtYXJAZ21haWwuY29tIiwiVXNlcklkIjoiNjNjZDUwYzdlZGNkMDM5ZjA2YmYwYTE0IiwiaWF0IjoxNjc0NDA3MTQ5fQ.qj6hJr1rBM7SkvAdWfaiwuNhqawJTP3SejcdvqN6qOo" }
-      })
-        .then((r) => alert("Product added"))
-        .catch((e) => console.log(e))
-    } else {
-      alert("Login First");
-    }
+  const addToBag = (id) => {
+   userRequest("/cart")
   }
 
 
@@ -99,16 +46,14 @@ function SinglePage() {
     <>
       <Navbar />
 
-      {data.map((ele, i) => {
-        return (
-          <>
+     
 
-            <div key={i} className="mainContainer" >
+            <div  className="mainContainer" >
               <div className="ImageContainer">
                 <div className="ImgDiv">
-                  <Img src={ele["img-responsive src"]} />
+                  <Img src={data.image} />
                 </div>
-              
+             
               </div>
               <div style={{width:"80%"}}>
                 <div style={{ width: "95%", margin: "auto" }}>
@@ -123,11 +68,11 @@ function SinglePage() {
                             color: "darkslategray",
                           }}
                         >
-                          {ele.brand}
+                          {data.brand}
                         </p>
                       </b>
                       <p style={{ fontSize: "20px", color: "#8b8d97", marginTop: "10px" }}>
-                        {ele["product-brand"]}
+                        {data.brand}
                       </p>
                     </div>
                     <RatingDiv style={{ marginTop: "15px", padding: "5px" }}>
@@ -141,7 +86,7 @@ function SinglePage() {
                       >
                         <b>
                           {" "}
-                          <p>{ele["product-ratingsContainer"]} </p>
+                          <p>{data.rating} </p>
                         </b>
                         <p style={{ color: "#48958f" }}>
                           <StarIcon style={{ marginTop: "7px" }} fontSize="small" />
@@ -155,7 +100,7 @@ function SinglePage() {
                         }}
                       >
                         {" "}
-                        <p> | {ele["product-ratingsCount"]} Ratings</p>
+                        <p> | {data.ratingsCount} Ratings</p>
                       </div>
                     </RatingDiv>
                   </div>
@@ -173,7 +118,7 @@ function SinglePage() {
                         {" "}
                         <b
                           style={{ color: "darkslategray", fontSize: "22px" }}
-                        >{`${ele["product-discountedPrice"]}`}</b>
+                        >{`${data.price}`}</b>
                       </p>
                       <p
                         style={{
@@ -185,13 +130,13 @@ function SinglePage() {
                         {" "}
 
                         <span style={{ textDecoration: "line-through" }}>
-                          {`${ele["product-strike"]}`}{" "}
+                          {/* {`${ele["product-strike"]}`}{" "} */}
                         </span>
                       </p>
                       <p style={{ color: "#ee9d20" }}>
                         <b style={{ fontSize: "22px" }}>
                           {" "}
-                          {`(${ele["product-discountPercentage"]}% OFF)`}{" "}
+                          {`(${data.discountPercentage}% OFF)`}{" "}
                         </b>
                       </p>
                     </div>
@@ -231,7 +176,7 @@ function SinglePage() {
                     <div style={{ display: "flex", gap: "10px" }}>
 
                       <SizesDIv>
-                        <p>{ele["product-sizeInventoryPresent"]}</p>
+                        {/* <p>{ele["product-sizeInventoryPresent"]}</p> */}
                       </SizesDIv>
 
                     </div>
@@ -244,7 +189,7 @@ function SinglePage() {
                     }}
                   >
                     <BagDiv
-                      onClick={() => addToBag(ele)}
+                    
                     >
                       <ShoppingBagIcon />
                       <p>
@@ -252,7 +197,7 @@ function SinglePage() {
                       </p>
                     </BagDiv>
                     <WishDiv
-                    // onClick={() => { dispatch(addToDataWishlist(ele)) }}
+                    onClick={() => addToBag(data._id)}
                     >
                       <div style={{ color: "gray" }}>
                         <FavoriteBorderIcon />
@@ -296,13 +241,14 @@ function SinglePage() {
                       }}
                     >
                       <input
-                        placeholder="Enter pincode"
+                        placeholder="Enter pin code"
                         style={{
                           height: "100%",
                           border: "none",
                           width: "120px",
                           fontWeight: "200",
                           fontSize: "18px",
+                          outline:"none"
                         }}
                       ></input>
                       <p style={{ color: "#e7396a", fontWeight: "600" }}>
@@ -362,7 +308,7 @@ function SinglePage() {
                         Best Price:
                         <span style={{ color: "#ee9d20", fontSize: "16px" }}>
                           {" "}
-                          Rs.{ele.price}
+                          Rs.{data.price}
                         </span>
                       </b>
                     </p>
@@ -396,9 +342,7 @@ function SinglePage() {
               </div>
             </div>
 
-          </>
-        );
-      })}
+   
 
     </>
   );

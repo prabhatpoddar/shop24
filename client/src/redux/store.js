@@ -1,8 +1,7 @@
-import { applyMiddleware, compose, legacy_createStore } from "redux";
-import thunk from "redux-thunk";
-import {reducer} from "./Products/Reducer"
-
-const store = legacy_createStore(reducer,applyMiddleware(thunk));
-
-export { store };
-
+import { configureStore } from "@reduxjs/toolkit";
+import cartReducer from "./CartRedux";
+export default configureStore({
+    reducer:{
+        cart:cartReducer
+    }
+})

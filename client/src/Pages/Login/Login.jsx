@@ -26,7 +26,6 @@ const Login = () => {
         sendOtp()
     }
     const sendOtp = () => {
-        // signIn("credentials", { phone: Number, callbackUrl: "/" });
         if (
             Number.length > 10 ||
             Number.length < 10 ||

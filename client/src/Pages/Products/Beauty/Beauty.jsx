@@ -1,4 +1,4 @@
-import css from "./kids.module.css";
+import css from "./Beauty.module.css";
 
 import ProductCard from "../../../Components/ProductCard/ProductCard";
 
@@ -6,10 +6,10 @@ import Filter from "../../../Components/Filter/Filter";
 import { Navbar } from "../../../Components/Navbar/Navbar";
 import { publicRequest } from "../../../requestMethod";
 import { useEffect, useState } from "react";
-const Kids = () => {
+const Beauty = () => {
   const [prod, setProduct] = useState([])
   useEffect(() => {
-    publicRequest("/product?category=kids&&page=1&&limit=30").then((res) => {
+    publicRequest("/product?category=oil&&page=1&&limit=30").then((res) => {
       setProduct(res.data.data)
     })
   }, []);
@@ -36,8 +36,8 @@ const Kids = () => {
             prod.map((list, index) => {
               return (
                 <ProductCard
-                  key={list._id}
-                  id={list._id}
+                  key={index}
+                  id={index}
                   direction={list._id}
                   image={list.image}
                   rating={list.rating}
@@ -56,4 +56,6 @@ const Kids = () => {
   );
 };
 
-export default Kids;
+export default Beauty;
+
+
