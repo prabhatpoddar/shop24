@@ -25,7 +25,6 @@
     "react-slideshow-image": "^4.2.0",
     "react-stripe-checkout": "^2.6.3",
     "styled-components": "^5.3.6",
-    "thunk": "^0.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

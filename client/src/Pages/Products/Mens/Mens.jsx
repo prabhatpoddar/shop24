@@ -1,19 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import css from "./mens.module.css";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect,  } from "react";
 import Filter from "../../../Components/Filter/Filter";
 import { Navbar } from "../../../Components/Navbar/Navbar";
-import { publicRequest } from "../../../requestMethod";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData } from "../../../redux/productRedux";
 
 const Mens = () => {
 
-  const [prod, setProduct] = useState([])
-  
+  const prod = useSelector(store => store.product.data.data) || []
+  const dispatch = useDispatch()
+
+
   useEffect(() => {
-    publicRequest("/product?page=1&&limit=30").then((res) => {
-      setProduct(res.data.data)
-    })
+    dispatch(fetchData("product?page=1&&limit=30"))
   }, []);
 
   return (

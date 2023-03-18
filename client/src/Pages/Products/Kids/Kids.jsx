@@ -4,21 +4,24 @@ import ProductCard from "../../../Components/ProductCard/ProductCard";
 
 import Filter from "../../../Components/Filter/Filter";
 import { Navbar } from "../../../Components/Navbar/Navbar";
-import { publicRequest } from "../../../requestMethod";
-import { useEffect, useState } from "react";
+import { useEffect,  } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData } from "../../../redux/productRedux";
 const Kids = () => {
-  const [prod, setProduct] = useState([])
+  const prod = useSelector(store => store.product.data.data) || []
+  const dispatch = useDispatch()
+
+
   useEffect(() => {
-    publicRequest("/product?category=kids&&page=1&&limit=30").then((res) => {
-      setProduct(res.data.data)
-    })
+    dispatch(fetchData("product?category=kids&&page=1&&limit=30"))
   }, []);
+
 
   return (
     <>
-    <Navbar />
+      <Navbar />
 
-    <br />
+      <br />
 
       <div className={css.main_section}>
         <Filter
@@ -51,7 +54,7 @@ const Kids = () => {
             })}
         </div>
       </div>
-     
+
     </>
   );
 };

@@ -3,22 +3,24 @@ import css from "./womens.module.css";
 import Filter from "../../../Components/Filter/Filter";
 
 import { Navbar } from "../../../Components/Navbar/Navbar";
-import { useEffect, useState } from "react";
-import { publicRequest } from "../../../requestMethod";
+import { useEffect,  } from "react";
 import ProductCard from "../../../Components/ProductCard/ProductCard";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData } from "../../../redux/productRedux";
 const Womens = () => {
-  const [prod, setProduct] = useState([])
+  const prod = useSelector(store => store.product.data.data) || []
+  const dispatch = useDispatch()
+
 
   useEffect(() => {
-    publicRequest("/product?category=sarees&&page=1&&limit=30").then((res) => {
-      setProduct(res.data.data)
-    })
+    dispatch(fetchData("product?category=sarees&&page=1&&limit=30"))
   }, []);
+
   return (
     <>
-    <Navbar />
-    <br />
-    
+      <Navbar />
+      <br />
+
       <div className={css.main_section}>
         <Filter
           one="Lakme"
@@ -50,7 +52,7 @@ const Womens = () => {
         </div>
       </div>
       <br />
-    
+
     </>
   );
 };
