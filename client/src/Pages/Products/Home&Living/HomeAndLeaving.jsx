@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import css from "./HomeAndLeaving.module.css";
 
 import ProductCard from "../../../Components/ProductCard/ProductCard";

@@ -14,6 +14,7 @@ const Womens = () => {
 
   useEffect(() => {
     dispatch(fetchData("product?category=sarees&&page=1&&limit=30"))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import css from "./kids.module.css";
 
 import ProductCard from "../../../Components/ProductCard/ProductCard";
@@ -14,6 +15,7 @@ const Kids = () => {
 
   useEffect(() => {
     dispatch(fetchData("product?category=kids&&page=1&&limit=30"))
+
   }, []);
 
 

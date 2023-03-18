@@ -1,33 +1,42 @@
 import css from './filter.module.css'
 import { Checkbox, Stack, Radio, RadioGroup } from '@chakra-ui/react'
-import { useSearchParams } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router-dom'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { fetchData } from '../../redux/productRedux'
 
 const Filter = ({ one, two, three, four, five, six, seven }) => {
+  const dispatch=useDispatch()
+  const location=useLocation()
+  console.log( location)
+
 
   const [searchParams, setSearchParams] = useSearchParams()
 
 
-  const initialcategory = searchParams.getAll("category")
-  const initialsort = searchParams.getAll("sort")
-  const [category, setCategory] = useState(initialcategory || [])
-  const [sort, setSort] = useState(initialsort[0] || '')
+  const initialCategory = searchParams.getAll("brand")
+  const initialSort = searchParams.getAll("sort")
+  const [category, setCategory] = useState(initialCategory || [])
+  const [sort, setSort] = useState(initialSort[0] || '')
 
 
 
-  const handleCheckBox = (e) => {
+  const handleCheckBox = (value) => {
+
 
     const newCategory = [...category]
 
-    if (newCategory.includes(e.target.value)) {
+    if (newCategory.includes(value)) {
 
-      newCategory.splice(newCategory.indexOf(e.target.value))
+      newCategory.splice(newCategory.indexOf(value))
     } else {
 
-      newCategory.push(e.target.value)
+      newCategory.push(value)
     }
     setCategory(newCategory)
+    dispatch(fetchData(`product?brand=${value}`))
+
   }
   useEffect(() => {
 
@@ -41,9 +50,24 @@ const Filter = ({ one, two, three, four, five, six, seven }) => {
 
   }, [category, setSearchParams, sort])
 
-  const Handlesort = (e) => {
+  const handleSort = (e) => {
 
-    setSort(e.target.value)
+ if(location.pathname==="/mens"){
+  dispatch(fetchData(`product?category=sweaters&sort=${e.target.value}`))
+ }
+ else if(location.pathname==="/womens"){
+  dispatch(fetchData(`product?category=sarees&sort=${e.target.value}`))
+ }
+ else if(location.pathname==="/kids"){
+  dispatch(fetchData(`product?category=kids&sort=${e.target.value}`))
+ }
+ else if(location.pathname==="/home&leaving"){
+  dispatch(fetchData(`product?category=matress&sort=${e.target.value}`))
+ }
+ else if(location.pathname==="/beauty"){
+  dispatch(fetchData(`product?category=oil&sort=${e.target.value}`))
+ }
+
 
   }
 
@@ -52,9 +76,9 @@ const Filter = ({ one, two, three, four, five, six, seven }) => {
       <div className={css.price_filter}>
         <span>Sort By Price</span>
         <RadioGroup >
-          <Stack spacing={2} direction='column' onChange={Handlesort} >
+          <Stack spacing={2} direction='column' onChange={handleSort} >
             <Radio value="asc" defaultChecked={sort === "asc"} colorScheme="red" borderColor="rgb(187, 186, 186)" color="rgb(187, 186, 186)" >Low to High</ Radio>
-            <Radio value="desc" defaultChecked={sort === "desc"} colorScheme="red" borderColor="rgb(187, 186, 186)" color="rgb(187, 186, 186)"> High to Low</ Radio>
+            <Radio value="des" defaultChecked={sort === "des"} colorScheme="red" borderColor="rgb(187, 186, 186)" color="rgb(187, 186, 186)"> High to Low</ Radio>
 
 
           </Stack>
@@ -62,18 +86,16 @@ const Filter = ({ one, two, three, four, five, six, seven }) => {
       </div>
       <div className={css.brand_filter} >
         <span>BRAND</span>
-        <Checkbox value={one} checked={category.includes("Roadster")} onChange={handleCheckBox} colorScheme="red" color="#55555" borderColor="rgb(187, 186, 186);" >{one}</Checkbox >
-        <Checkbox value={two} checked={category.includes("H&M")} colorScheme="red" onChange={handleCheckBox} color="#55555" borderColor="rgb(187, 186, 186);" >{two} </Checkbox >
-        <Checkbox value={three} checked={category.includes("HRX by Hrithik Roshan")} onChange={handleCheckBox} color="#55555" colorScheme="red" borderColor="rgb(187, 186, 186);" >{three}</Checkbox >
-        <Checkbox value={four} colorScheme="red" checked={category.includes("HERE&NOW")} onChange={handleCheckBox} color="#55555" borderColor="rgb(187, 186, 186);" > {four}</Checkbox >
-        <Checkbox value={five} colorScheme="red" checked={category.includes("Huetrap")} onChange={handleCheckBox} color="#55555" borderColor="rgb(187, 186, 186);" >{five}</Checkbox >
-        <Checkbox value={six} colorScheme="red" checked={category.includes("WROGN")} onChange={handleCheckBox} color="#55555" borderColor="rgb(187, 186, 186);" > {six}</Checkbox >
+        <Checkbox value={one} checked={category.includes(one)} onChange={()=>handleCheckBox(one)} colorScheme="red" color="#55555" borderColor="rgb(187, 186, 186);" >{one}</Checkbox >
+        <Checkbox value={two} checked={category.includes(two)} colorScheme="red" onChange={()=>handleCheckBox(two)} color="#55555" borderColor="rgb(187, 186, 186);" >{two} </Checkbox >
+        <Checkbox value={three} checked={category.includes(three)} onChange={()=>handleCheckBox(three)} color="#55555" colorScheme="red" borderColor="rgb(187, 186, 186);" >{three}</Checkbox >
+        <Checkbox value={four} colorScheme="red" checked={category.includes(four)} onChange={()=>handleCheckBox(four)} color="#55555" borderColor="rgb(187, 186, 186);" > {four}</Checkbox >
+        <Checkbox value={five} colorScheme="red" checked={category.includes(five)} onChange={()=>handleCheckBox(five)} color="#55555" borderColor="rgb(187, 186, 186);" >{five}</Checkbox >
+        <Checkbox value={six} colorScheme="red" checked={category.includes(six)} onChange={()=>handleCheckBox(six)} color="#55555" borderColor="rgb(187, 186, 186);" > {six}</Checkbox >
 
-        <Checkbox value={seven} colorScheme="red" checked={category.includes("Urbano Fashion")} onChange={handleCheckBox} color="#55555" borderColor="rgb(187, 186, 186);" > {seven}</Checkbox >
+        <Checkbox value={seven} colorScheme="red" checked={category.includes(seven)} onChange={()=>handleCheckBox(seven)} color="#55555" borderColor="rgb(187, 186, 186);" > {seven}</Checkbox >
 
       </div>
-
-
 
 
     </div>

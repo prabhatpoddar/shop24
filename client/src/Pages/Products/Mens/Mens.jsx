@@ -29,13 +29,13 @@ const Mens = () => {
 
       <div className={css.main_section} >
         <Filter
-          one="Roadster"
-          two="HRX by Hrithik Roshan"
-          three="Mast & Harbour"
-          four="Huetrap"
-          five="WROGN"
-          six="Urbano Fashion"
-          seven="Calvin Klein Jeans"
+          one="IVOC"
+          two="DENNISON"
+          three="Roadstar"
+          four="WROGN"
+          five="Provogue"
+          six="ADIDAS"
+          seven="KRA"
         />
 
         <div className={css.product_section}>
