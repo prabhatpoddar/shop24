@@ -16,9 +16,10 @@ import StarIcon from "@mui/icons-material/Star";
 import { useParams } from "react-router-dom";
 import { Navbar } from "../../Components/Navbar/Navbar";
 import { publicRequest } from "../../requestMethod";
-import { useDispatch } from "react-redux";
-import { addProduct } from "../../redux/CartRedux";
+import { useDispatch, useSelector } from "react-redux";
+import { addProductCart } from "../../redux/CartRedux";
 import { Button, Select } from "@chakra-ui/react";
+import { addProductBag } from "../../redux/BagRedux";
 
 
 function SinglePage() {
@@ -29,8 +30,9 @@ function SinglePage() {
   const [color, setColor] = useState("")
   const [size, setSize] = useState("")
   const [pin, setPin] = useState(null)
-  const [verifypin, setVerifyPin] = useState(false)
-  console.log('pin:', pin)
+  const [verbifying, setVerifyPin] = useState(false)
+  const bag=useSelector(store=>store.bag)
+  console.log('bag:', bag)
 
   useEffect(() => {
     publicRequest(`/product/${direction}`).then((res) => {
@@ -39,7 +41,23 @@ function SinglePage() {
   }, []);
 
   const addToBag = () => {
-    dispatch(addProduct({ products: data, quantity: 1, price: data.price }))
+    if (size) {
+      if (color) {
+
+        dispatch(addProductBag({ ...data, color, size, quantity }))
+
+      }
+      else {
+        alert("select color")
+      }
+
+    } else {
+      alert("select size")
+    }
+  }
+
+  const addToWishlist = () => {
+    dispatch(addProductCart({ data }))
   }
 
 
@@ -178,11 +196,6 @@ function SinglePage() {
 
               </div>
             </div>
-
-
-
-
-
             <div
               style={{
                 marginTop: "30px",
@@ -190,16 +203,14 @@ function SinglePage() {
                 gap: "20px",
               }}
             >
-              <BagDiv
-
-              >
+              <BagDiv onClick={addToBag} >
                 <ShoppingBagIcon />
                 <p>
                   <b>ADD TO BAG</b>
                 </p>
               </BagDiv>
               <WishDiv
-                onClick={() => addToBag()}
+                onClick={() => addToWishlist()}
               >
                 <div style={{ color: "gray" }}>
                   <FavoriteBorderIcon />
@@ -262,7 +273,7 @@ function SinglePage() {
 
                 }}>
                   {
-                    verifypin ? <FcApproval fontSize="35px" /> : "CHECK"
+                    verbifying ? <FcApproval fontSize="35px" /> : "CHECK"
                   }
                 </p>
               </div>

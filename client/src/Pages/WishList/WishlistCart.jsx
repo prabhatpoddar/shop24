@@ -5,14 +5,26 @@ import "./WishList.css"
 
 const WishlistCart = () => {
   const dispatch = useDispatch();
-  const cart = useSelector(store => store.cart)
+  const cart = useSelector(store => store.cart.products)
   console.log('cart:', cart)
 
   return (
-    <div>
+    <>
       <Navbar />
-      Whishlist
-    </div>
+      <div className="wishlistContainer">
+        {
+          cart.length > 0 && cart.map((el) => {
+            return (
+              <div className="wishItem" key={el._id}>
+                <img src={el.image} alt="" />
+
+              </div>
+            )
+          })
+        }
+      </div>
+
+    </>
   )
 }
 
