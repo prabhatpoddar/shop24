@@ -1,14 +1,22 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useContext, useState } from 'react'
 import styles from "./Navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegHeart, FaUserAlt, FaShoppingBag } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi'
 import SliderNav from './SliderNav';
 import { useSelector } from 'react-redux';
+import { publicRequest } from '../../requestMethod';
+import NavMenu from './NavMenu';
+// import { UserContext } from '../../UserContext/UserContext';
 
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
+  const [search, setSearch] = useState([])
+  const [menuShow, setMenuShow] = useState(false)
+  // const [{decodedToken}]=useContext(UserContext)
+  // console.log('decodedToken:', decodedToken)
+
   // const cart = useSelector(store => store.cart)
 
   const [hover1, setHover1] = useState(false);
@@ -17,21 +25,18 @@ const Navbar = () => {
   const [hover4, setHover4] = useState(false);
   const [hover5, setHover5] = useState(false);
 
-  const navi = useNavigate();
-
-  show
-    ? (document.querySelector("body").style.overflow = "hidden")
-    : (document.querySelector("body").style.overflow = "");
-
-
-
+  const navigate = useNavigate();
+  show ? (document.querySelector("body").style.overflow = "hidden") : (document.querySelector("body").style.overflow = "");
   const token = localStorage.getItem("token");
-
-
   const handleLogout = () => {
     localStorage.clear()
+    return navigate("/");
+  }
+  const handleSearch = (e) => {
 
-    return navi("/");
+    publicRequest.get(`/product/search?search=${e.target.value}`).then((res) => {
+      setSearch(res.data.data)
+    })
   }
 
 
@@ -53,7 +58,7 @@ const Navbar = () => {
             <div className={styles.dropdownFlex}>
               <div>
                 <p className={styles.dropHeadings}>Topwear</p>
-            
+
                 <Link to="/mens">T-Shirts</Link>
                 <Link to="/mens">Casual Shirts</Link>
                 <Link to="/mens">Formal Shirts</Link>
@@ -145,7 +150,7 @@ const Navbar = () => {
             <div className={styles.dropdownFlex}>
               <div>
                 <p className={styles.dropHeadings}>Indian & Fusion Wear</p>
-              
+
                 <Link to="/womens">Kurtas & Suits</Link>
                 <Link to="/womens">Kurtis, Tunics & Tops</Link>
                 <Link to="/womens">Sarees</Link>
@@ -237,7 +242,7 @@ const Navbar = () => {
             <div className={styles.dropdownFlex}>
               <div>
                 <p className={styles.dropHeadings}>Topwear</p>
-              
+
                 <Link to="/kids">Boys Clothing</Link>
                 <Link to="/kids">T-Shirts</Link>
                 <Link to="/kids">Shirts</Link>
@@ -514,26 +519,45 @@ const Navbar = () => {
               textDecoration: "none",
               color: "#282C3F",
             }}
-            to="/Men"
+            to="#"
           >
             STUDIO
           </Link>
         </div>
       </div>
+
+
+      {/* Search bar i shere================================================================= */}
+
+
+
       <div className={styles.navSubDiv3}>
         <Fragment>
           <form className={styles.self_center} >
-            {/* add this on the form: onSubmit={searchenter} */}
             <span className={styles.search_div}>
               <button className={styles.searchbtn} ><FiSearch /></button>
-              {/* add onClick={searchenter} in the above */}
               <input type="text" placeholder='Search for products, brands and more'
-                className={styles.search} />
-              {/* onChange={(e)=>setstate(e.target.value)} add is above in input tag */}
+                className={styles.search} onChange={(e) => handleSearch(e)} id="searchBar" onFocus={() => {
+                  setMenuShow(true)
+                }} onBlur={() => {
+                  setTimeout(()=>{
+                    setMenuShow(false)
+                  },200)
+                }} />
             </span>
           </form>
         </Fragment>
+        {
+          menuShow && <NavMenu data={search} />
+        }
       </div>
+
+
+
+
+
+      {/* Search bar i shere================================================================= */}
+
       <div className={styles.navSubDiv4}>
 
         <div className={styles.dropdown}>
@@ -589,6 +613,8 @@ const Navbar = () => {
         <SliderNav />
       </div>
     </div>
+
+
   );
 };
 

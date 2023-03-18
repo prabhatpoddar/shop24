@@ -8,13 +8,15 @@ import { Navbar } from "../../../Components/Navbar/Navbar";
 import { useEffect } from "react";
 import { fetchData } from "../../../redux/productRedux";
 import { useDispatch, useSelector } from "react-redux";
+import { Grid, Spinner } from "@chakra-ui/react";
 const Beauty = () => {
   const prod = useSelector(store => store.product.data.data) || []
+  const isLoading = useSelector(store => store.product.isLoading)
   const dispatch = useDispatch()
 
 
   useEffect(() => {
-    dispatch(fetchData("product?category=oil&&page=1&&limit=30"))
+    dispatch(fetchData("product?category=oil"))
   }, []);
 
 
@@ -26,34 +28,45 @@ const Beauty = () => {
 
       <div className={css.main_section}>
         <Filter
-          one="Gini and Jony"
-          two="HERE&NOW"
-          five="Roadster"
-          seven="Peter England"
-          six="U.S. Polo Assn. Kids"
-          three="H&M"
-          four="Ed-a-Mamma"
+          one="HAYZE COSMETICS"
+          two="Ustraa"
+          five="BEARDO"
+          seven="Skinatura"
+          six="MANCODE"
+          three="Man Arden"
+          four="DCRAF"
         />
 
-        <div className={css.product_section}>
-          {prod.length > 0 &&
-            prod.map((list, index) => {
-              return (
-                <ProductCard
-                  key={index}
-                  id={index}
-                  direction={list._id}
-                  image={list.image}
-                  rating={list.rating}
-                  count={list.ratingsCount}
-                  name={list.productname}
-                  brand={list.brand}
-                  price={list.price}
-                  off_price={list.discountPercentage}
-                />
-              );
-            })}
-        </div>
+{
+          isLoading ?
+            <Grid justifyContent="center" alignItems="center" w="80%">
+              <Spinner
+                thickness='4px'
+                speed='0.65s'
+                emptyColor='gray.200'
+                color='blue.500'
+                size='xl'
+              />
+            </Grid>
+            : <div className={css.product_section}>
+              {prod.length > 0 &&
+                prod.map((list) => {
+                  return (
+                    <ProductCard
+                      key={list._id}
+                      direction={list._id}
+                      image={list.image}
+                      rating={list.rating}
+                      count={list.ratingsCount}
+                      name={list.productname}
+                      brand={list.brand}
+                      price={list.price}
+                      off_price={list.discountPercentage}
+                    />
+                  );
+                })}
+            </div>
+        }
       </div>
      
     </>
