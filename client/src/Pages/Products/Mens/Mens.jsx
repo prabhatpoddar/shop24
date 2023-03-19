@@ -17,7 +17,7 @@ const Mens = () => {
 
 
   useEffect(() => {
-    dispatch(fetchData("product?page=1&&limit=30"))
+    dispatch(fetchData("product?category=sweaters&page=1&&limit=60"))
   }, []);
 
 

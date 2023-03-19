@@ -3,22 +3,58 @@
   flex-direction: column;
   padding: 10px;
   border-radius: 15px;
-  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  text-align: left;
+}
+.product_main_container:hover {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.wishDiv {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 20px;
+}
+.wishDiv Button {
+  width: 100%;
+  background-color: #fff;
+  position: absolute;
+  border-radius: 0;
+  display: flex;
+  gap: 10px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.wishDiv Button:hover{
+  background-color: #fff;
+}
 
+.product_image_container {
+  position: relative;
 }
 .product_rating {
   display: flex;
   margin: auto;
-  background-color: #ff3e6c;
-  color: white;
   width: 50%;
-  border-radius: 1rem;
   align-items: center;
   justify-content: center;
   margin-top: 2%;
+  background-color: #cbdccb;
+  opacity: 0.8;
+  position: absolute;
+  bottom: 0px;
+  gap: 5px;
+}
+.product_Details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
 }
 .first_p {
-  margin-right: 5%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .product_brand {
   font-weight: 500;
@@ -32,8 +68,8 @@
   font-size: 90%;
   font-weight: 400;
   margin: auto;
-  justify-content: space-around;
-  width: 80%;
+  width: 100%;
+  gap: 30px;
 }
 .off_price {
   color: #ff3e6c;
@@ -43,3 +79,7 @@
   font-weight: 500;
   color: rgb(72, 98, 35);
 }
+.FillHeart{
+  color: red;
+}
+  

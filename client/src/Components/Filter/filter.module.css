@@ -9,7 +9,7 @@
 }
 
 .filter_section {
-  width: 20%;
+  width: 18%;
 
   height: calc(100vh - 50px);
   background-color: rgb(251, 251, 255);
@@ -33,6 +33,9 @@
   display: flex;
   flex-direction: column;
   padding: 7%;
+}
+.filterHover:hover{
+  background-color: red;
 }
 @media (max-width: 1024px) {
   .filter_section{

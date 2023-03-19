@@ -135,7 +135,7 @@ function SinglePage() {
                   {" "}
                   <b
                     style={{ color: "darkslategray", fontSize: "22px" }}
-                  >{`Price:${data.price}`}</b>
+                  >{`₹  ${data.price}`}</b>
                 </p>
                 <p
                   style={{

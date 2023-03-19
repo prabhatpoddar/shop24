@@ -9,9 +9,9 @@
 
 .product_section {
   display: grid;
-  width: 75%;
+  width: 80%;
   margin: auto;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
 }
 @media (max-width: 1280px) {

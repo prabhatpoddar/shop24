@@ -1,5 +1,5 @@
 import css from './filter.module.css'
-import {  Stack, Radio, RadioGroup } from '@chakra-ui/react'
+import { Stack, Radio, RadioGroup } from '@chakra-ui/react'
 import { useLocation } from 'react-router-dom'
 import React from 'react'
 import { useDispatch } from 'react-redux'
@@ -35,8 +35,8 @@ const Filter = ({ one, two, three, four, five, six, seven }) => {
         <span>Sort By Price</span>
         <RadioGroup >
           <Stack spacing={2} direction='column' onChange={handleSort} >
-            <Radio value="asc" colorScheme="red" borderColor="rgb(187, 186, 186)" color="rgb(187, 186, 186)" >Low to High</ Radio>
-            <Radio value="des" colorScheme="red" borderColor="rgb(187, 186, 186)" color="rgb(187, 186, 186)"> High to Low</ Radio>
+            <Radio value="des" colorScheme="red" > Ascending</ Radio>
+            <Radio value="asc" colorScheme="red"  >Descending</ Radio>
           </Stack>
         </RadioGroup>
       </div>
@@ -44,13 +44,13 @@ const Filter = ({ one, two, three, four, five, six, seven }) => {
         <span>BRAND</span>
         <RadioGroup>
           <Stack direction='column'>
-            <Radio value={one} colorScheme="red" name='brand' onChange={() => handleCheckBox(one)} borderColor="rgb(187, 186, 186)" color="rgb(187, 186, 186)" >  {one}   </ Radio>
-            <Radio value={two} colorScheme="red" name='brand' onChange={() => handleCheckBox(two)} borderColor="rgb(187, 186, 186)" color="rgb(187, 186, 186)" >  {two}        </ Radio>
-            <Radio value={three} colorScheme="red" name='brand' onChange={() => handleCheckBox(three)} borderColor="rgb(187, 186, 186)" color="rgb(187, 186, 186)" >{three}        </ Radio>
-            <Radio value={four} colorScheme="red" name='brand' onChange={() => handleCheckBox(four)} borderColor="rgb(187, 186, 186)" color="rgb(187, 186, 186)" >{four}        </ Radio>
-            <Radio value={five} colorScheme="red" name='brand' onChange={() => handleCheckBox(five)} borderColor="rgb(187, 186, 186)" color="rgb(187, 186, 186)" >{five}            </ Radio>
-            <Radio value={six} colorScheme="red" name='brand' onChange={() => handleCheckBox(six)} borderColor="rgb(187, 186, 186)" color="rgb(187, 186, 186)" >  {six}       </ Radio>
-            <Radio value={seven} colorScheme="red" name='brand' onChange={() => handleCheckBox(seven)} borderColor="rgb(187, 186, 186)" color="rgb(187, 186, 186)" >{seven}       </ Radio>
+            <Radio value={one} colorScheme="red" className={css.filterHover} onChange={() => handleCheckBox(one)}      >  {one}   </ Radio>
+            <Radio value={two} colorScheme="red" className={css.filterHover} onChange={() => handleCheckBox(two)}      >  {two}        </ Radio>
+            <Radio value={three} colorScheme="red" className={css.filterHover} onChange={() => handleCheckBox(three)} >{three}        </ Radio>
+            <Radio value={four} colorScheme="red" className={css.filterHover} onChange={() => handleCheckBox(four)}    >{four}        </ Radio>
+            <Radio value={five} colorScheme="red" className={css.filterHover} onChange={() => handleCheckBox(five)}    >{five}            </ Radio>
+            <Radio value={six} colorScheme="red" className={css.filterHover} onChange={() => handleCheckBox(six)}     >  {six}       </ Radio>
+            <Radio value={seven} colorScheme="red" className={css.filterHover} onChange={() => handleCheckBox(seven)} >{seven}       </ Radio>
           </Stack>
         </RadioGroup>
       </div>

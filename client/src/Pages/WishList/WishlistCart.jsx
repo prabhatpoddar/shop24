@@ -14,9 +14,10 @@ const WishlistCart = () => {
       <div className="wishlistContainer">
         {
           cart.length > 0 && cart.map((el) => {
+            console.log('el:', el)
             return (
               <div className="wishItem" key={el._id}>
-                <img src={el.image} alt="" />
+                <img src={el.data.image} alt="" />
 
               </div>
             )
