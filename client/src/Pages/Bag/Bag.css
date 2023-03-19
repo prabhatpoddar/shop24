@@ -3,10 +3,10 @@
   width: "60px";
 }
 
-/* ======================Address========================== */
-#addressInner {
-  display: "flex";
-  gap: "25px";
-  width: "70%";
-  margin: "auto";
+.smallImageContainer {
+  gap: 5px;
+  width: 78%;
+  margin: auto;
+  margin-top: 80px;
+  display: flex;
 }

@@ -1,22 +1,37 @@
-import { Button, CloseButton } from '@chakra-ui/react'
+import { Button, CloseButton, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Navbar } from '../../Components/Navbar/Navbar'
 import MoveToBagModel from './MoveToBagModel'
 import "./WishList.css"
 
 const WishlistCart = () => {
-  const dispatch = useDispatch();
   const cart = useSelector(store => store.cart.products)
-  console.log('cart:', cart)
+  if (cart.length === 0) {
+    return (
+      <>
+        <Navbar />
+        <div className="noDataCart">
+        <Heading size='xl'>YOUR WISHLIST IS EMPTY</Heading>
+        <Text>Add items that you like to your wishlist. Review</Text>
+        <Text>them anytime and easily move them to the bag.</Text>
+        <img src="https://constant.myntassets.com/checkout/assets/img/empty-bag.webp" alt="" />
 
+          <Link to="/">
+            <Button variant='outline' colorScheme="linkedin">CONTINUE SHOPPING</Button>
+          </Link>
+        </div>
+      </>
+    )
+  }
   return (
     <>
       <Navbar />
-     <div className="MyWishlist">
-     <h3>My Wishlist</h3>
-     <p>{cart.length} Item</p>
-     </div>
+      <div className="MyWishlist">
+        <h3>My Wishlist</h3>
+        <p>{cart.length} Item</p>
+      </div>
       <div className="wishlistContainer">
         {
           cart.length > 0 && cart.map((el) => {
@@ -25,7 +40,7 @@ const WishlistCart = () => {
             return (
               <div className="wishItem" key={el._id}>
                 <div className="imageContainer">
-                 <CloseButton size='lg' className='closeBtn' />
+                  <CloseButton size='lg' className='closeBtn' />
 
                   <img src={image} alt="" />
                 </div>
@@ -37,7 +52,7 @@ const WishlistCart = () => {
 
                 </div>
                 <div className="moveBag">
-                 <MoveToBagModel data={el.data}/>
+                  <MoveToBagModel data={el.data} />
                 </div>
 
 

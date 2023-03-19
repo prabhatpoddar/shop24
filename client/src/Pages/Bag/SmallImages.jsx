@@ -1,8 +1,9 @@
 import React from 'react'
+import "./Bag.css"
 
 const SmallImages = () => {
   return (
-    <div style={{ display: "flex", gap: "5px", width: "78%", margin: "auto", marginTop: "80px" }}>
+    <div  className="smallImageContainer">
             <img style={{ border: "1px solid #eaeaec", width: "60px" }} src="https://constant.myntassets.com/checkout/assets/img/footer-bank-ssl.png" alt="lock" />
             <img style={{ border: "1px solid #eaeaec", width: "60px" }} src="https://constant.myntassets.com/checkout/assets/img/footer-bank-visa.png" alt="visa" />
             <img style={{ border: "1px solid #eaeaec", width: "60px" }} src="https://constant.myntassets.com/checkout/assets/img/footer-bank-mc.png" alt="mastercard" />

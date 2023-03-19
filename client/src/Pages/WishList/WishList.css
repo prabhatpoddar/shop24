@@ -47,3 +47,15 @@
   justify-content: center;
   gap: 10px;
 }
+.noDataCart{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 150px 0;
+}
+.noDataCart >img{
+  width: 10%;
+
+}

@@ -1,0 +1,52 @@
+.BagHomeContainer {
+  display: flex;
+  gap: 20px;
+  width: 80%;
+  margin: auto;
+}
+.BagCheckTime {
+  border: 1px solid #eaeaec;
+  width: 92.7%;
+  margin: auto;
+  margin-left: 55px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+  padding: 10px;
+}
+.BagCheckTime > p {
+  font-size: 14px;
+  font-weight: 500;
+}
+.BagCheckTime > button {
+  border: 1px solid red;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 35px;
+  color: red;
+  font-size: 12px;
+  font-weight: 500;
+}
+.divType1 {
+  border: 1px solid black;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+}
+.divType2 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.noDataBag{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 150px 0;
+}
+.noDataBag >img{
+    width: 10%;
+}
