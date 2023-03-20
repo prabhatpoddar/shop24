@@ -4,20 +4,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaRegHeart, FaUserAlt, FaShoppingBag } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi'
 import SliderNav from './SliderNav';
-import { useSelector } from 'react-redux';
 import { publicRequest } from '../../requestMethod';
 import NavMenu from './NavMenu';
-// import { UserContext } from '../../UserContext/UserContext';
+import { UserContext } from '../../UserContext/UserContext';
+import { Button } from '@chakra-ui/react';
 
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
   const [search, setSearch] = useState([])
   const [menuShow, setMenuShow] = useState(false)
-  // const [{decodedToken}]=useContext(UserContext)
-  // console.log('decodedToken:', decodedToken)
+  const [{ decodedToken }] = useContext(UserContext)
 
-  // const cart = useSelector(store => store.cart)
 
   const [hover1, setHover1] = useState(false);
   const [hover2, setHover2] = useState(false);
@@ -540,9 +538,9 @@ const Navbar = () => {
                 className={styles.search} onChange={(e) => handleSearch(e)} id="searchBar" onFocus={() => {
                   setMenuShow(true)
                 }} onBlur={() => {
-                  setTimeout(()=>{
+                  setTimeout(() => {
                     setMenuShow(false)
-                  },200)
+                  }, 400)
                 }} />
             </span>
           </form>
@@ -573,24 +571,52 @@ const Navbar = () => {
           >
             <div className={styles.dropdownFlex}>
               <div style={{ width: "500px" }}>
-                <p className={styles.dropHeadings}>Welcome</p>
+                {
+                  token !== null && decodedToken !== null && <>
+                    <p className={styles.dropHeadings}>Hello {decodedToken.user.fullName.split(" ")[0]}</p>
+                    <p > {decodedToken.user.mobile}</p></>
+                }
+                {
+                  token === null &&
+                  <>
+                    <p className={styles.dropHeadings}>Welcome</p>
+                    <p > To access account and manage orders</p>
+                  </>
+                }
 
 
-                {token === null && <Link to="/login"> <button className={styles.loginSignButtom}>Login / SignUp</button> </Link>}
-                {token != null && <button className={styles.loginSignButtom} onClick={handleLogout}>Logout</button>}
+                {token === null && <Link to="/login"> <Button variant="outline" color="#FF3F6C"  className={styles.loginSignButton}>Login / SignUp</Button> </Link>}
+
                 <br />
-                <p className={styles.dropHeadings}>----------------------</p>
-                <Link to="/" >Orders</Link>
-                <Link to="/">Wishlist</Link>
-                <Link to="/">Gift Cards</Link>
-                <Link to="/">Contact Us</Link>
-                <Link to="/">Myntra Insider</Link>
-                <Link to="/" className={styles.dropHeadings}>----------------------</Link>
-                <Link to="/" >Myntra Credit</Link>
-                <Link to="/" >Coupons</Link>
-                <Link to="/" >Saved VPA</Link>
-                <Link to="/" >Saved Cards</Link>
-                <Link to="/" >Saved Address</Link>
+                <hr />
+                <div className={styles.navOrder}>
+                  <p className={styles.navOrderLinks} to="/" >Orders</p>
+                  <p className={styles.navOrderLinks} to="/wishlist">Wishlist</p>
+                  <p className={styles.navOrderLinks} to="/">Gift Cards</p>
+                  <p className={styles.navOrderLinks} to="/">Contact Us</p>
+                  <p className={styles.navOrderLinks} to="/">Myntra Insider</p>
+                </div>
+                <hr />
+                <div className={styles.navOrder}>
+                  <p className={styles.navOrderLinks}>Myntra Credit</p>
+                  <p className={styles.navOrderLinks} >Coupons</p>
+                  <p className={styles.navOrderLinks} >Saved VPA</p>
+                  <p className={styles.navOrderLinks} >Saved Cards</p>
+                </div>
+                {
+                  token !== null && <hr />
+                }
+
+                <div className={styles.navOrder}>
+
+                  {
+                    token !== null && <p className={styles.navOrderLinks} >Edit Profile</p>
+                  }
+                  {
+                    token !== null && <p className={styles.navOrderLinks} onClick={handleLogout} >Logout</p>
+                  }
+                </div>
+
               </div>
 
             </div>

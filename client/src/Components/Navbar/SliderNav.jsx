@@ -28,6 +28,8 @@ const SliderNav = () => {
                             <Link to="/home&leaving" colorScheme="red" borderColor="rgb(187, 186, 186)" color="black"> Home & Living</ Link>
                             <Link to="/beauty" colorScheme="red" borderColor="rgb(187, 186, 186)" color="black"> Beauty</ Link>
                             <Link to="#" colorScheme="red" borderColor="rgb(187, 186, 186)" color="black"> Studio</ Link>
+                            <Link to="/wishlist" colorScheme="red" borderColor="rgb(187, 186, 186)" color="black"> Wishlist</ Link>
+                            <Link to="/bag" colorScheme="red" borderColor="rgb(187, 186, 186)" color="black"> Bag</ Link>
 
 
                         </Stack>

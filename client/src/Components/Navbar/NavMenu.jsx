@@ -18,6 +18,7 @@ const NavMenu = ({ data }) => {
                                 <Text> {el.productname}</Text>
 
                             </Flex>
+                            <hr />
                         </Link>
 
 

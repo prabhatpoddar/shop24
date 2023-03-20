@@ -3,14 +3,16 @@ import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPane
 import { Link } from "react-router-dom";
 import { AiOutlineRight } from "react-icons/ai";
 import { GoTag } from "react-icons/go";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./BagHome.css"
 import StripeCheckout from "react-stripe-checkout";
 import SmallImages from "../SmallImages";
+import { removeProductBag } from "../../../redux/BagRedux";
 
 const BagHome = ({ handlePlaceOrder }) => {
     const cartItems = useSelector(store => store.bag.products)
     const x = useSelector(store => store.bag.total)
+    const dispatch =useDispatch()
     const [pay, setPay] = useState(true);
     const [off, setOff] = useState(false);
 
@@ -22,7 +24,9 @@ const BagHome = ({ handlePlaceOrder }) => {
         console.log('token:', paymenttoken)
 
     }
-
+const handelDeleteBag=(id)=>{
+    dispatch(removeProductBag(id))
+}
     if (cartItems.length === 0) {
         return (
             <div className="noDataBag"><img src="https://constant.myntassets.com/checkout/assets/img/empty-bag.webp" alt="" />
@@ -97,7 +101,7 @@ const BagHome = ({ handlePlaceOrder }) => {
                         {cartItems.map((el, i) => {
                             return <div style={{ border: "1px solid #eaeaec", marginLeft: "60px", marginBottom: "10px" }} key={i}>
                                 <div style={{ display: "flex", padding: "10px", gap: "20px" }}>
-                                    <CloseButton size='sm' position="relative" left={500} />
+                                    <CloseButton size='sm' position="relative" left={500} onClick={()=>handelDeleteBag(el._id)} />
                                     <img style={{ width: "110px", height: "150px" }} src={el.image} alt={el.name} />
                                     <div>
                                         {/* <p style={{fontSize:"14px",fontWeight:"500"}}>{el.brand}</p> */}
@@ -209,7 +213,7 @@ const BagHome = ({ handlePlaceOrder }) => {
                             currency="INR"
                             stripeKey="pk_test_51MX7IZSIaUdW5gBoRyRUKxT6CcWcgKSCFzuRFgEDzq0E79KexRw0qotgAFizczmFr681wYyr1qQfVWncQGhXL4yC00MFl9AdHh"
                         >
-                            <Button colorScheme="red" w="200px" mt={5}>Place Order</Button>
+                            <Button bg="#FF3F6C" color="#fff" w="200px" mt={5}>PLACE ORDER</Button>
                         </StripeCheckout>
 
                     </div>

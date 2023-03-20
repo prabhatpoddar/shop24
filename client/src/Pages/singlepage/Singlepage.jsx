@@ -16,9 +16,9 @@ import StarIcon from "@mui/icons-material/Star";
 import { useParams } from "react-router-dom";
 import { Navbar } from "../../Components/Navbar/Navbar";
 import { publicRequest } from "../../requestMethod";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addProductCart } from "../../redux/CartRedux";
-import { Button, Select } from "@chakra-ui/react";
+import { Button, Select, useToast } from "@chakra-ui/react";
 import { addProductBag } from "../../redux/BagRedux";
 
 
@@ -31,8 +31,12 @@ function SinglePage() {
   const [size, setSize] = useState("")
   const [pin, setPin] = useState(null)
   const [verbifying, setVerifyPin] = useState(false)
-  const bag=useSelector(store=>store.bag)
-  console.log('bag:', bag)
+  const toast1 = useToast({
+    position: 'right-bottom',
+  })
+  const toast2 = useToast({
+    position: 'top',
+  })
 
   useEffect(() => {
     publicRequest(`/product/${direction}`).then((res) => {
@@ -45,19 +49,39 @@ function SinglePage() {
       if (color) {
 
         dispatch(addProductBag({ ...data, color, size, quantity }))
+        toast1({
+          title: `Successfully added Bag`,
+          status: "success",
+          isClosable: true,
+        })
 
       }
       else {
-        alert("select color")
+        toast2({
+          title: `Select Color First`,
+          status: "warning",
+          isClosable: true,
+        })
       }
 
     } else {
-      alert("select size")
+      toast2({
+        title: `Select Size First`,
+        status: "warning",
+        isClosable: true,
+      })
     }
   }
 
   const addToWishlist = () => {
     dispatch(addProductCart({ data }))
+    toast1({
+      title: `Successfully added Wishlist`,
+      status: "success",
+      isClosable: true,
+    })
+
+    
   }
 
 
@@ -89,7 +113,7 @@ function SinglePage() {
                   </p>
                 </b>
                 <p style={{ fontSize: "20px", color: "#8b8d97", marginTop: "10px" }}>
-                  {data.brand}
+                  {data.productname}
                 </p>
               </div>
               <RatingDiv style={{ marginTop: "15px", padding: "5px" }}>

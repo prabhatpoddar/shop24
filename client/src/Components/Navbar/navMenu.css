@@ -33,6 +33,10 @@
     gap: 30px;
     align-items: center;
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 5px;
+}
+.innerItem:hover{
+    background-color: aliceblue;
+
 }

@@ -2,7 +2,7 @@ import { StarIcon } from '@chakra-ui/icons'
 import { Link } from 'react-router-dom'
 import cards from './productCard.module.css'
 import React from 'react'
-import { Button } from '@chakra-ui/react'
+import { Button, useToast } from '@chakra-ui/react'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -11,11 +11,19 @@ const ProductCard = (data) => {
   const { image, rating, count, name, brand, price, off_price, direction } = data
   const [showWish, setShowWish] = useState(false)
   const [addWish, setAddWish] = useState(false)
+  const toast = useToast({
+    position: 'right-bottom',  
+  })
 
   const dispatch = useDispatch()
   const addToWishlist = () => {
     dispatch(addProductCart({ data }))
     setAddWish(true)
+    toast({
+      title: `Successfully added Wishlist`,
+      status: "success",
+      isClosable: true,
+    })
   }
   return (
     <div className={cards.product_main_container} onMouseEnter={() => {

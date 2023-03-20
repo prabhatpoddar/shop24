@@ -9,6 +9,7 @@ import {
     Button,
     useDisclosure,
     Select,
+    useToast,
 } from '@chakra-ui/react'
 
 import "./Move.css"
@@ -16,29 +17,48 @@ import { useDispatch } from 'react-redux'
 import { addProductBag } from '../../redux/BagRedux'
 
 const MoveToBagModel = ({ data }) => {
-    const dispatch=useDispatch()
+    const dispatch = useDispatch()
     const { image, name, brand, price, off_price } = data
     const [color, setColor] = useState("")
     const [size, setSize] = useState("")
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const toast1 = useToast({
+        position: 'top-bottom',
+    })
+    const toast2 = useToast({
+        position: 'top',
+    })
 
-    
-  const addToBag = (quantity=1) => {
-    if (size) {
-      if (color) {
 
-        dispatch(addProductBag({ ...data, color, size, quantity }))
-        onClose()
+    const addToBag = (quantity = 1) => {
+        if (size) {
+            if (color) {
 
-      }
-      else {
-        alert("select color")
-      }
+                dispatch(addProductBag({ ...data, color, size, quantity }))
+                onClose()
+                toast1({
+                    title: `Successfully added Bag`,
+                    status: "success",
+                    isClosable: true,
+                })
 
-    } else {
-      alert("select size")
+            }
+            else {
+                toast2({
+                    title: `Select Color First`,
+                    status: "warning",
+                    isClosable: true,
+                })
+            }
+
+        } else {
+            toast2({
+                title: `Select Size First`,
+                status: "warning",
+                isClosable: true,
+            })
+        }
     }
-  }
     return (
         <>
 
@@ -65,11 +85,11 @@ const MoveToBagModel = ({ data }) => {
                                 <p className='offPrice'>{off_price}</p>
                             </div>
 
-        
+
                         </div>
 
                     </div>
-                    <hr/>
+                    <hr />
 
                     <div className="selectDivWishlist">
                         <div>
@@ -93,13 +113,13 @@ const MoveToBagModel = ({ data }) => {
                     </div>
 
                     <ModalFooter>
-                        <Button colorScheme='pink' mr={3} onClick={()=>{
+                        <Button colorScheme='pink' mr={3} onClick={() => {
                             addToBag()
-                           
+
                         }} w="100%">
                             Done
                         </Button>
-                       
+
                     </ModalFooter>
                 </ModalContent>
             </Modal>
