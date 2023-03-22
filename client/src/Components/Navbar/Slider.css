@@ -1,4 +1,40 @@
 .logo{
-    height: 50px;
-    width: 100px;
+    height: 150px;
+    width: 100%;
+}
+.flexure1,.flexure2{
+    display: flex;
+    flex-direction: column;
+}
+.sideDivNavLinks{
+    height: 40px;
+}
+.sidebarNavTopDiv{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #FFF5F5;
+}
+.sidebarNavTopDiv>div:nth-child(2){
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.sidebarNavTopDiv>div:nth-child(1)>img{
+   width: 100%;
+}
+.FlatOff{
+    font-size: 14px;
+}
+.OnFirst{
+    font-size: 14px;
+    font-weight: 300;
+}
+.SideNavLogin{
+    font-size: 12px;
+    color:#FF3F6C ;
+    text-align: center;
+    margin-top: 30px;
+}
+.flexure2{
+    margin-top: 10px;
 }

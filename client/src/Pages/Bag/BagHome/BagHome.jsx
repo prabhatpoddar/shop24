@@ -1,32 +1,62 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, CloseButton, Heading, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { AiOutlineRight } from "react-icons/ai";
 import { GoTag } from "react-icons/go";
 import { useDispatch, useSelector } from "react-redux";
-import "./BagHome.css"
 import StripeCheckout from "react-stripe-checkout";
 import SmallImages from "../SmallImages";
-import { removeProductBag } from "../../../redux/BagRedux";
+import { clearBag, removeProductBag } from "../../../redux/BagRedux";
+import { UserContext } from "../../../UserContext/UserContext";
+import "./BagHome.css"
+import { userRequest } from "../../../requestMethod";
 
-const BagHome = ({ handlePlaceOrder }) => {
+const BagHome = () => {
     const cartItems = useSelector(store => store.bag.products)
     const x = useSelector(store => store.bag.total)
-    const dispatch =useDispatch()
+    const dispatch = useDispatch()
     const [pay, setPay] = useState(true);
     const [off, setOff] = useState(false);
+    const [{ decodedToken }] = useContext(UserContext)
+    const [orderProduct, setOrderProduct] = useState([])
 
+    useEffect(() => {
+
+        const tempArr = []
+        for (let i = 0; i < cartItems.length; i++) {
+            const temp = {
+                productId: cartItems[i]._id,
+                quantity: cartItems[i].quantity
+            }
+            tempArr.push(temp)
+        }
+        setOrderProduct(tempArr)
+
+    }, [cartItems])
 
     const handleHeightOffer = () => {
         setOff(prev => !prev);
     }
     const token = (paymenttoken) => {
-        console.log('token:', paymenttoken)
+        dispatch(clearBag())
+        const order = {
+            userId: decodedToken.user._id,
+            products: [orderProduct],
+            amount: x,
+            address: paymenttoken.card.address_line1 + " " + paymenttoken.card.address_city + " " + paymenttoken.card.address_country + " " + paymenttoken.card.address_zip
+        }
+        userRequest.post("/order", order).then((res) => {
+            console.log('res:', res.data)
+            console.log('order:', order)
+
+        }).catch((err) => {
+            console.log('err:', err)
+        })
 
     }
-const handelDeleteBag=(id)=>{
-    dispatch(removeProductBag(id))
-}
+    const handelDeleteBag = (id) => {
+        dispatch(removeProductBag(id))
+    }
     if (cartItems.length === 0) {
         return (
             <div className="noDataBag"><img src="https://constant.myntassets.com/checkout/assets/img/empty-bag.webp" alt="" />
@@ -101,7 +131,7 @@ const handelDeleteBag=(id)=>{
                         {cartItems.map((el, i) => {
                             return <div style={{ border: "1px solid #eaeaec", marginLeft: "60px", marginBottom: "10px" }} key={i}>
                                 <div style={{ display: "flex", padding: "10px", gap: "20px" }}>
-                                    <CloseButton size='sm' position="relative" left={500} onClick={()=>handelDeleteBag(el._id)} />
+                                    <CloseButton size='sm' position="relative" left={500} onClick={() => handelDeleteBag(el._id)} />
                                     <img style={{ width: "110px", height: "150px" }} src={el.image} alt={el.name} />
                                     <div>
                                         {/* <p style={{fontSize:"14px",fontWeight:"500"}}>{el.brand}</p> */}

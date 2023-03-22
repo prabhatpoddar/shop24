@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <>
+    <div className={styles.FooterMainDiv}>
       {window.screen.width > 1024 ? (
         <>
           <div className={styles.footerDiv}>
@@ -186,7 +186,7 @@ const Footer = () => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 

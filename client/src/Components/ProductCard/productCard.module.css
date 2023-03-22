@@ -82,4 +82,14 @@
 .FillHeart{
   color: red;
 }
+.brandWishlistDiv{
+  display: flex;
+  justify-content: space-between;
+  padding-right:10px;
+}
   
+@media (max-width: 480px) {
+  .price_container{
+    gap: 10px;
+  }
+}

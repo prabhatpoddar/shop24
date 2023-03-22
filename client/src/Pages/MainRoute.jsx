@@ -22,31 +22,22 @@ const MainRoute = () => {
       return <Navigate to="/login" />
     }
   };
-
-  const TokenNumber = (child) => {
-    let token = JSON.parse(localStorage.getItem("Number"));
-    if (token != null) {
-      return child;
-    } else {
-      return <Navigate to="/login" />
-    }
-  };
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/mens" element={<Mens />} />
-      <Route path="/womens" element={<Womens />} />
-      <Route path="/kids" element={<Kids />} />
-      <Route path="/home&leaving" element={<HomeAndLeaving />} />
-      <Route path="/beauty" element={<Beauty />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/loginbyemail" element={<LoginByEmail />} />
-      <Route path="/signup" element={TokenNumber(<Signup />)} />
-      <Route path="/singlepage/:direction" element={Token(<SinglePage />)} />
-      <Route path="/bag" element={Token(<Bag />)} />
-      <Route path="/wishlist" element={Token(<WishlistCart />)} />
-    </Routes>
-  );
+return (
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/mens" element={<Mens />} />
+    <Route path="/womens" element={<Womens />} />
+    <Route path="/kids" element={<Kids />} />
+    <Route path="/home&leaving" element={<HomeAndLeaving />} />
+    <Route path="/beauty" element={<Beauty />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/loginbyemail" element={<LoginByEmail />} />
+    <Route path="/signup" element={<Signup />} />
+    <Route path="/singlepage/:direction" element={Token(<SinglePage />)} />
+    <Route path="/bag" element={Token(<Bag />)} />
+    <Route path="/wishlist" element={Token(<WishlistCart />)} />
+  </Routes>
+);
 };
 
 export default MainRoute;

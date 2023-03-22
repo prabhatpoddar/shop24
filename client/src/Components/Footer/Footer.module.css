@@ -32,10 +32,9 @@
   font-weight: 700px;
 }
 
-@media (max-width: 580px) {
-    .footerDiv1{
-        display: none;
-
-    }
+@media (max-width: 480px) {
+  .FooterMainDiv{
+    display: none;
+  }
 
 }

@@ -20,6 +20,8 @@ import { useDispatch } from "react-redux";
 import { addProductCart } from "../../redux/CartRedux";
 import { Button, Select, useToast } from "@chakra-ui/react";
 import { addProductBag } from "../../redux/BagRedux";
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+
 
 
 function SinglePage() {
@@ -31,6 +33,8 @@ function SinglePage() {
   const [size, setSize] = useState("")
   const [pin, setPin] = useState(null)
   const [verbifying, setVerifyPin] = useState(false)
+  const [addWish, setAddWish] = useState(false)
+
   const toast1 = useToast({
     position: 'right-bottom',
   })
@@ -75,13 +79,9 @@ function SinglePage() {
 
   const addToWishlist = () => {
     dispatch(addProductCart({ data }))
-    toast1({
-      title: `Successfully added Wishlist`,
-      status: "success",
-      isClosable: true,
-    })
+   setAddWish(true)
 
-    
+
   }
 
 
@@ -236,9 +236,9 @@ function SinglePage() {
               <WishDiv
                 onClick={() => addToWishlist()}
               >
-                <div style={{ color: "gray" }}>
-                  <FavoriteBorderIcon />
-                </div>
+                {
+                  addWish ? <AiFillHeart fontSize="20px" /> : <AiOutlineHeart fontSize="20px" />
+                }
                 <b>
                   {" "}
                   <p>WISHLIST</p>

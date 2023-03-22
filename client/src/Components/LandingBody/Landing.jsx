@@ -107,7 +107,7 @@ const Landing = () => {
             <ChevronRightIcon fontSize="24px" />
           </button>
         </Box>
-        <Box>
+        <Box className={styles.Slider}>
           <div className="slide-container">
             <Slide>
               {slideImages.map((slideImage, index) => (
@@ -117,8 +117,8 @@ const Landing = () => {
                       ...divStyle,
                       backgroundImage: `url(${slideImage.url})`,
                     }}
+                    className="SlideDiv"
                   >
-                    {/* <span style={spanStyle}>{slideImage.caption}</span> */}
                   </div>
                 </div>
               ))}
@@ -131,11 +131,7 @@ const Landing = () => {
           </Box>
           <Box h="300px">
             <Grid
-              h="350px"
-              templateRows="repeat(1, 1fr)"
-              templateColumns="repeat(8, 1fr)"
-              gap={4}
-              p="20px"
+            className={styles.eightDiv}
             >
               <GridItem colSpan={1}>
                 <Link to='/products'><LazyLoadImage effect='blur' src="https://assets.myntassets.com/f_webp,w_108,c_limit,fl_progressive,dpr_2.0/assets/images/2022/8/17/49939a83-5bf1-4c78-b55d-40d7545f843e1660744474034-Kurtas--4-.jpg" alt="" className="min-h-[200px]" /></Link>
@@ -173,7 +169,7 @@ const Landing = () => {
         <Box>
           <div className={styles.exclusiveDiv}>
             <h1>BEST OF MYNTRA EXCLUSIVE BRANDS</h1>
-            <div>
+            <div className={styles.links1}>
               <Link to='/products'><LazyLoadImage effect='blur' src="https://raw.githubusercontent.com/Vikas-0-Verma/MyntraClone/main/frontend/src/components/images/a5.webp" alt="" className="min-h-[200px]" /></Link>
               <Link to='/products'><LazyLoadImage effect='blur' src="https://raw.githubusercontent.com/Vikas-0-Verma/MyntraClone/main/frontend/src/components/images/a2.webp" alt="" className="min-h-[200px]" /></Link>
               <Link to='/products'><LazyLoadImage effect='blur' src="https://raw.githubusercontent.com/Vikas-0-Verma/MyntraClone/main/frontend/src/components/images/a1.webp" alt="" className="min-h-[200px]" /></Link>
@@ -191,9 +187,9 @@ const Landing = () => {
           </div>
         </Box>
         <Box>
-          <div className={styles.exclusiveDiv}>
+          <div className={styles.exclusiveDiv1}>
             <h1>NEW IN TOP BRANDS</h1>
-            <div>
+            <div className={styles.links1}>
               <Link to='/products'><LazyLoadImage effect='blur' src="https://assets.myntassets.com/f_webp,w_122,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/26/1aaf5e6a-2978-4ed8-9634-1559f530d73b1645860227457-SS22-BestOfBrands-H_M.jpg" alt="" className="min-h-[200px]" /></Link>
               <Link to='/products'><LazyLoadImage effect='blur' src="https://assets.myntassets.com/f_webp,w_122,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/26/3ce3c5e7-6060-4b15-b80b-6ddcd19d385a1645860227491-SS22-BestOfBrands-Max.jpg" alt="" className="min-h-[200px]" /></Link>
               <Link to='/products'><LazyLoadImage effect='blur' src="https://assets.myntassets.com/f_webp,w_122,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/26/ae3f2d8b-4f02-40ab-8233-d9ab9c7be4941645860227438-SS22-BestOfBrands-CKJeans.jpg" alt="" className="min-h-[200px]" /></Link>
@@ -204,28 +200,20 @@ const Landing = () => {
           </div>
         </Box>
         <Box>
-          <div className={styles.exclusiveDiv}>
-            <h1>COLOURS OF THE SEASON </h1>
-            <div>
+          <div className={styles.exclusiveDiv1}>
+            <h1>COLORS OF THE SEASON </h1>
+            <div className={styles.links1}>
               <Link to='/products'><LazyLoadImage effect='blur' src="https://assets.myntassets.com/f_webp,w_245,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/17/53a0e7bc-64e7-4fb3-94fd-a1ada51fbefa1647516450800-SS22-Colours-Metallic-Hues.jpg" alt="" className="min-h-[200px]" /></Link>
               <Link to='/products'><LazyLoadImage effect='blur' src="https://assets.myntassets.com/f_webp,w_245,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/17/a6ef0785-eb3c-4726-a6ba-c09f6a44379c1647516450782-SS22-Colours-Elegant-Olive.jpg" alt="" className="min-h-[200px]" /></Link>
               <Link to='/products'><LazyLoadImage effect='blur' src="https://assets.myntassets.com/f_webp,w_245,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/26/3b1d43f4-46bf-4e3f-903b-ec5ca5c2bac91645860983331-SS22-Colours-Mens-BreezyWhite.jpg" alt="" className="min-h-[200px]" /></Link>
             </div>
           </div>
         </Box>
-        {/* <Box h="100px" bg="tomato">
-          8
-        </Box>
-        <Box h="300px" bg="pink.100">
-          9
-        </Box>
-        <Box h="100px" bg="yellow.200">
-          10
-        </Box> */}
+
         <Box>
-          <div className={styles.exclusiveDiv}>
-            <h1>TRENDING OUTFITS BY INFLUENCERS</h1>
-            <div>
+          <div className={styles.exclusiveDiv1}>
+            <h1>TRENDING OUTFITS BY INFLUENCER</h1>
+            <div className={styles.links1}>
               <Link to='/products'><LazyLoadImage effect='blur' src="https://assets.myntassets.com/f_webp,w_122,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/16/0d7a22b9-e201-44db-ba04-6dfba8ebd5061647418012721-Studiocontent-HPCarousel-Women-WesternWear.jpg" alt="" className="min-h-[200px]" /></Link>
               <Link to='/products'><LazyLoadImage effect='blur' src="https://assets.myntassets.com/f_webp,w_122,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/16/d8bee915-9dbd-4cbb-9562-896dd16afdf31647418012563-Studiocontent-HPCarousel-Men-BeyondBasicsCasulaWear.jpg" alt="" className="min-h-[200px]" /></Link>
               <Link to='/products'><LazyLoadImage effect='blur' src="https://assets.myntassets.com/f_webp,w_122,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/16/fa1a37d5-db35-4df5-9f3b-dfeebf9a22bd1647418012703-Studiocontent-HPCarousel-Women-IndianWearGuide.jpg" alt="" className="min-h-[200px]" /></Link>

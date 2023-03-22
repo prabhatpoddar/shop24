@@ -14,7 +14,7 @@ import { Navbar } from '../../Components/Navbar/Navbar';
 import { publicRequest } from '../../requestMethod';
 const Login = () => {
     const auth = getAuth(app);
-    const [Authinicated, setAuthinicated] = useState(false);
+    const [Authenticated, setAuthenticated] = useState(false);
     const [togalOtp, setTogalOtp] = useState(true)
     const [Number, setNumber] = useState("");
     const [otp, setOtp] = useState(null)
@@ -53,7 +53,7 @@ const Login = () => {
                 setTogalOtp(false)
 
                 console.log(res);
-                setAuthinicated(res);
+                setAuthenticated(res);
                 toast({
                     title: `OTP Sent`,
                     position: "top",
@@ -82,7 +82,7 @@ const Login = () => {
         }
         let code = otp * 1;
 
-        await Authinicated.confirm(code)
+        await Authenticated.confirm(code)
             .then((result) => {
                 toast({
                     title: `OTP Verified`,
@@ -96,37 +96,32 @@ const Login = () => {
                 }).then((res) => {
                     localStorage.clear()
                     localStorage.setItem("token", JSON.stringify(res.data.token))
-                    localStorage.setItem("isAdmin", JSON.stringify(res.data.isAdmin))
-                    const isAdmin = JSON.parse(localStorage.getItem("isAdmin"))
-                    if (isAdmin === "user") {
+                    if (res.data.isAdmin === "user") {
                         toast({
-                            title: `You Are Redirected To Home Page in 3 sec`,
+                            title: `Redirecting To Home Page`,
                             status: "success",
                             isClosable: true,
                         })
 
                         setInterval(() => {
                             navigate("/")
-
-
+                            window.location.reload();
                         }, 3000)
 
                     }
                     else {
                         toast({
-                            title: `You Are Redirected To admin Page in 3 sec`,
+                            title: `Redirecting To Admin Page`,
                             status: "success",
                             isClosable: true,
                         })
 
                         setInterval(() => {
                             window.location = 'https://adminshop24-prabhatpoddar.vercel.app/';
-
-
                         }, 3000)
 
                     }
-                    if (isAdmin === "") {
+                    if (res.data.isAdmin === "") {
                         toast({
                             title: `You have To register First`,
                             status: "warning",
@@ -134,7 +129,9 @@ const Login = () => {
                         })
 
                         localStorage.setItem("Number", JSON.stringify(Number))
-                        navigate("/signup")
+                        setTimeout(() => {
+                            navigate("/signup")
+                        }, 1000)
 
 
                     }
@@ -143,24 +140,19 @@ const Login = () => {
 
 
                 }).catch(err => {
-
                     toast({
                         title: `You have To register First`,
                         status: "warning",
                         isClosable: true,
                     })
                     localStorage.setItem("Number", JSON.stringify(Number))
-
-
                     navigate("/signup")
                 })
 
             })
             .catch((error) => {
-                // onClose();
-
                 toast({
-                    title: `Worng OTP`,
+                    title: `Wrong OTP`,
                     position: "top",
                     isClosable: true,
                     status: "error",

@@ -13,6 +13,7 @@ const WishlistCart = () => {
   })
   const dispatch = useDispatch()
   const cart = useSelector(store => store.cart.products)
+  console.log('cart:', cart)
   if (cart.length === 0) {
     return (
       <>
@@ -40,13 +41,13 @@ const WishlistCart = () => {
       <div className="wishlistContainer">
         {
           cart.length > 0 && cart.map((el, i) => {
-            const { image, name, price, off_price } = el.data
+            const { image, name, price, off_price ,_id} = el.data
 
             return (
-              <div className="wishItem" key={i}>
+              <div className="wishItem" key={_id}>
                 <div className="imageContainer">
                   <CloseButton size='lg' className='closeBtn' onClick={() => {
-                    dispatch(removeProductCart({ id: el }))
+                    dispatch(removeProductCart(_id))
                     toast2({
                       title: `Cart Deleted`,
                       status: "info",

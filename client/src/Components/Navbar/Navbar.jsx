@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useState } from 'react'
 import styles from "./Navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { FaRegHeart, FaUserAlt, FaShoppingBag } from 'react-icons/fa';
+import { BsBag, BsPerson, BsHeart } from 'react-icons/bs';
 import { FiSearch } from 'react-icons/fi'
 import SliderNav from './SliderNav';
 import { publicRequest } from '../../requestMethod';
@@ -28,6 +28,7 @@ const Navbar = () => {
   const token = localStorage.getItem("token");
   const handleLogout = () => {
     localStorage.clear()
+    window.location.reload()
     return navigate("/");
   }
   const handleSearch = (e) => {
@@ -40,6 +41,11 @@ const Navbar = () => {
 
   return (
     <div className={styles.navMainDiv}>
+
+      <div className={styles.navSubDiv5}>
+        <SliderNav />
+        <Link to="/"> <h4>Shop24</h4></Link>
+      </div>
       <div className={styles.navSubDiv1}>
         <Link to="/"><img src="https://user-images.githubusercontent.com/98205449/213233396-1caf5409-150c-4862-bb2b-03fbd8e3bbf5.jpg" alt="logo" className={styles.logoSize} /></Link>
       </div>
@@ -331,47 +337,50 @@ const Navbar = () => {
           >
             <div className={styles.dropdownFlex}>
               <div>
-                <p className={styles.dropHeadings}>Topwear</p>
+                <p className={styles.dropHeadings}>Bed Linen & Furnishing</p>
                 {/* 
                 if want to link it to any page use this code
                 <Link to="/products/clothing">Clothing</Link>
                  */}
-                <a href="/home&leaving">T-Shirts</a>
-                <a href="/home&leaving">Casual Shirts</a>
-                <a href="/home&leaving">Formal Shirts</a>
-                <a href="/home&leaving">Sweatshirts</a>
-                <a href="/home&leaving">Sweaters</a>
-                <a href="/home&leaving">Jackets</a>
-                <a href="/home&leaving">Blazers & Coats</a>
-                <a href="/home&leaving">Suits</a>
-                <a href="/home&leaving">Rain Jackets</a><br />
-                <p className={styles.dropHeadings}>Indian & Festive Wear</p>
-                <a href="/home&leaving">Kurtas & Kurta Sets</a>
-                <a href="/home&leaving">Nehru Jackets</a>
-                <a href="/home&leaving">Sherwanis</a>
-                <a href="/home&leaving">Dhotis</a>
+                <a href="/home&leaving">Bed Runners</a>
+                <a href="/home&leaving">Mattress Protectors</a>
+                <a href="/home&leaving">Bedsheets</a>
+                <a href="/home&leaving">Bedding Sets</a>
+                <a href="/home&leaving">Blankets, Quilts & Dohars</a>
+                <a href="/home&leaving">Pillows & Pillow Covers</a>
+                <a href="/home&leaving">Bed Covers</a>
+                <a href="/home&leaving">Diwan Sets</a>
+                <a href="/home&leaving">Chair Pads & Covers</a><br />
+                <p className={styles.dropHeadings}>Sofa Covers</p>
+                <a href="/home&leaving">Flooring</a>
+                <a href="/home&leaving">Floor Runners</a>
+                <a href="/home&leaving">Carpets</a>
+                <a href="/home&leaving">Floor Mats & Dhurries</a>
               </div>
               <div>
-                <p className={styles.dropHeadings}>Bottom Wear</p>
-                <a href="/home&leaving">Jeans</a>
-                <a href="/home&leaving">Casual Trousers</a>
-                <a href="/home&leaving">Formal Trousers</a>
-                <a href="/home&leaving">Track Pants & Joggers</a><br />
-                <p className={styles.dropHeadings}>Innerwear & Sleepwear</p>
-                <a href="/home&leaving">Track Pants & Joggers</a>
-                <a href="/home&leaving">Boxers</a>
-                <a href="/home&leaving">Vests</a>
-                <a href="/home&leaving">Sleepwear & Loungewear</a>
-                <a href="/home&leaving">Thermals</a><br />
-                <p className={styles.dropHeadings}>Plus Size</p>
-                <a href="/">S, M, L, XL, XXl, XXl</a>
+                <p className={styles.dropHeadings}>
+                  Door Mats</p>
+                <a href="/home&leaving">Bath</a>
+                <a href="/home&leaving">Bath Towels</a>
+                <a href="/home&leaving">
+                  Hand & Face Towels</a>
+                <a href="/home&leaving">Beach Towels</a><br />
+                <p className={styles.dropHeadings}>Towels Set</p>
+                <a href="/home&leaving">Bath Rugs</a>
+                <a href="/home&leaving">
+                  Bath Robes</a>
+                <a href="/home&leaving">Bathroom Accessories</a>
+                <a href="/home&leaving">Shower Curtains</a>
+                <a href="/home&leaving">Lamps & Lighting</a><br />
+                <p className={styles.dropHeadings}>Floor Lamps</p>
+                <a href="/">Ceiling Lamps</a>
               </div>
               <div>
-                <p className={styles.dropHeadings}>Footwear</p>
-                <a href="/home&leaving">Casual Shoes</a>
-                <a href="/home&leaving">Sports Shoes</a>
-                <a href="/home&leaving">Formal Shoes</a>
-                <a href="/home&leaving">Sneakers</a>
+                <p className={styles.dropHeadings}>Table Lamps</p>
+                <a href="/home&leaving">Wall Lamps</a>
+                <a href="/home&leaving">Outdoor Lamps</a>
+                <a href="/home&leaving">String Lights</a>
+                <a href="/home&leaving">Home Décor</a>
                 <a href="/home&leaving">Sandals & Floaters</a>
                 <a href="/home&leaving">Flip Flops</a>
                 <a href="/home&leaving">Socks</a><br />
@@ -426,50 +435,51 @@ const Navbar = () => {
           >
             <div className={styles.dropdownFlex}>
               <div>
-                <p className={styles.dropHeadings}>Topwear</p>
+                <p className={styles.dropHeadings}>Makeup</p>
                 {/* 
                 if want to link it to any page use this code
                 <Link to="/products/clothing">Clothing</Link>
                  */}
-                <Link to="/beauty">T-Shirts</Link>
-                <Link to="/beauty">Casual Shirts</Link>
-                <Link to="/beauty">Formal Shirts</Link>
-                <Link to="/beauty">Sweatshirts</Link>
-                <Link to="/beauty">Sweaters</Link>
-                <Link to="/beauty">Jackets</Link>
-                <Link to="/beauty">Blazers & Coats</Link>
-                <Link to="/beauty">Suits</Link>
-                <Link to="/beauty">Rain Jackets</Link><br />
-                <p className={styles.dropHeadings}>Indian & Festive Wear</p>
-                <Link to="/beauty">Kurtas & Kurta Sets</Link>
-                <Link to="/beauty">Nehru Jackets</Link>
-                <Link to="/beauty">Sherwanis</Link>
-                <Link to="/beauty">Dhotis</Link>
+                <Link to="/beauty">Lipstick</Link>
+                <Link to="/beauty">Lip Gloss</Link>
+                <Link to="/beauty">Lip Liner</Link>
+                <Link to="/beauty">Mascara</Link>
+                <Link to="/beauty">Eyeliner</Link>
+                <Link to="/beauty">Kajal</Link>
+                <Link to="/beauty">Eyeshadow</Link>
+                <Link to="/beauty">Foundation</Link>
+                <Link to="/beauty">Primer</Link><br />
+                <p className={styles.dropHeadings}>Concealer</p>
+                <Link to="/beauty">Compact</Link>
+                <Link to="/beauty">
+                  Nail Polish</Link>
+                <Link to="/beauty">Skincare, Bath & Body</Link>
+                <Link to="/beauty">Face Moisturiser</Link>
               </div>
               <div>
-                <p className={styles.dropHeadings}>Bottom Wear</p>
-                <a href="/beauty">Jeans</a>
-                <a href="/beauty">Casual Trousers</a>
-                <a href="/beauty">Formal Trousers</a>
-                <a href="/beauty">Track Pants & Joggers</a><br />
-                <p className={styles.dropHeadings}>Innerwear & Sleepwear</p>
-                <a href="/beauty">Track Pants & Joggers</a>
-                <a href="/beauty">Boxers</a>
+                <p className={styles.dropHeadings}>Cleanser</p>
+                <a href="/beauty">Masks & Peel</a>
+                <a href="/beauty">Sunscreen</a>
+                <a href="/beauty">Serum</a>
+                <a href="/beauty">Face Wash</a><br />
+                <p className={styles.dropHeadings}>Eye Cream</p>
+                <a href="/beauty">Lip Balm</a>
+                <a href="/beauty">Body Lotion</a>
                 <a href="/beauty">Vests</a>
-                <a href="/beauty">Sleepwear & Loungewear</a>
-                <a href="/beauty">Thermals</a><br />
-                <p className={styles.dropHeadings}>Plus Size</p>
-                <a href="/beauty">S, M, L, XL, XXl, XXl</a>
+                <a href="/beauty">Body Wash</a>
+                <a href="/beauty">Body Scrub</a><br />
+                <p className={styles.dropHeadings}>Hand Cream</p>
+                <a href="/beauty">Baby Care</a>
               </div>
               <div>
-                <p className={styles.dropHeadings}>Footwear</p>
-                <a href="/beauty">Casual Shoes</a>
-                <a href="/beauty">Sports Shoes</a>
-                <a href="/beauty">Formal Shoes</a>
-                <a href="/beauty">Sneakers</a>
-                <a href="/beauty">Sandals & Floaters</a>
-                <a href="/beauty">Flip Flops</a>
-                <a href="/beauty">Socks</a><br />
+                <p className={styles.dropHeadings}>Masks</p>
+                <a href="/beauty">Haircare</a>
+                <a href="/beauty">Shampoo</a>
+                <a href="/beauty">Conditioner</a>
+                <a href="/beauty">Hair Cream</a>
+                <a href="/beauty">Hair Oil</a>
+                <a href="/beauty">Hair Gel</a>
+                <a href="/beauty">Hair Color</a><br />
                 <p className={styles.dropHeadings}>Personal Care & Grooming</p><br />
                 <p className={styles.dropHeadings}>Sunglasses & Frames</p><br />
                 <p className={styles.dropHeadings}>Watches</p>
@@ -558,11 +568,15 @@ const Navbar = () => {
 
       <div className={styles.navSubDiv4}>
 
+
         <div className={styles.dropdown}>
 
           <p className={`${styles.dropbtn} ${hover1 && styles.tabStyles}`}>
-            <FaUserAlt style={{ marginLeft: "15px" }} />
-            Profile
+            <div style={{
+              fontSize: "17px",
+              textDecoration: "none",
+              color: "#282C3F",
+            }}><BsPerson style={{ marginLeft: "15px" }} /><p>Profile</p></div>
           </p>
           <div
             className={styles.dropdownContentProfile}
@@ -585,7 +599,7 @@ const Navbar = () => {
                 }
 
 
-                {token === null && <Link to="/login"> <Button variant="outline" color="#FF3F6C"  className={styles.loginSignButton}>Login / SignUp</Button> </Link>}
+                {token === null && <Link to="/login"> <Button variant="outline" color="#FF3F6C" className={styles.loginSignButton}>Login / SignUp</Button> </Link>}
 
                 <br />
                 <hr />
@@ -622,22 +636,23 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <Link to="/wishlist">
-          <div style={{
+        <div className={styles.navDiv6}>
+          <Link to="/wishlist">
+            <div style={{
+              fontSize: "17px",
+              textDecoration: "none",
+              color: "#282C3F",
+            }}><BsHeart style={{ marginLeft: "20px" }} /><p className={styles.NoPhone}>Wishlist</p></div>
+          </Link>
+          <Link to="/bag"><div style={{
             fontSize: "17px",
             textDecoration: "none",
             color: "#282C3F",
-          }}><FaRegHeart style={{ marginLeft: "20px" }} />Wishlist</div>
-        </Link>
-        <Link to="/bag"><div style={{
-          fontSize: "17px",
-          textDecoration: "none",
-          color: "#282C3F",
-        }}><FaShoppingBag style={{ marginLeft: "5px" }} />Bag</div></Link>
+          }}><BsBag style={{ marginLeft: "5px" }} /><p className={styles.NoPhone}>Bag</p></div></Link>
+
+        </div>
       </div>
-      <div className={styles.navSubDiv5}>
-        <SliderNav />
-      </div>
+
     </div>
 
 

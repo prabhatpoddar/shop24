@@ -1,5 +1,5 @@
-import { Container, Flex, Grid, Heading, InputRightElement,  Image, InputGroup, Input, Text, Button, GridItem, useToast } from '@chakra-ui/react'
-import React, {  useState } from 'react'
+import { Container, Flex, Grid, Heading, InputRightElement, Image, InputGroup, Input, Text, Button, GridItem, useToast } from '@chakra-ui/react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Navbar } from '../../Components/Navbar/Navbar'
 import { publicRequest } from '../../requestMethod'
@@ -27,34 +27,32 @@ const LoginByEmail = () => {
         publicRequest.post("/auth/login", user).then(res => {
             localStorage.clear()
             localStorage.setItem("token", JSON.stringify(res.data.token))
-            localStorage.setItem("isAdmin", JSON.stringify(res.data.isAdmin))
+            if (res.data.isAdmin === "user") {
+                toast({
+                    title: `Redirecting To Home`,
+                    status: "success",
+                    variant: "subtle",
+                    isClosable: true,
+                })
 
-         
-                if (res.data.isAdmin === "user") {
-                    toast({
-                        title: `You Are Redirected To Home Page in 3 sec`,
-                        status: "success",
-                        variant: "subtle",
-                        isClosable: true,
-                    })
+                setTimeout(() => {
+                    navigate("/")
+                    window.location.reload();
+                }, 1000)
+            }
+            else {
+                toast({
+                    title: `Redirecting To Admin Page`,
+                    status: "success",
+                    isClosable: true,
+                })
 
-                    setTimeout(() => {
-                        navigate("/")
-                    }, 3000)
-                }
-                else {
-                    toast({
-                        title: `You Are Redirected To admin Page in 3 sec`,
-                        status: "success",
-                        isClosable: true,
-                    })
+                setTimeout(() => {
+                    window.location = 'https://admin-seven-fawn.vercel.app/';
+                }, 1000)
+            }
 
-                    setTimeout(() => {
-                        window.location = 'https://admin-seven-fawn.vercel.app/';
-                    }, 3000)
-                }
-         
-        }).catch(err=>{
+        }).catch(err => {
             toast({
                 title: `Wrong Credential`,
                 status: "error",
@@ -66,7 +64,7 @@ const LoginByEmail = () => {
 
     return (
         <>
-        <Navbar/>
+            <Navbar />
 
 
             <Grid bg="#FFF5F5" w="100%" h="100vh" display="grid" justifyContent="center" alignItems="center">

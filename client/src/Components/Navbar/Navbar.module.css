@@ -84,8 +84,12 @@
   -moz-transition: font-weight ease-in 0.1s;
   -ms-transition: font-weight ease-in 0.1s;
   -o-transition: font-weight ease-in 0.1s;
-  font-weight: 400;
+  font-weight: 600;
   border-bottom: 2px solid #ee4a1b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .dropdownContent {
@@ -140,8 +144,7 @@
   justify-content: center;
 }
 .loginSignButton {
-margin-top: 10px;
-
+  margin-top: 10px;
 }
 
 .dropdownContentProfile {
@@ -156,7 +159,6 @@ margin-top: 10px;
   width: 20vw;
   z-index: 1000;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  /* margin-left: 7vh; */
 }
 
 .dropdown:hover > .dropdownContentProfile {
@@ -165,7 +167,6 @@ margin-top: 10px;
 
 .dropdownContentProfile a {
   color: black;
-  /* padding: 1.1vh 0; */
   text-decoration: none;
   display: block;
   font-weight: 400;
@@ -206,6 +207,7 @@ margin-top: 10px;
   justify-self: center;
 }
 .searchbtn {
+  -webkit-box-sizing: content-box;
   border: 1px solid #f5f5f6;
   border-radius: 5px 0 0 5px;
   border-right: 0;
@@ -213,7 +215,6 @@ margin-top: 10px;
   margin: 0;
   outline: 0;
   padding: 8px 10px 10px;
-  -webkit-box-sizing: content-box;
   height: 20px;
   line-height: 24px;
   display: inline-block;
@@ -228,16 +229,20 @@ margin-top: 10px;
 .navSubDiv5 {
   display: none;
 }
+.navDiv6 {
+  display: flex;
+  gap: 40px;
+}
 
 @media (max-width: 1024px) {
   .navSubDiv2 {
     display: none;
   }
-  .navSubDiv4 {
+  .dropdown {
     display: none;
   }
   .navSubDiv3 {
-    margin-left: 350px;
+    margin-left: 280px;
     margin-right: 150px;
   }
   .navSubDiv5 {
@@ -246,13 +251,32 @@ margin-top: 10px;
     margin-right: 20px;
     font-size: 20px;
   }
+  .NoPhone {
+    display: none;
+  }
+  .navSubDiv5 {
+    display: block;
+    font-size: 20px;
+    margin-left: 0;
+    display: flex;
+    align-items: center;
+  }
+  .navSubDiv1 {
+    display: none;
+  }
+  
+  .navDiv6 {
+    gap: 20px;
+    margin-left: 0px;
+  }
+
 }
 
 @media (max-width: 480px) {
   .navSubDiv2 {
     display: none;
   }
-  .navSubDiv4 {
+  .dropdown {
     display: none;
   }
   .navSubDiv3 {
@@ -260,8 +284,20 @@ margin-top: 10px;
   }
   .navSubDiv5 {
     display: block;
-    margin-left: 250px;
-    margin-right: 20px;
     font-size: 20px;
+    margin-left: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .NoPhone {
+    display: none;
+  }
+  .navDiv6 {
+    gap: 10px;
+    margin-left: 300px;
+  }
+  .navSubDiv1 {
+    display: none;
   }
 }

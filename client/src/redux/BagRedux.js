@@ -9,8 +9,8 @@ const bagSlice = createSlice({
   },
   reducers: {
     addProductBag: (state, action) => {
-      const { id, price, quantity } = action.payload;
-      const existingItem = state.products.find((item) => item.id === id);
+      const { _id, price, quantity } = action.payload;
+      const existingItem = state.products.find((item) => item._id === _id);
       if (existingItem) {
         existingItem.quantity += quantity;
       } else {
@@ -20,8 +20,8 @@ const bagSlice = createSlice({
       state.total += price * quantity;
     },
     removeProductBag: (state, action) => {
-      const id = action.payload.id;
-      const index = state.products.findIndex((item) => item.id === id);
+      const id = action.payload;
+      const index = state.products.findIndex((item) => item._id === id);
       if (index !== -1) {
         const itemToRemove = state.products[index];
         state.products.splice(index, 1);
@@ -37,5 +37,5 @@ const bagSlice = createSlice({
   },
 });
 
-export const { addProductBag, removeProductBag ,clearBag} = bagSlice.actions;
+export const { addProductBag, removeProductBag, clearBag } = bagSlice.actions;
 export default bagSlice.reducer;

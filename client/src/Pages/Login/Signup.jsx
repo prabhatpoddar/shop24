@@ -1,5 +1,5 @@
 import { Container, Flex, Grid, Heading, InputRightElement, Image, InputGroup, Input, Text, Button, GridItem, useToast, } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Navbar } from '../../Components/Navbar/Navbar'
 import { publicRequest } from '../../requestMethod'
@@ -18,14 +18,20 @@ const Signup = () => {
     const [user, setUser] = useState(initialState)
     const navigate = useNavigate()
     const [alert, setAlert] = useState(false)
+    const [show, setShow] = React.useState(false)
     const toast = useToast({
         position: 'top'
     })
-
-
-
-    const [show, setShow] = React.useState(false)
+    useEffect(() => {
+        let number = JSON.parse(localStorage.getItem("Number"));
+        if (number == null) {
+            navigate("/login")
+        }
+    },[navigate])
     const handleClick = () => setShow(!show)
+
+
+
     let handelChange = (e) => {
         const { name, value, type, checked } = e.target;
         const val = type === "checkbox" ? checked : value;
@@ -42,18 +48,18 @@ const Signup = () => {
 
             publicRequest.post("/auth/register", user).then((res) => {
                 toast({
-                    title: `Acount Created`,
+                    title: `Account Created`,
                     status: "success",
                     isClosable: true,
                 })
                 toast({
-                    title: `You Are Redirected To Home Page in 3 sec`,
+                    title: ` Redirecting To Login Page`,
                     status: "info",
                     isClosable: true,
                 })
                 setTimeout(() => {
                     navigate("/login")
-                }, 3000)
+                }, 1000)
             }).catch((err) => {
                 console.log('err:', err)
             })
