@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
       next();
     });
   } else {
-    res.status(401).json({ message: "You are not Autherized" });
+    res.status(401).json({ message: "You are not Authorized" });
   }
 };
 
@@ -21,7 +21,7 @@ const verifyUserAndAutherization = (req, res, next) => {
 
       next();
     } else {
-      res.status(403).json({ message: "You are not Autherized to do that" });
+      res.status(403).json({ message: "You are not Authorized to do that" });
     }
   });
 };
@@ -35,7 +35,7 @@ const verifyEmployeeAndAutherization = (req, res, next) => {
     ) {
       next();
     } else {
-      res.status(403).json({ message: "You are not Autherized to do that" });
+      res.status(403).json({ message: "You are not Authorized to do that" });
     }
   });
 };

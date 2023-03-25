@@ -33,9 +33,19 @@ router.post("/login", async (req, res) => {
     if (user.length > 0) {
       bcrypt.compare(password, user[0].password, (err, result) => {
         if (result) {
-          const token = jwt.sign({ userID: user[0]._id ,isAdmin: user[0].isAdmin}, "myntra");
+          const token = jwt.sign(
+            { user: user[0], isAdmin: user[0].isAdmin  },
+            "myntra"
+          );
 
-          res.status(200).json({ msg: "Login Succesfully", token: token ,isAdmin: user[0].isAdmin });
+          res
+            .status(200)
+            .json({
+              msg: "Login Successfully",
+              token: token,
+              isAdmin: user[0].isAdmin,
+              user: user[0],
+            });
         } else {
           res.status(401).json({ message: "Wrong Credential" });
         }
@@ -52,12 +62,19 @@ router.post("/loginbynumber", async (req, res) => {
     const user = await UserModel.find({ mobile });
     if (user.length > 0) {
       const token = jwt.sign(
-        { userID: user[0]._id, isAdmin: user[0].isAdmin },
+        { user: user[0], isAdmin: user[0].isAdmin },
         "myntra"
       );
-      res.status(200).json({ msg: "Login Succesfully", token: token ,isAdmin:user[0].isAdmin});
+      res
+        .status(200)
+        .json({
+          msg: "Login Successfully",
+          token: token,
+          isAdmin: user[0].isAdmin,
+          user: user[0],
+        });
     } else {
-      res.status(401).json({ msg: "User Dosen't Exist" });
+      res.status(401).json({ msg: "User doesn't Exist" });
     }
   } catch (error) {
     res.status(500).json(error);
