@@ -19,6 +19,7 @@ const Login = () => {
     const [otp, setOtp] = useState(null)
     const navigate = useNavigate()
     const [loading1, setLoading] = useState(false);
+    console.log('loading1:', loading1)
     const toast = useToast();
 
 
@@ -29,8 +30,8 @@ const Login = () => {
     const submitOTP = () => {
 
         sendOtp()
-      
-      
+
+
 
 
 
@@ -101,33 +102,50 @@ const Login = () => {
                     status: "success",
                     duration: 2000
                 });
-              
-            publicRequest.post("/auth/loginbynumber", {
-                mobile: Number
-            }).then((res) => {
-                localStorage.clear()
-                localStorage.setItem("token", JSON.stringify(res.data.token))
-                localStorage.setItem("isAdmin", JSON.stringify(res.data.isAdmin))
-                console.log(res.data)
-                // localStorage.setItem("isAdmin", JSON.stringify(res.data.isAdmin))
-                // localStorage.setItem("isAdmin", JSON.stringify(res.data.isAdmin))
 
-                navigate("/otp")
+                publicRequest.post("/auth/loginbynumber", {
+                    mobile: Number
+                }).then((res) => {
+                    localStorage.clear()
+                    if (res.data.isAdmin === "admin") {
+                        localStorage.setItem("token", JSON.stringify(res.data.token))
 
-            }).catch(err => {
-                toast({
-                    title: `Wrong Credential`,
-                    status: "error",
-                    isClosable: true,
+                        toast({
+                            title: `Redirecting To Admin Page`,
+                            status: "success",
+                            isClosable: true,
+                        })
+
+                        setInterval(() => {
+                            navigate("/")
+                            window.location.reload();
+                        }, 3000)
+
+                    }
+                    else {
+                        toast({
+                            title: `Unauthorized Access`,
+                            status: "error",
+                            isClosable: true,
+                        })
+
+                    }
+
+
+                }).catch(err => {
+                    toast({
+                        title: `Wrong Credential`,
+                        status: "error",
+                        isClosable: true,
+                    })
                 })
-            })
             })
             .catch((error) => {
                 // onClose();
 
-                localStorage.setItem("Number",JSON.stringify(Number))
+                localStorage.setItem("Number", JSON.stringify(Number))
                 toast({
-                    title: `Worng OTP`,
+                    title: `Wrong OTP`,
                     position: "top",
                     isClosable: true,
                     status: "error",
@@ -147,7 +165,7 @@ const Login = () => {
             <div id="recaptcha-container"></div>
 
             <Grid bg="#FFF5F5" w="100%" h="100vh" display="grid" justifyContent="center" alignItems="center">
-               
+
                 <Container  >
                     <Grid w="400px" bg="#FFF" boxShadow="xl">
                         <Grid>

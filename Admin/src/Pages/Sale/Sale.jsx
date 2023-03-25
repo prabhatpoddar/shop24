@@ -15,14 +15,15 @@ import {
 import { userRequest } from '../../requestMethod';
 const Sale = () => {
     const [data, setData] = useState([])
-    const [loading, setLoadng] = useState(false)
+    console.log('data:', data)
+    const [loading, setLoading] = useState(false)
 
     const getData = () => {
-        setLoadng(true)
+        setLoading(true)
         userRequest.get("/order", {
         }).then(res => {
             setData(res.data)
-            setLoadng(false)
+            setLoading(false)
         }).catch(err => {
             console.log('err:', err)
         })
@@ -31,6 +32,15 @@ const Sale = () => {
         getData()
 
     }, [])
+
+    const ConvertDate = (dateString) => {
+        const date = new Date(dateString);
+
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        return `${year}/${month}/${day}`
+    }
 
 
     const handelUpdate = (id, status) => {
@@ -99,7 +109,9 @@ const Sale = () => {
                                 <Tr key={el._id}>
                                     <Td >{el.userId}</Td>
                                     <Td >{el.amount}</Td>
-                                    <Td >{el.date}</Td>
+                                    <Td >{
+                                        ConvertDate(el.createdAt)
+                                    }</Td>
                                     <Td >{el.status}</Td>
                                     <Td ><Button colorScheme="whatsapp" onClick={() => handelUpdate(el._id, el.status)}>{el.status === "pending" ? "Approve" : "Pending"}</Button></Td>
                                     <Td ><Button colorScheme="red" onClick={() => handelDelete(el._id)}>Reject</Button></Td>

@@ -21,7 +21,6 @@ import { userRequest } from '../../requestMethod';
 
 const UpdateUser = ({ el, getData }) => {
   const [user, setUser] = useState(el)
-  console.log('user:', user)
   const [alert, setAlert] = useState(false)
 
   const { isOpen, onOpen, onClose } = useDisclosure()

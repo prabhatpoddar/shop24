@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "../Login/Login";
 import LoginByEmail from "../Login/LoginByEmail";
-import Otp from "../Login/Otp";
 import Home from "../Pages/Home/Home";
 import NewProduct from "../Pages/newProduct/NewProduct";
 import NewUser from "../Pages/newUser/NewUser";
@@ -36,7 +35,6 @@ const MainRoute = () => {
       <Route path="/sale" element={Token(<Sale />)} />
       <Route path="/login" element={<Login />} />
       <Route path="/loginbyemail" element={<LoginByEmail />} />
-      <Route path="/otp" element={<Otp />} />
     </Routes>
   );
 };

@@ -7,7 +7,6 @@ import { BiLineChartDown } from 'react-icons/bi';
 
 export default function Info() {
   const [amount, setAmount] = useState(0)
-  console.log('amount:', amount)
 
 
 

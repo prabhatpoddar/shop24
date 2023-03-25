@@ -1,26 +1,25 @@
-import MainRoute from "./Components/MainRouts"
-import Navbar from "./Components/Navbar/Navbar"
-import "./App.css"
-import Slider from "./Components/Slider/Slider"
-import { useLocation } from "react-router-dom"
-
+import MainRoute from "./Components/MainRouts";
+import Navbar from "./Components/Navbar/Navbar";
+import "./App.css";
+import Slider from "./Components/Slider/Slider";
+import { useLocation } from "react-router-dom";
 
 function App() {
-  const location = useLocation()
-  console.log('location:', location.pathname)
+  const location = useLocation();
 
-  if (location.pathname === "/login" || location.pathname === "/otp" || location.pathname === "/loginbyemail") {
+  if (
+    location.pathname === "/login" ||
+    location.pathname === "/otp" ||
+    location.pathname === "/loginbyemail"
+  ) {
     return (
       <div className="App">
-      <div id="container">
-        <MainRoute />
+        <div id="container">
+          <MainRoute />
+        </div>
       </div>
-
-    </div>
-    )
-    
+    );
   }
-
 
   return (
     <div className="App">
@@ -29,9 +28,8 @@ function App() {
         <Slider />
         <MainRoute />
       </div>
-
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
