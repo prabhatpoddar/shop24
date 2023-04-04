@@ -46,7 +46,7 @@ function SinglePage() {
     publicRequest(`/product/${direction}`).then((res) => {
       setData(res.data)
     })
-  }, []);
+  }, [direction]);
 
   const addToBag = () => {
     if (size) {
