@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
 import "./Single.css"
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
